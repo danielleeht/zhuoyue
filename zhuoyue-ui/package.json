@@ -1,15 +1,15 @@
 {
-  "name": "shardis-ui",
-  "version": "0.0.0",
-  "description": "shardis-ui",
+  "name": "zhuoyue-ui",
+  "version": "1.0.0",
+  "description": "zhuoyue-ui",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shardis/spring-angular2-starter.git"
+    "url": "git@git.oschina.net:daniel_li/zhuoyue.git"
   },
   "author": "Tomasz Kucharzyk",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/shardis/spring-angular2-starter/issues"
+    "url": "https://git.oschina.net/daniel_li/zhuoyue/issues"
   },
   "private": true,
   "dependencies": {

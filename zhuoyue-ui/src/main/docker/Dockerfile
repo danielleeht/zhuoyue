@@ -1,6 +1,6 @@
 FROM anapsix/alpine-java:8
 VOLUME /tmp
-ADD shardis-ui-2.1.0.jar app.jar
+ADD zhuoyue-ui-1.0.0-SNAPSHOT.jar app.jar
 ADD wait-for-service.sh wait-for-service.sh
 RUN bash -c 'touch /app.jar'
 RUN bash -c 'touch /wait-for-service.sh'

@@ -8,21 +8,30 @@
 .project
 
 ### maven
-shardis-common/target/
-shardis-discovery/target/
-shardis-auth/target/
-shardis-api/target/
-shardis-ui/target/
-shardis-admin/target/
-shardis-gateway/target/
-shardis-config/target/
+zhuoyue-common/target/
+zhuoyue-discovery/target/
+zhuoyue-auth/target/
+zhuoyue-api/target/
+zhuoyue-ui/target/
+zhuoyue-admin/target/
+zhuoyue-gateway/target/
+zhuoyue-config/target/
+zhuoyue-article/target/
+zhuoyue-book/target/
+zhuoyue-comment/target/
+zhuoyue-crowler/target/
+zhuoyue-radio/target/
+zhuoyue-rank/target/
+zhuoyue-review/target/
+zhuoyue-tag/target/
+zhuoyue-user/target/
 
 ### node
 npm-debug.log
-shardis-ui/etc/
-shardis-ui/node/
-shardis-ui/node_modules/
+zhuoyue-ui/etc/
+zhuoyue-ui/node/
+zhuoyue-ui/node_modules/
 ### coverage
-shardis-ui/coverage/
+zhuoyue-ui/coverage/
 ### dist
-shardis-ui/src/main/resources/static/
+zhuoyue-ui/src/main/resources/static/

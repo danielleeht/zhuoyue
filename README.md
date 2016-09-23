@@ -136,31 +136,31 @@ mvn spring-boot:run -P dev-standalone
 
 Run gateway server in development mode:
 ```
-cd shardis-gateway
+cd zhuoyue-gateway
 mvn spring-boot:run -P dev-standalone
 ```
 
 Run api server in development mode:
 ```
-cd shardis-api
+cd zhuoyue-api
 mvn spring-boot:run -P dev-standalone
 ```
 
 Run auth server in development mode:
 ```
-cd shardis-auth
+cd zhuoyue-auth
 mvn spring-boot:run -P dev-standalone
 ```
 
 Run ui server in development mode:
 ```
-cd shardis-ui
+cd zhuoyue-ui
 mvn spring-boot:run -P dev-standalone
 ```
 
 Run admin server (optional) in development mode:
 ```
-cd shardis-admin
+cd zhuoyue-admin
 mvn spring-boot:run -P dev-standalone
 ```
 
@@ -168,7 +168,7 @@ mvn spring-boot:run -P dev-standalone
 
 Run webpack development server:
 ```
-cd shardis-ui
+cd zhuoyue-ui
 npm run server
 ```
 
@@ -176,13 +176,13 @@ npm run server
 
 Running unit tests:
 ```
-cd shardis-ui
+cd zhuoyue-ui
 npm run test
 ```
 
 Running e2e tests:
 ```
-cd shardis-ui
+cd zhuoyue-ui
 npm run e2e
 ```
 
@@ -204,7 +204,7 @@ npm run e2e
 * Updated Spring Cloud to Brixton.SR4
 * Updated Node to v6.3.1 and npm to 3.10.3
 * Updated dependencies
-* Removed shardis-parent project
+* Removed zhuoyue-parent project
 * Added docker support (thanks to Tarun Sukhu)
 * Disabled Eureka client in unit tests
 * Docker and standalone profiles

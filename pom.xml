@@ -6,7 +6,7 @@
 
 	<groupId>com.zhuoyue</groupId>
 	<artifactId>zhuoyue</artifactId>
-	<version>2.1.0</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<name>zhuoyue</name>
@@ -21,6 +21,15 @@
 		<module>zhuoyue-api</module>
 		<module>zhuoyue-config</module>
 		<module>zhuoyue-admin</module>
+        <module>zhuoyue-article</module>
+        <module>zhuoyue-book</module>
+        <module>zhuoyue-comment</module>
+        <module>zhuoyue-crowler</module>
+        <module>zhuoyue-radio</module>
+        <module>zhuoyue-rank</module>
+        <module>zhuoyue-review</module>
+        <module>zhuoyue-tag</module>
+        <module>zhuoyue-user</module>
 	</modules>
 
     <properties>
