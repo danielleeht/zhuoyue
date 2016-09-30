@@ -102,7 +102,7 @@ public class JDBookItem {
 	private String preface;	//前言/序言
 
 	@ExtractBy(value="//div[@id=\"detail-tag-id-9\"]/div[2]/div/ul/li/a/img/@src")
-	private String inset;	//书摘与插画
+	private List<String> inset;	//书摘与插画
 
 	@ExtractBy(value="//*[@id=\"jd-price\"]/allText()")
 	private String price;	//价格

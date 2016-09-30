@@ -1,7 +1,7 @@
 package com.zhuoyue.api.controllers.rest;
 
 
-import com.zhuoyue.dto.commons.ValueObject;
+import com.zhuoyue.commons.ValueObject;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

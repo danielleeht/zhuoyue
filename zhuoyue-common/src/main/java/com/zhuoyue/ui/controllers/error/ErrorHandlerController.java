@@ -1,7 +1,7 @@
 package com.zhuoyue.ui.controllers.error;
 
 import com.google.common.collect.Lists;
-import com.zhuoyue.dto.error.ServerErrorDTO;
+import com.zhuoyue.error.ServerErrorDTO;
 import org.apache.catalina.connector.ClientAbortException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

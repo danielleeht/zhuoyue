@@ -1,4 +1,4 @@
-package com.zhuoyue.dto.error;
+package com.zhuoyue.error;
 
 import com.google.common.collect.Lists;
 
