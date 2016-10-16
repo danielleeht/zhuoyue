@@ -1,4 +1,4 @@
-package com.zhuoyue.book;
+package com.zhuoyue.book.domain;
 
 import javax.persistence.Embeddable;
 
@@ -11,6 +11,9 @@ public class AgeScope {
 
     private Integer ageFrom;
     private Integer ageTo;
+
+    public AgeScope() {
+    }
 
     public AgeScope(Integer ageFrom, Integer ageTo) {
         this.ageFrom = ageFrom;

@@ -1,4 +1,4 @@
-package com.zhuoyue.config;
+package com.zhuoyue.book.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
@@ -14,10 +14,10 @@ import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 /**
  * Created by Tomasz Kucharzyk
  */
-@Configuration
-@EnableResourceServer
-@EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true,securedEnabled = true)
+//@Configuration
+//@EnableResourceServer
+//@EnableWebSecurity
+//@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class SecurityConfig implements ResourceServerConfigurer {
 
     @Override

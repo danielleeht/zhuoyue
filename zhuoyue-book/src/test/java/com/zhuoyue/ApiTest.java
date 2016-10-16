@@ -29,7 +29,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.zhuoyue.api.domain.blog.BlogPost;
+//import com.zhuoyue.api.domain.blog.BlogPost;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -80,35 +80,35 @@ public class ApiTest {
             )));
 	}
 
-	@Test
-	@WithMockUser(username="admin",roles={"USER"})
-    public void createPost() throws Exception {
-
-		BlogPost newPost = new BlogPost("Sample blog post title for testing", "Sample blog post content");
-
-		this.mockMvc.perform(
-                post("/posts/").contentType(MediaType.APPLICATION_JSON).content(
-                        this.objectMapper.writeValueAsString(newPost)
-                )
-        ).andExpect(status().isOk())
-		.andDo(document("add-post",
-					preprocessRequest(
-							prettyPrint()),
-							preprocessResponse(prettyPrint()),
-					requestFields(
-							fieldWithPath("title").description("The posts' title"),
-							fieldWithPath("content").description("The posts' content"),
-							fieldWithPath("id").description("The post' ID"),
-		                    fieldWithPath("uuid").description("The posts' content"),
-		                    fieldWithPath("createdDate").description("The posts' creation date"),
-		                    fieldWithPath("createdBy").description("The posts' created by"),
-		                    fieldWithPath("updatedDate").description("The posts' update data"),
-		                    fieldWithPath("updatedBy").description("The posts' updated by"),
-		                    fieldWithPath("version").description("The posts' version")
-
-						)
-					));
-    }
+//	@Test
+//	@WithMockUser(username="admin",roles={"USER"})
+//    public void createPost() throws Exception {
+//
+//		BlogPost newPost = new BlogPost("Sample blog post title for testing", "Sample blog post content");
+//
+//		this.mockMvc.perform(
+//                post("/posts/").contentType(MediaType.APPLICATION_JSON).content(
+//                        this.objectMapper.writeValueAsString(newPost)
+//                )
+//        ).andExpect(status().isOk())
+//		.andDo(document("add-post",
+//					preprocessRequest(
+//							prettyPrint()),
+//							preprocessResponse(prettyPrint()),
+//					requestFields(
+//							fieldWithPath("title").description("The posts' title"),
+//							fieldWithPath("content").description("The posts' content"),
+//							fieldWithPath("id").description("The post' ID"),
+//		                    fieldWithPath("uuid").description("The posts' content"),
+//		                    fieldWithPath("createdDate").description("The posts' creation date"),
+//		                    fieldWithPath("createdBy").description("The posts' created by"),
+//		                    fieldWithPath("updatedDate").description("The posts' update data"),
+//		                    fieldWithPath("updatedBy").description("The posts' updated by"),
+//		                    fieldWithPath("version").description("The posts' version")
+//
+//						)
+//					));
+//    }
 
 	@Test
 	@WithMockUser(username="admin",roles={"USER"})

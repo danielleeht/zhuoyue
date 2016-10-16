@@ -23,11 +23,9 @@
 		<module>zhuoyue-admin</module>
         <module>zhuoyue-article</module>
         <module>zhuoyue-book</module>
-        <module>zhuoyue-comment</module>
         <module>zhuoyue-crowler</module>
         <module>zhuoyue-radio</module>
         <module>zhuoyue-rank</module>
-        <module>zhuoyue-review</module>
         <module>zhuoyue-tag</module>
         <module>zhuoyue-user</module>
 	</modules>

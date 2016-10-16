@@ -26,15 +26,13 @@ public class AuditedEntity extends BaseEntity {
     protected LocalDateTime createdDate;
 
     @CreatedBy
-    @ManyToOne
-    protected User createdBy;
+    protected String createdBy;
 
     @LastModifiedDate
     protected LocalDateTime updatedDate;
 
     @LastModifiedBy
-    @ManyToOne
-    protected User updatedBy;
+    protected String updatedBy;
 
     @Version
     protected Long version;
@@ -43,7 +41,7 @@ public class AuditedEntity extends BaseEntity {
         return createdDate;
     }
 
-    public User getCreatedBy() {
+    public String getCreatedBy() {
         return createdBy;
     }
 
@@ -51,7 +49,7 @@ public class AuditedEntity extends BaseEntity {
         return updatedDate;
     }
 
-    public User getUpdatedBy() {
+    public String getUpdatedBy() {
         return updatedBy;
     }
 

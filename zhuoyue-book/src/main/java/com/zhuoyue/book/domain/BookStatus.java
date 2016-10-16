@@ -1,4 +1,4 @@
-package com.zhuoyue.book;
+package com.zhuoyue.book.domain;
 
 /**
  * Created by lihaitao on 2016/9/25.

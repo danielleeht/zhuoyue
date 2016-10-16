@@ -1,4 +1,4 @@
-package com.zhuoyue.author;
+package com.zhuoyue.book.domain.author;
 
 /**
  * Created by lihaitao on 2016/9/25.

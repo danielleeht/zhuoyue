@@ -1,6 +1,8 @@
-package com.zhuoyue.book;
+package com.zhuoyue.book.domain;
 
-import com.zhuoyue.author.BookAuthor;
+import com.zhuoyue.book.domain.author.BookAuthor;
+import com.zhuoyue.book.domain.category.BookCategory;
+import com.zhuoyue.book.domain.publisher.Publisher;
 import com.zhuoyue.commons.AuditedEntity;
 
 import javax.persistence.*;
@@ -14,10 +16,11 @@ import java.util.Set;
  * Created by lihaitao on 2016/9/23.
  */
 @Entity
-public class BookInfo extends AuditedEntity {
+public class Book extends AuditedEntity {
 
     private String coverPicture;	//封面图片
 
+    @Column(unique = true)
     @NotNull
 	private String isbn;
 
@@ -27,10 +30,14 @@ public class BookInfo extends AuditedEntity {
     private String foreignName;	//外文名称
 	private String language;	//语言
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private Set<BookAuthor> authors;   //作者
+    @ManyToOne(fetch = FetchType.EAGER)
+    private BookCategory category;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name="BOOK_ID") // join column is in table for Order
+	private Set<BookAuthor> authors;   //作者
+
+    @ManyToMany
 	private Set<Publisher> publishers;	//出版社
 	private Integer publishNo;	//版次
     private String series;	//系列

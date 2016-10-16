@@ -1,6 +1,6 @@
-package com.zhuoyue.config;
+package com.zhuoyue.book.config;
 
-import com.zhuoyue.api.domain.user.User;
+import com.zhuoyue.user.User;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;

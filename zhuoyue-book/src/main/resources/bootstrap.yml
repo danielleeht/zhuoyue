@@ -4,8 +4,8 @@ info:
 
 # PROFILES
 spring:
-    application.name: api-service
-    profiles.active: @default.spring.profiles@
+    application.name: zhuoyue-book
+    profiles.active: dev,standalone
     cloud:
         config:
             failFast: true

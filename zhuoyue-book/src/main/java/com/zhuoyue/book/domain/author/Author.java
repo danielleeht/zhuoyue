@@ -1,19 +1,22 @@
-package com.zhuoyue.author;
+package com.zhuoyue.book.domain.author;
 
 import com.zhuoyue.commons.BaseEntity;
+
+import javax.persistence.Entity;
 
 /**
  * 作者信息
  * Created by lihaitao on 2016/9/24.
  */
+@Entity
 public class Author extends BaseEntity {
 
-    private String name;
-    private String foreignName;
-    private String photo;
-    private String introduction;
-    private String achievement;
-    private String profession;
+    private String name;    //姓名
+    private String foreignName; //外文名
+    private String photo;   //照片
+    private String introduction;    //简介
+    private String achievement; //成就
+    private String profession;  //职业
 
     public String getName() {
         return name;

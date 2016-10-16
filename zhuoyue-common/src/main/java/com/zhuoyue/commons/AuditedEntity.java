@@ -13,9 +13,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Version;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
- * Created by Tomasz Kucharzyk
+ * 支持审计信息的实体基类
  */
 @Audited
 @EntityListeners(AuditingEntityListener.class)
@@ -23,35 +24,33 @@ import java.time.LocalDateTime;
 public class AuditedEntity extends BaseEntity {
 
     @CreatedDate
-    protected LocalDateTime createdDate;
+    protected Date createdDate;
 
     @CreatedBy
-    @ManyToOne
-    protected User createdBy;
+    protected String createdBy;
 
     @LastModifiedDate
-    protected LocalDateTime updatedDate;
+    protected Date updatedDate;
 
     @LastModifiedBy
-    @ManyToOne
-    protected User updatedBy;
+    protected String updatedBy;
 
     @Version
     protected Long version;
 
-    public LocalDateTime getCreatedDate() {
+    public Date getCreatedDate() {
         return createdDate;
     }
 
-    public User getCreatedBy() {
+    public String getCreatedBy() {
         return createdBy;
     }
 
-    public LocalDateTime getUpdatedDate() {
+    public Date getUpdatedDate() {
         return updatedDate;
     }
 
-    public User getUpdatedBy() {
+    public String getUpdatedBy() {
         return updatedBy;
     }
 

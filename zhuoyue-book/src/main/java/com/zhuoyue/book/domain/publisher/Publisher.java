@@ -1,18 +1,21 @@
-package com.zhuoyue.book;
+package com.zhuoyue.book.domain.publisher;
 
 import com.zhuoyue.commons.BaseEntity;
+
+import javax.persistence.Entity;
 
 /**
  * 出版社信息
  * Created by lihaitao on 2016/9/24.
  */
+@Entity
 public class Publisher extends BaseEntity {
 
-    private String name;
-    private String foreignName;
-    private String introduction;
-    private String location;
-    private String foundDate;
+    private String name;    //出版社名称
+    private String foreignName; //外文名称
+    private String introduction;    //出版社简介
+    private String location;    //位置
+    private String foundDate;   //成立日期
     private String logo;
 
     public String getName() {

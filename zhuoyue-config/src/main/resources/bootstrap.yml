@@ -1,7 +1,7 @@
 # PROFILES
 spring:
-    application.name: config-service
-    profiles.active: @default.spring.profiles@
+    application.name: zhuoyue-config
+    profiles.active: dev,standalone
     aop:
         proxyTargetClass: true
 # CONFIGURATION REPO
@@ -9,7 +9,7 @@ spring:
         config:
             server:
                 git:
-                    uri: ${CONFIGURATION_REPOSITORY:https://github.com/zhuoyue/spring-angular2-starter-configuration.git}
+                    uri: ${CONFIGURATION_REPOSITORY:https://code.aliyun.com/danielleeht/zhuoyue-configuration.git}
 
 # SERVICE VERSION
 info:
