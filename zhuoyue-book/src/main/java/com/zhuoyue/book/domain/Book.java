@@ -1,12 +1,17 @@
 package com.zhuoyue.book.domain;
 
+import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 import com.zhuoyue.book.domain.author.BookAuthor;
 import com.zhuoyue.book.domain.category.BookCategory;
 import com.zhuoyue.book.domain.publisher.Publisher;
 import com.zhuoyue.commons.AuditedEntity;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import org.springframework.data.rest.core.annotation.Description;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -16,56 +21,91 @@ import java.util.Set;
  * Created by lihaitao on 2016/9/23.
  */
 @Entity
+@ApiModel()
 public class Book extends AuditedEntity {
 
-    private String coverPicture;	//封面图片
+    @ApiModelProperty(value="封面图片")
+    private String coverPicture;
 
     @Column(unique = true)
     @NotNull
+    @Size(max=20)
 	private String isbn;
 
     @NotNull
-    private String name;	//书名
+    @ApiModelProperty(value="书名")
+    private String name;
 
-    private String foreignName;	//外文名称
-	private String language;	//语言
+    @ApiModelProperty(value="外文名称")
+    private String foreignName;
+
+    @ApiModelProperty(value="语言")
+	private String language;
 
     @ManyToOne(fetch = FetchType.EAGER)
+    @ApiModelProperty(value="书名")
     private BookCategory category;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name="BOOK_ID") // join column is in table for Order
-	private Set<BookAuthor> authors;   //作者
+    @JoinColumn(name="BOOK_ID")
+    @ApiModelProperty(value="作者")
+	private Set<BookAuthor> authors;
 
     @ManyToMany
-	private Set<Publisher> publishers;	//出版社
-	private Integer publishNo;	//版次
-    private String series;	//系列
-    private Boolean isSuit; //是否套装
-    private Integer suitCount;    //套装数量
-    private String format;	//开本
-    private String size;    //尺寸
-    private String packaging;	//包装
-    private Integer pages;	//页数
-    private String pager;	//用纸
-    private Integer wordCount;  //字数
-    private Date publishTime;	//出版日期
+    @ApiModelProperty(value="出版社")
+	private Set<Publisher> publishers;
+
+    @ApiModelProperty(value="版次")
+	private Integer publishNo;
+
+    @ApiModelProperty(value="系列")
+    private String series;
+
+    @ApiModelProperty(value="是否套装")
+    private Boolean isSuit;
+
+    @ApiModelProperty(value="套装数量")
+    private Integer suitCount;
+
+    @ApiModelProperty(value="开本")
+    private String format;
+
+    @ApiModelProperty(value="尺寸")
+    private String size;
+
+    @ApiModelProperty(value="包装")
+    private String packaging;
+
+    @ApiModelProperty(value="页数")
+    private Integer pages;
+
+    @ApiModelProperty(value="用纸")
+    private String pager;
+
+    @ApiModelProperty(value="字数")
+    private Integer wordCount;
+
+    @ApiModelProperty(value="出版日期")
+    private Date publishTime;
 
     @Embedded
-    private AgeScope ageScope;	//适读人群
-    private String characteristic;	//特色
-    private String recommend;	//编辑推荐
-    private String introduction;	//内容简介
-    private String authorIntro;	//作者简介
-    private String bookReview;	//专家评论
-    private String toc;	//目录
-    private String excerpt;	//精彩书摘
-    private String preface;	//前言/序言
+    @ApiModelProperty(value="适读人群")
+    private AgeScope ageScope;
+
+    @ApiModelProperty(value="推荐信息")
+    private String recommend;
 
     @ElementCollection
-    private List<String> inset;	//书摘与插画
+    @ApiModelProperty(value="书摘与插画")
+    private List<String> inset;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="BOOK_ID")
+    @ApiModelProperty(value="附加信息")
+    private Set<BookExtra> bookExtras;
 
     @Enumerated(EnumType.STRING)
+    @ApiModelProperty(value="状态", hidden=true)
     private BookStatus status;
 
     public String getCoverPicture() {
@@ -220,70 +260,6 @@ public class Book extends AuditedEntity {
         this.ageScope = ageScope;
     }
 
-    public String getCharacteristic() {
-        return characteristic;
-    }
-
-    public void setCharacteristic(String characteristic) {
-        this.characteristic = characteristic;
-    }
-
-    public String getRecommend() {
-        return recommend;
-    }
-
-    public void setRecommend(String recommend) {
-        this.recommend = recommend;
-    }
-
-    public String getIntroduction() {
-        return introduction;
-    }
-
-    public void setIntroduction(String introduction) {
-        this.introduction = introduction;
-    }
-
-    public String getAuthorIntro() {
-        return authorIntro;
-    }
-
-    public void setAuthorIntro(String authorIntro) {
-        this.authorIntro = authorIntro;
-    }
-
-    public String getBookReview() {
-        return bookReview;
-    }
-
-    public void setBookReview(String bookReview) {
-        this.bookReview = bookReview;
-    }
-
-    public String getToc() {
-        return toc;
-    }
-
-    public void setToc(String toc) {
-        this.toc = toc;
-    }
-
-    public String getExcerpt() {
-        return excerpt;
-    }
-
-    public void setExcerpt(String excerpt) {
-        this.excerpt = excerpt;
-    }
-
-    public String getPreface() {
-        return preface;
-    }
-
-    public void setPreface(String preface) {
-        this.preface = preface;
-    }
-
     public List<String> getInset() {
         return inset;
     }
@@ -300,6 +276,11 @@ public class Book extends AuditedEntity {
         this.status = status;
     }
 
+    public BookCategory getCategory() {
+        return category;
+    }
 
-
+    public void setCategory(BookCategory category) {
+        this.category = category;
+    }
 }

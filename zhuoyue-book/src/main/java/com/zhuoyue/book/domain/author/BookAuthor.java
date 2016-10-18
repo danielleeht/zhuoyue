@@ -1,6 +1,8 @@
 package com.zhuoyue.book.domain.author;
 
 import com.zhuoyue.commons.BaseEntity;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
 
@@ -11,7 +13,11 @@ import javax.persistence.*;
 @Entity
 public class BookAuthor extends BaseEntity {
 
+    private String name;    //姓名
+    private String introduction;    //简介
+
     @ManyToOne(fetch = FetchType.EAGER)
+    @NotFound(action= NotFoundAction.IGNORE)
     private Author author;
 
     @Enumerated(EnumType.STRING)
