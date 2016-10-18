@@ -1,6 +1,8 @@
 package com.zhuoyue.book.domain.publisher;
 
 import com.zhuoyue.commons.BaseEntity;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.Entity;
 
@@ -9,13 +11,24 @@ import javax.persistence.Entity;
  * Created by lihaitao on 2016/9/24.
  */
 @Entity
+@ApiModel(description = "出版社")
 public class Publisher extends BaseEntity {
 
+    @ApiModelProperty(value="出版社名称")
     private String name;    //出版社名称
+
+    @ApiModelProperty(value="外文名称")
     private String foreignName; //外文名称
+
+    @ApiModelProperty(value="出版社简介")
     private String introduction;    //出版社简介
+
+    @ApiModelProperty(value="位置")
     private String location;    //位置
+
+    @ApiModelProperty(value="成立日期")
     private String foundDate;   //成立日期
+
     private String logo;
 
     public String getName() {

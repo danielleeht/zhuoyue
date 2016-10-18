@@ -1,6 +1,8 @@
 package com.zhuoyue.book.domain.author;
 
 import com.zhuoyue.commons.BaseEntity;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.Entity;
 
@@ -9,14 +11,26 @@ import javax.persistence.Entity;
  * Created by lihaitao on 2016/9/24.
  */
 @Entity
+@ApiModel(description = "作家档案信息")
 public class Author extends BaseEntity {
 
-    private String name;    //姓名
-    private String foreignName; //外文名
-    private String photo;   //照片
-    private String introduction;    //简介
-    private String achievement; //成就
-    private String profession;  //职业
+    @ApiModelProperty("姓名")
+    private String name;
+
+    @ApiModelProperty("外文名")
+    private String foreignName;
+
+    @ApiModelProperty("照片")
+    private String photo;
+
+    @ApiModelProperty("简介")
+    private String introduction;
+
+    @ApiModelProperty("成就")
+    private String achievement;
+
+    @ApiModelProperty("职业")
+    private String profession;
 
     public String getName() {
         return name;

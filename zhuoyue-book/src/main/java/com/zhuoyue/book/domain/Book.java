@@ -21,10 +21,10 @@ import java.util.Set;
  * Created by lihaitao on 2016/9/23.
  */
 @Entity
-@ApiModel()
+@ApiModel(description = "图书主实体类")
 public class Book extends AuditedEntity {
 
-    @ApiModelProperty(value="封面图片")
+    @ApiModelProperty("封面图片")
     private String coverPicture;
 
     @Column(unique = true)
@@ -282,5 +282,21 @@ public class Book extends AuditedEntity {
 
     public void setCategory(BookCategory category) {
         this.category = category;
+    }
+
+    public String getRecommend() {
+        return recommend;
+    }
+
+    public void setRecommend(String recommend) {
+        this.recommend = recommend;
+    }
+
+    public Set<BookExtra> getBookExtras() {
+        return bookExtras;
+    }
+
+    public void setBookExtras(Set<BookExtra> bookExtras) {
+        this.bookExtras = bookExtras;
     }
 }

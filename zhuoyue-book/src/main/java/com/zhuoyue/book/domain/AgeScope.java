@@ -1,5 +1,8 @@
 package com.zhuoyue.book.domain;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.persistence.Embeddable;
 
 /**
@@ -7,9 +10,13 @@ import javax.persistence.Embeddable;
  * Created by lihaitao on 2016/9/25.
  */
 @Embeddable
+@ApiModel(description = "图书适合年龄范围")
 public class AgeScope {
 
+    @ApiModelProperty("年龄从")
     private Integer ageFrom;
+
+    @ApiModelProperty("年龄到")
     private Integer ageTo;
 
     public AgeScope() {

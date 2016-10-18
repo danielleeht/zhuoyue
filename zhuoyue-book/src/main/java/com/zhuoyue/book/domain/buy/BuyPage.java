@@ -1,6 +1,8 @@
 package com.zhuoyue.book.domain.buy;
 
 import com.zhuoyue.commons.BaseEntity;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.Entity;
 
@@ -9,12 +11,20 @@ import javax.persistence.Entity;
  * Created by lihaitao on 2016/9/25.
  */
 @Entity
+@ApiModel(description = "图书购买链接")
 public class BuyPage extends BaseEntity {
 
-    private String merchant;    //商家
+    @ApiModelProperty(value="商家")
+    private String merchant;
+
+    @ApiModelProperty(value="图书Id")
     private Integer bookId;
-    private String link;    //购买链接
-    private Double price;   //价格
+
+    @ApiModelProperty(value="购买链接")
+    private String link;
+
+    @ApiModelProperty(value="价格")
+    private Double price;
 
     public String getMerchant() {
         return merchant;

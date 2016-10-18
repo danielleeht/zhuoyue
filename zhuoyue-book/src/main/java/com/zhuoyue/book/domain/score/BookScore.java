@@ -1,6 +1,8 @@
 package com.zhuoyue.book.domain.score;
 
 import com.zhuoyue.commons.BaseEntity;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.Entity;
 import java.util.Date;
@@ -9,10 +11,19 @@ import java.util.Date;
  * Created by lihaitao on 2016/10/9.
  */
 @Entity
+@ApiModel(description = "图书评分")
 public class BookScore extends BaseEntity {
+
+    @ApiModelProperty(value="图书ID")
     private Integer bookId;
+
+    @ApiModelProperty(value="用户")
     private String user;
+
+    @ApiModelProperty(value="分数")
     private Integer score;
+
+    @ApiModelProperty(value="评分日期")
     private Date scoreDate;
 
     public Integer getBookId() {

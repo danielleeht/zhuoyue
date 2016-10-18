@@ -1,6 +1,8 @@
 package com.zhuoyue.book.domain.comment;
 
 import com.zhuoyue.commons.AuditedEntity;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -10,15 +12,29 @@ import javax.persistence.Enumerated;
  * Created by lihaitao on 2016/10/9.
  */
 @Entity
+@ApiModel(description = "图书评论")
 public class BookComment extends AuditedEntity {
+
+    @ApiModelProperty(value="图书Id")
     private Integer bookId;
+
+    @ApiModelProperty(value="回复评论")
     private Integer pid;
+
+    @ApiModelProperty(value="评论用户")
     private String user;
+
+    @ApiModelProperty(value="评论内容")
     private String comment;
 
     @Enumerated(EnumType.STRING)
+    @ApiModelProperty(value="评论状态")
     private CommentStatus commentStatus;
+
+    @ApiModelProperty(value="赞成数")
     private Integer voteUp;
+
+    @ApiModelProperty(value="反对数")
     private Integer voteDown;
 
     public Integer getBookId() {
@@ -76,4 +92,5 @@ public class BookComment extends AuditedEntity {
     public void setUser(String user) {
         this.user = user;
     }
+
 }

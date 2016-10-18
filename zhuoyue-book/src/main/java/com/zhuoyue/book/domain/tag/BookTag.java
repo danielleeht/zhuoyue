@@ -1,6 +1,8 @@
 package com.zhuoyue.book.domain.tag;
 
 import com.zhuoyue.commons.BaseEntity;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.Entity;
 import java.util.Date;
@@ -9,11 +11,19 @@ import java.util.Date;
  * Created by lihaitao on 2016/10/9.
  */
 @Entity
+@ApiModel(description = "图书Tag信息")
 public class BookTag extends BaseEntity {
 
+    @ApiModelProperty(value="图书ID")
     private Integer bookId;
+
+    @ApiModelProperty(value="用户")
     private String user;
+
+    @ApiModelProperty(value="标签")
     private String tag;
+
+    @ApiModelProperty(value="标记日期")
     private Date tagedDate;
 
     public Integer getBookId() {
