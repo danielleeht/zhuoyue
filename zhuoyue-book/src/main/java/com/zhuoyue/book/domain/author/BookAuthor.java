@@ -14,6 +14,7 @@ import javax.persistence.*;
 public class BookAuthor extends BaseEntity {
 
     private String name;    //姓名
+    private String introduction;    //简介
 
     @ManyToOne(fetch = FetchType.EAGER)
     @NotFound(action= NotFoundAction.IGNORE)
@@ -21,28 +22,4 @@ public class BookAuthor extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     private BookAuthorType bookAuthorType;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Author getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(Author author) {
-        this.author = author;
-    }
-
-    public BookAuthorType getBookAuthorType() {
-        return bookAuthorType;
-    }
-
-    public void setBookAuthorType(BookAuthorType bookAuthorType) {
-        this.bookAuthorType = bookAuthorType;
-    }
 }
