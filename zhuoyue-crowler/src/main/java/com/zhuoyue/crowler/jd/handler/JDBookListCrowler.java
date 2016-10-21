@@ -42,7 +42,7 @@ public class JDBookListCrowler {
     @Autowired
     private SpiderListener spiderListener;
 	/**
-	 * @param args
+	 * @param
 	 */
 	public void doCrowl() {
 		Downloader downloader = new HttpClientDownloader();

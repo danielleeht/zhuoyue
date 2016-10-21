@@ -15,9 +15,6 @@ import us.codecraft.webmagic.model.annotation.TargetUrl;
 @ExtractBy(value = "//div[@id=\"plist\"]//div[contains(@class,\"j-sku-item\")]", multi=true)
 public class JDBookList {
 
-	@Id
-	private String id;
-
 	@ExtractBy(value="div/@data-sku", notNull=true)
     private String itemId;
 
@@ -27,29 +24,14 @@ public class JDBookList {
 	@ExtractBy("div/div[@class=\"p-name\"]/a/em/text()")
 	private String name;
 
-	private String site = CrawlerSource.jd.getType();
-
 	@ExtractBy("div/div[@class=\"p-shopnum\"]/allText()")
 	private String shopName;
-
-	private Date updateTime = new Date();
-
-	private Date fetchTime;
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
 
 	public String getItemId() {
 		return itemId;
 	}
 
 	public void setItemId(String itemId) {
-		this.id = "JD"+itemId;
 		this.itemId = itemId;
 	}
 
@@ -59,14 +41,6 @@ public class JDBookList {
 
 	public void setCover(String cover) {
 		this.cover = cover;
-	}
-
-	public String getSite() {
-		return site;
-	}
-
-	public void setSite(String site) {
-		this.site = site;
 	}
 
 	public String getShopName() {
@@ -85,25 +59,9 @@ public class JDBookList {
 		this.name = name;
 	}
 
-	public Date getUpdateTime() {
-		return updateTime;
-	}
-
-	public void setUpdateTime(Date updateTime) {
-		this.updateTime = updateTime;
-	}
-
-	public Date getFetchTime() {
-		return fetchTime;
-	}
-
-	public void setFetchTime(Date fetchTime) {
-		this.fetchTime = fetchTime;
-	}
-
 	@Override
 	public String toString() {
-		return "JDBookItem [itemId=" + itemId + ", site=" + site + "]";
+		return "JDBookItem [itemId=" + itemId  + "]";
 	}
 
 }

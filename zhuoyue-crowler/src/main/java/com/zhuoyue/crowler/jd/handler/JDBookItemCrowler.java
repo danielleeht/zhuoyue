@@ -43,7 +43,7 @@ public class JDBookItemCrowler implements InitializingBean {
 
 
 	/**
-	 * @param args
+	 *
 	 */
 	public void doCrowl() {
 		if(ooSpider.getStatus().equals(Spider.Status.Running)){
