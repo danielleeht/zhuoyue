@@ -5,7 +5,7 @@ info:
 # PROFILES
 spring:
     application.name: discovery-service
-    profiles.active: @default.spring.profiles@
+    profiles.active: dev,standalone
     cloud:
         config:
             failFast: true
