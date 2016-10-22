@@ -13,7 +13,6 @@ import com.zhuoyue.crawler.jd.model.JDBookComment;
 import com.zhuoyue.crawler.jd.model.JDBookItem;
 import com.zhuoyue.crawler.jd.model.JDBookList;
 import com.zhuoyue.crawler.jd.pipeline.JDBookItemPipeline;
-import com.zhuoyue.crawler.jd.repository.JDBookListRepository;
 
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
@@ -36,8 +35,8 @@ public class JDBookItemCrawler implements InitializingBean {
     @Autowired
     private JDBookItemPipeline databasePipeline;
 
-    @Autowired
-    private JDBookListRepository bookListRepository;
+//    @Autowired
+//    private JDBookListRepository bookListRepository;
 
     private OOSpider ooSpider;
 
@@ -49,7 +48,7 @@ public class JDBookItemCrawler implements InitializingBean {
 		if(ooSpider.getStatus().equals(Spider.Status.Running)){
 			return;
 		}
-		List<JDBookList> bookList = bookListRepository.findAll();
+		List<JDBookList> bookList = null;//bookListRepository.findAll();
 
 //		OOSpider ooSpider = OOSpider.create(site, databasePipeline, JDBookItem.class, JDBookComment.class);
 //		ooSpider.setDownloader(new SeleniumDownloader("D:\\develop\\tools\\chromedriver.exe"));

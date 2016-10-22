@@ -15,9 +15,6 @@ import us.codecraft.webmagic.model.annotation.TargetUrl;
 @TargetUrl(value = "http://item.jd.com/\\d+.html*", sourceRegion="no")
 public class JDBookItem {
 
-	@Id
-	private String id;
-
 	@ExtractBy(value="//*[@id=\"short-share\"]/div/span[2]/text()", notNull=true)
 	private String itemId;	//商品编号
 
@@ -84,20 +81,11 @@ public class JDBookItem {
 
 	private Date updateTime = new Date();
 
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
 	public String getItemId() {
 		return itemId;
 	}
 
 	public void setItemId(String itemId) {
-		this.id = "JD"+itemId;
 		this.itemId = itemId;
 	}
 
@@ -135,7 +123,7 @@ public class JDBookItem {
 
 	@Override
 	public String toString() {
-		return "JDBookItem [id=" + id + ", itemId=" + itemId + ", category=" + category + ", coverPictures="
+		return "JDBookItem [itemId=" + itemId + ", category=" + category + ", coverPictures="
 				+ coverPictures + ", name=" + name + ", properties=" + properties + ", authorText=" + authorText
 				+ ", characteristic=" + characteristic + ", recommend=" + recommend + ", introduction=" + introduction
 				+ ", authorIntro=" + authorIntro + ", bookReview=" + bookReview + ", toc=" + toc + ", excerpt="

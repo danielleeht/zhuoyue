@@ -23,7 +23,7 @@
 		<module>zhuoyue-admin</module>
         <module>zhuoyue-article</module>
         <module>zhuoyue-book</module>
-        <module>zhuoyue-crowler</module>
+        <module>zhuoyue-crawler</module>
         <module>zhuoyue-radio</module>
         <module>zhuoyue-rank</module>
         <module>zhuoyue-tag</module>

@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 
 import com.zhuoyue.crawler.jd.handler.JDBookItemCrawler;
 import com.zhuoyue.crawler.jd.model.JDBookList;
-import com.zhuoyue.crawler.jd.repository.JDBookListRepository;
 
 import us.codecraft.webmagic.Task;
 import us.codecraft.webmagic.pipeline.PageModelPipeline;
@@ -20,17 +19,15 @@ public class JDBookListPipeline implements PageModelPipeline<JDBookList>, Closea
 
     private static final Logger log = LoggerFactory.getLogger(JDBookListPipeline.class);
 
-    @Autowired
-    JDBookListRepository bookListRepository;
 
     @Autowired
     JDBookItemCrawler bookItemCrawler;
 
     @Override
     public void process(JDBookList bookList, Task task) {
-        log.debug("UUID={}, Site={}", task.getUUID(), task.getSite());
+        log.info("UUID={}, Site={}", task.getUUID(), task.getSite());
 
-        log.debug("resultItem = {}", bookList);
+        log.info("resultItem = {}", bookList);
 
 //        bookListRepository.save(bookList);
 
@@ -38,6 +35,6 @@ public class JDBookListPipeline implements PageModelPipeline<JDBookList>, Closea
 
 	@Override
 	public void close() throws IOException {
-		log.debug("JD book list crawl finished, start crawl details");
+		log.info("JD book list crawl finished, start crawl details");
 	}
 }

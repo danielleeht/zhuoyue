@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiModel;
 import javax.persistence.Entity;
 
 /**
+ * 采用Spring 内置Scheduling模块，不便于进行任务配置，同时未抽象Crawler任务
  * Created by lihaitao on 2016/10/19.
  */
 @Entity

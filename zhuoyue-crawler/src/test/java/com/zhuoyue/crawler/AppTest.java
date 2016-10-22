@@ -68,6 +68,63 @@ public class AppTest
     	System.out.println(map);
     }
 
+    public void testDataId(){
+        String html = "<div class=\"gl-i-wrap j-sku-item\" data-sku=\"11946232\" venderid=\"1000004558\" jdzy_shop_id=\"1000004558\" ts_venderid=\"\" data-sku_temp=\"11946232\" data-i=\"45\">\n" +
+            "  <div class=\"p-img\">\n" +
+            "    <a target=\"_blank\" href=\"//item.jd.com/11946232.html\">\n" +
+            "                          <img width=\"200\" height=\"200\" data-img=\"1\" data-lazy-img=\"done\" src=\"//img12.360buyimg.com/n7/jfs/t2767/95/1822638030/135265/1daadad8/574bd1eaNa706d72f.jpg\">\n" +
+            "          </a>\n" +
+            "          </div>\n" +
+            "  <div class=\"p-price\">\n" +
+            "    <strong class=\"J_price\"><em>¥</em><i>11.60</i></strong>\n" +
+            "      </div>\n" +
+            "  <div class=\"p-name\">\n" +
+            "    <a target=\"_blank\" title=\"\" href=\"//item.jd.com/11946232.html\">\n" +
+            "      <em>为什么不可以偷东西</em>\n" +
+            "      <i class=\"promo-words\"></i>\n" +
+            "    </a>\n" +
+            "  </div>\n" +
+            "      <div class=\"p-bookdetails\">\n" +
+            "      <span class=\"p-bi-name\">\n" +
+            "                  <span class=\"author_type_1\" style=\"display: ;\">\n" +
+            "                                                       [韩]                <a title=\"李柔姃\" href=\"//book.jd.com/writer/李柔姃_1.html\" target=\"_blank\"> 李柔姃 </a>                                        著          </span>\n" +
+            "                        </span>\n" +
+            "      <em>|</em>      <span class=\"p-bi-store\">\n" +
+            "                  <a title=\"河北少年儿童出版社\" href=\"//book.jd.com/publish/河北少年儿童出版社_1.html\" target=\"_blank\">河北少年儿童出版社</a>\n" +
+            "              </span>\n" +
+            "      <em>|</em>      <span class=\"p-bi-date\">\n" +
+            "        2016-06      </span>\n" +
+            "    </div>\n" +
+            "        <div class=\"p-shop hide\" data-score=\"4\" data-reputation=\"0\" data-shopid=\"\" data-done=\"1\"></div>\n" +
+            "        <div class=\"p-commit\"><strong>已有<a class=\"comment\" target=\"_blank\" href=\"//item.jd.com/11946232.html#comment\">2</a>人评价</strong></div>\n" +
+            "        <div class=\"p-shopnum\">\n" +
+            "      <span class=\"curr-shop\">京东自营</span>\n" +
+            "    </div>\n" +
+            "          <div class=\"p-icons J-pro-icons\">\n" +
+            "              <i class=\"goods-icons-s1 J-picon-tips\" title=\"货到付款\" data-tips=\"<div class=&quot;picon-tips&quot;><i class=&quot;goods-icons-s1&quot;>货到付款</i><em>该商品支持货到付款</em></div>\">货到付款</i><i class=\"goods-icons J-picon-tips\" data-tips=\"<div class=&quot;picon-tips&quot;><i class=&quot;goods-icons&quot;>券</i><em>优惠券</em></div>\">券</i><i class=\"icons J-picon-tips\" data-tips=\"<div class=&quot;picon-tips&quot;><i class=&quot;goods-icons&quot;>满减</i></div><em>满减</em>\">满减</i></div>\n" +
+            "        <div class=\"p-operate\">\n" +
+            "      <a class=\"p-o-btn focus J_focus\" data-sku=\"11946232\" href=\"javascript:;\">\n" +
+            "        <i></i>关注\n" +
+            "      </a>\n" +
+            "      <a class=\"p-o-btn addcart\" target=\"_blank\" href=\"//cart.jd.com/gate.action?pid=11946232&amp;pcount=1&amp;ptype=1\">\n" +
+            "        <i></i>加入购物车\n" +
+            "      </a>\n" +
+            "    </div>\n" +
+            "    <div class=\"p-stock\" data-isdeliveryable=\"5\" style=\"display: none\" data-stock_v=\"1\" data-stock_h=\"33\"></div>\n" +
+            "    <div class=\"p-service\">由 京东 发货</div>\n" +
+            "    <div class=\"p-summary\">\n" +
+            "      <a href=\"//item.jd.com/11946232.html#recommend-editor\" target=\"_blank\">更多&gt;</a>\n" +
+            "    </div>\n" +
+            "    <div class=\"p-addtocart\">\n" +
+            "      <a data-sku=\"11946232\" href=\"//cart.jd.com/gate.action?pid=11946232&amp;pcount=1&amp;ptype=1\"><i></i>加入购物车</a>\n" +
+            "    </div>\n" +
+            "  </div>";
+        Selector selector = new XpathSelector("div/@data-i");
+        String dataId = selector.select(html);
+        System.out.println(dataId);
+
+    }
+
     public void testSelector(){
     	String html = "<ul id=\"parameter2\" class=\"p-parameter-list\">"+
 "                              <li title=\"中央广播电视大学出版社\" clstag=\"shangpin|keycount|product|chubanshe_3\">出版社："+

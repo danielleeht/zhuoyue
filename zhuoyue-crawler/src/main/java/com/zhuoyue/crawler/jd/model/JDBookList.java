@@ -4,7 +4,7 @@ import us.codecraft.webmagic.model.annotation.ExtractBy;
 import us.codecraft.webmagic.model.annotation.ExtractByUrl;
 import us.codecraft.webmagic.model.annotation.TargetUrl;
 
-@TargetUrl(value = "http://list.jd.com/list.html\\?cat=1713,3263,\\d{4}&page=\\d+&stock=0*", sourceRegion="//div[@id=\"J_bottomPage\"]")
+@TargetUrl(value = "http://list.jd.com/list.html\\?cat=1713,3263,\\d{4}&page=\\d+&stock=0*", sourceRegion="//div[@id=\"J_bottomPage11\"]")
 @ExtractBy(value = "//div[@id=\"plist\"]//div[contains(@class,\"j-sku-item\")]", multi=true)
 public class JDBookList {
 
@@ -12,10 +12,10 @@ public class JDBookList {
     private String itemId;
 
     @ExtractBy(value="div/@data-i")
-    private Integer dataId;
+    private String dataId;
 
     @ExtractByUrl("http://list.jd.com/list.html\\?cat=1713,3263,\\d{4}&page=(\\d+)&stock=0*")
-    private Integer pageNo;
+    private String pageNo;
 
 	@ExtractBy("div/div[@class=\"p-img\"]/a/img/@src")
 	private String cover;
@@ -58,25 +58,31 @@ public class JDBookList {
 		this.name = name;
 	}
 
-    public Integer getDataId() {
+    public String getDataId() {
         return dataId;
     }
 
-    public void setDataId(Integer dataId) {
+    public void setDataId(String dataId) {
         this.dataId = dataId;
     }
 
-    public Integer getPageNo() {
+    public String getPageNo() {
         return pageNo;
     }
 
-    public void setPageNo(Integer pageNo) {
+    public void setPageNo(String pageNo) {
         this.pageNo = pageNo;
     }
 
     @Override
-	public String toString() {
-		return "JDBookItem [itemId=" + itemId  + "]";
-	}
-
+    public String toString() {
+        return "JDBookList{" +
+            "itemId='" + itemId + '\'' +
+            ", dataId='" + dataId + '\'' +
+            ", pageNo='" + pageNo + '\'' +
+            ", cover='" + cover + '\'' +
+            ", name='" + name + '\'' +
+            ", shopName='" + shopName + '\'' +
+            '}';
+    }
 }
