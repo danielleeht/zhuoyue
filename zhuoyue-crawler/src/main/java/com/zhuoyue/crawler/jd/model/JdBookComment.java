@@ -14,7 +14,7 @@ import us.codecraft.webmagic.model.annotation.TargetUrl;
 
 @TargetUrl(value = "http://sclub.jd.com/productpage/p-\\d+-s-0-t-3-p-0.html", sourceRegion="no")
 @ExtractBy(value = "//pre/text()")
-public class JDBookComment {
+public class JdBookComment {
 
 	@Id
 	private String id;
@@ -46,9 +46,9 @@ public class JDBookComment {
 	@ExtractBy(type = ExtractBy.Type.JsonPath, value = "$.productCommentSummary.score5Count")
 	private Integer score5Count;
 
-	@Formatter(value="com.zhuoyue.crawler.jd.model.JDCommentTag", formatter=SubEntityFormatter.class)
+	@Formatter(value="com.zhuoyue.crawler.jd.model.JdCommentTag", formatter=SubEntityFormatter.class)
 	@ExtractBy(type = ExtractBy.Type.JsonPath, value = "$.hotCommentTagStatistics")
-	private List<JDCommentTag> tags;
+	private List<JdCommentTag> tags;
 
 	private String site = CrawlerSource.jd.getType();
 
@@ -135,11 +135,11 @@ public class JDBookComment {
 		this.score5Count = score5Count;
 	}
 
-	public List<JDCommentTag> getTags() {
+	public List<JdCommentTag> getTags() {
 		return tags;
 	}
 
-	public void setTags(List<JDCommentTag> tags) {
+	public void setTags(List<JdCommentTag> tags) {
 		this.tags = tags;
 	}
 

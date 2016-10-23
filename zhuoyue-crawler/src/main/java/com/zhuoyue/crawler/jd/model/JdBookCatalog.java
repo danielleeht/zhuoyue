@@ -6,7 +6,7 @@ import us.codecraft.webmagic.model.annotation.TargetUrl;
 
 @TargetUrl(value = "http://list.jd.com/list.html\\?cat=1713,3263,\\d{4}&page=\\d+&stock=0*", sourceRegion="//div[@id=\"J_bottomPage11\"]")
 @ExtractBy(value = "//div[@id=\"plist\"]//div[contains(@class,\"j-sku-item\")]", multi=true)
-public class JDBookCatalog {
+public class JdBookCatalog {
 
 	@ExtractBy(value="div/@data-sku", notNull=true)
     private String itemId;

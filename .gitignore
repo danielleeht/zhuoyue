@@ -1,6 +1,8 @@
 ### idea
 .idea/
 *.iml
+*.class
+*/target/*
 
 ### sts
 .settings
@@ -19,7 +21,7 @@ zhuoyue-config/target/
 zhuoyue-article/target/
 zhuoyue-book/target/
 zhuoyue-comment/target/
-zhuoyue-crowler/target/
+zhuoyue-crawler/target/
 zhuoyue-radio/target/
 zhuoyue-rank/target/
 zhuoyue-review/target/

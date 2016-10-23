@@ -3,7 +3,7 @@ package com.zhuoyue.crawler.jd.model;
 import us.codecraft.webmagic.model.annotation.ExtractBy;
 
 @ExtractBy(value = "/allText()")
-public class JDCommentTag {
+public class JdCommentTag {
 
 	@ExtractBy(type = ExtractBy.Type.JsonPath, value = "$.id")
 	private String id;

@@ -14,8 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import com.zhuoyue.crawler.jd.model.JDBookCatalog;
-import com.zhuoyue.crawler.jd.pipeline.JDBookListPipeline;
+import com.zhuoyue.crawler.jd.model.JdBookCatalog;
+import com.zhuoyue.crawler.jd.pipeline.JdBookCatalogPipeline;
 
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Request;
@@ -31,7 +31,7 @@ import us.codecraft.webmagic.model.OOSpider;
  *
  */
 @Component
-public class JDBookCatalogCrawler {
+public class JdBookCatalogCrawler {
 	//少儿图书首页
 	private static final String URL_INDEX = "http://list.jd.com/list.html?cat=1713,3263";
 
@@ -46,7 +46,7 @@ public class JDBookCatalogCrawler {
     private CrawlerRecordPipelineFactory crawlerRecordPipelineFactory;
 
     @Autowired
-    private JDBookListPipeline databasePipeline;
+    private JdBookCatalogPipeline databasePipeline;
 
     @Autowired
     private SpiderListener spiderListener;
@@ -59,11 +59,13 @@ public class JDBookCatalogCrawler {
 		Downloader downloader = new HttpClientDownloader();
 		Page indexPage = downloader.download(new Request(URL_INDEX), site.toTask());
 
-		OOSpider ooSpider = OOSpider.create(site, databasePipeline, JDBookCatalog.class);
+		OOSpider ooSpider = OOSpider.create(site, databasePipeline, JdBookCatalog.class);
         ooSpider.setDownloader(new SeleniumDownloader("D:\\develop\\tools\\chromedriver.exe"));
-        ooSpider.addPipeline(
-            crawlerRecordPipelineFactory.createRecordPipeline(
-                new CrawlerRecord(CrawlerType.JDCATALOG, new Date())));
+
+        CrawlerRecordPipelineFactory.CrawlerRecordPipeline pipeline = crawlerRecordPipelineFactory.createRecordPipeline(
+            new CrawlerRecord(CrawlerType.JDCATALOG, new Date()));
+        ooSpider.addPipeline(pipeline);
+        ooSpider.setUUID(""+pipeline.getCrawlerRecord().getId());
 
 		//添加二级分类页面
     	List<String> secondCatgs = indexPage.getHtml().xpath("//div[@id=\"J_selector\"]").links().regex(URL_CATG).all();

@@ -1,6 +1,6 @@
 package com.zhuoyue.crawler.jd.model;
 
-public class JDBookProperty {
+public class JdBookProperty {
 
 	private String propertyName;
 

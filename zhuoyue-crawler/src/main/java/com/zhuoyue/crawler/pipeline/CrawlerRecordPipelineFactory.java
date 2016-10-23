@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 import us.codecraft.webmagic.ResultItems;
+import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.Task;
 import us.codecraft.webmagic.pipeline.Pipeline;
 
@@ -27,19 +28,24 @@ public class  CrawlerRecordPipelineFactory{
     @Autowired
     private ApplicationContext applicationContext;
 
-    public Pipeline createRecordPipeline(CrawlerRecord crawlerRecord){
+    public CrawlerRecordPipeline createRecordPipeline(CrawlerRecord crawlerRecord){
         return new CrawlerRecordPipeline(crawlerRecord);
     }
 
 
-    private class CrawlerRecordPipeline implements Pipeline, Closeable {
+    public class CrawlerRecordPipeline implements Pipeline, Closeable {
 
         private final Logger log = LoggerFactory.getLogger(CrawlerRecordPipeline.class);
         private CrawlerRecord crawlerRecord;
+        private boolean recordInitialed = false;
 
         public CrawlerRecordPipeline(CrawlerRecord crawlerRecord) {
             crawlerRecord.setStartTime(new Date());
             this.crawlerRecord = crawlerRecordRepository.save(crawlerRecord);
+        }
+
+        public CrawlerRecord getCrawlerRecord(){
+            return crawlerRecord;
         }
 
         @Override
@@ -54,6 +60,7 @@ public class  CrawlerRecordPipelineFactory{
 
         @Override
         public void process(ResultItems resultItems, Task task) {
+
 
         }
     }

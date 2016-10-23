@@ -11,9 +11,9 @@ import us.codecraft.webmagic.SpiderListener;
  * 暂时没用
  */
 @Component
-public class JDSpiderListener implements SpiderListener {
+public class JdSpiderListener implements SpiderListener {
 
-    private static final Logger log = LoggerFactory.getLogger(JDSpiderListener.class);
+    private static final Logger log = LoggerFactory.getLogger(JdSpiderListener.class);
 
     @Override
     public void onSuccess(Request request) {

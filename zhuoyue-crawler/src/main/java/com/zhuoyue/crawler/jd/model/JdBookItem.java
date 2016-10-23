@@ -4,14 +4,14 @@ import java.util.Date;
 import java.util.List;
 
 import com.zhuoyue.crawler.utils.CrawlerSource;
-import com.zhuoyue.crawler.jd.formatter.JDBookPropertyFormatter;
+import com.zhuoyue.crawler.jd.formatter.JdBookPropertyFormatter;
 
 import us.codecraft.webmagic.model.annotation.ExtractBy;
 import us.codecraft.webmagic.model.annotation.Formatter;
 import us.codecraft.webmagic.model.annotation.TargetUrl;
 
 @TargetUrl(value = "http://item.jd.com/\\d+.html*", sourceRegion="no")
-public class JDBookItem {
+public class JdBookItem {
 
 	@ExtractBy(value="//*[@id=\"short-share\"]/div/span[2]/text()", notNull=true)
 	private String itemId;	//商品编号
@@ -25,9 +25,9 @@ public class JDBookItem {
 	@ExtractBy(value="//*[@id=\"name\"]/h1/text()")
 	private String name;	//书名
 
-	@Formatter(subClazz=JDBookProperty.class, formatter=JDBookPropertyFormatter.class)
+	@Formatter(subClazz=JdBookProperty.class, formatter=JdBookPropertyFormatter.class)
 	@ExtractBy("//ul[@id=\"parameter2\"]/li/allText()")
-	private List<JDBookProperty> properties;
+	private List<JdBookProperty> properties;
 
 	@ExtractBy(value="//div[@id=\"p-author\"]/allText()")
 	private String authorText;	//作者

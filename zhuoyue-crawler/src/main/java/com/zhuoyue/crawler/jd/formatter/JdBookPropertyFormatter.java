@@ -1,23 +1,23 @@
 package com.zhuoyue.crawler.jd.formatter;
 
-import com.zhuoyue.crawler.jd.model.JDBookProperty;
+import com.zhuoyue.crawler.jd.model.JdBookProperty;
 
 import us.codecraft.webmagic.model.formatter.ObjectFormatter;
 
-public class JDBookPropertyFormatter implements ObjectFormatter<JDBookProperty> {
+public class JdBookPropertyFormatter implements ObjectFormatter<JdBookProperty> {
 
     @Override
-    public JDBookProperty format(String raw) {
+    public JdBookProperty format(String raw) {
     	String[] substrs = raw.split("：");
-    	JDBookProperty property = new JDBookProperty();
+    	JdBookProperty property = new JdBookProperty();
     	property.setPropertyName(substrs[0]);
     	property.setPropertyValue(substrs[1]);
         return property;
     }
 
     @Override
-    public Class<JDBookProperty> clazz() {
-        return JDBookProperty.class;
+    public Class<JdBookProperty> clazz() {
+        return JdBookProperty.class;
     }
 
     @Override
