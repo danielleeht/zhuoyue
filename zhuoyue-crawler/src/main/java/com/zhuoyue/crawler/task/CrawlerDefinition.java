@@ -1,7 +1,7 @@
 package com.zhuoyue.crawler.task;
 
 import com.zhuoyue.commons.BaseEntity;
-import com.zhuoyue.crawler.CrawlerSource;
+import com.zhuoyue.crawler.utils.CrawlerSource;
 import io.swagger.annotations.ApiModel;
 
 import javax.persistence.Entity;

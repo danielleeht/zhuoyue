@@ -3,9 +3,7 @@ package com.zhuoyue.crawler.jd.model;
 import java.util.Date;
 import java.util.List;
 
-import org.springframework.data.annotation.Id;
-
-import com.zhuoyue.crawler.CrawlerSource;
+import com.zhuoyue.crawler.utils.CrawlerSource;
 import com.zhuoyue.crawler.jd.formatter.JDBookPropertyFormatter;
 
 import us.codecraft.webmagic.model.annotation.ExtractBy;

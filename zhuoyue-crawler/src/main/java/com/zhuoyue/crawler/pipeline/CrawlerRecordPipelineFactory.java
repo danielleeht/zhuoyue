@@ -1,11 +1,11 @@
 package com.zhuoyue.crawler.pipeline;
 
-import com.zhuoyue.crawler.jd.pipeline.JDBookListPipeline;
 import com.zhuoyue.crawler.task.CrawlerRecord;
 import com.zhuoyue.crawler.task.CrawlerRecordRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 import us.codecraft.webmagic.ResultItems;
 import us.codecraft.webmagic.Task;
@@ -23,6 +23,9 @@ public class  CrawlerRecordPipelineFactory{
 
     @Autowired
     private CrawlerRecordRepository crawlerRecordRepository;
+
+    @Autowired
+    private ApplicationContext applicationContext;
 
     public Pipeline createRecordPipeline(CrawlerRecord crawlerRecord){
         return new CrawlerRecordPipeline(crawlerRecord);
@@ -44,6 +47,9 @@ public class  CrawlerRecordPipelineFactory{
             log.info("Crawl finished 【{}】", crawlerRecord);
             this.crawlerRecord.setEndTime(new Date());
             crawlerRecordRepository.save(crawlerRecord);
+
+            //发布爬虫任务结束事件
+            applicationContext.publishEvent(new CrawlEndEvent(crawlerRecord));
         }
 
         @Override

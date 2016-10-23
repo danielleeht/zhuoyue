@@ -5,13 +5,15 @@ package com.zhuoyue.crawler.jd.handler;
 
 import java.util.List;
 
+import com.zhuoyue.crawler.pipeline.CrawlEndEvent;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
 import com.zhuoyue.crawler.jd.model.JDBookComment;
 import com.zhuoyue.crawler.jd.model.JDBookItem;
-import com.zhuoyue.crawler.jd.model.JDBookList;
+import com.zhuoyue.crawler.jd.model.JDBookCatalog;
 import com.zhuoyue.crawler.jd.pipeline.JDBookItemPipeline;
 
 import us.codecraft.webmagic.Site;
@@ -44,16 +46,17 @@ public class JDBookItemCrawler implements InitializingBean {
 	/**
 	 *
 	 */
-	public void doCrawl() {
+    @EventListener(condition="#crawlEndEvent.crawlerType.equals(CrawlerType.JDCATALOG)")
+	public void doCrawl(CrawlEndEvent crawlEndEvent) {
 		if(ooSpider.getStatus().equals(Spider.Status.Running)){
 			return;
 		}
-		List<JDBookList> bookList = null;//bookListRepository.findAll();
+		List<JDBookCatalog> bookList = null;//bookListRepository.findAll();
 
 //		OOSpider ooSpider = OOSpider.create(site, databasePipeline, JDBookItem.class, JDBookComment.class);
 //		ooSpider.setDownloader(new SeleniumDownloader("D:\\develop\\tools\\chromedriver.exe"));
 
-    	for(JDBookList book: bookList){
+    	for(JDBookCatalog book: bookList){
     		ooSpider.addUrl(String.format(ITEM_URL, book.getItemId()));
     		ooSpider.addUrl(String.format(COMMENT_URL, book.getItemId()));
     	}

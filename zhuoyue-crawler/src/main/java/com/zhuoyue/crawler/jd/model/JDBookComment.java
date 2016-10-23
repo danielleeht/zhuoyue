@@ -5,8 +5,8 @@ import java.util.List;
 
 import org.springframework.data.annotation.Id;
 
-import com.zhuoyue.crawler.CrawlerSource;
-import com.zhuoyue.crawler.SubEntityFormatter;
+import com.zhuoyue.crawler.utils.CrawlerSource;
+import com.zhuoyue.crawler.utils.SubEntityFormatter;
 
 import us.codecraft.webmagic.model.annotation.ExtractBy;
 import us.codecraft.webmagic.model.annotation.Formatter;
