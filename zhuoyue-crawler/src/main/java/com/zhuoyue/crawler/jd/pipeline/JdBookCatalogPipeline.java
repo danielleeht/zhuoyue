@@ -6,6 +6,8 @@ import java.util.Date;
 
 import com.zhuoyue.crawler.domain.book.BookCatalog;
 import com.zhuoyue.crawler.domain.book.BookCatalogRepository;
+import com.zhuoyue.crawler.domain.book.DailyBookCatalog;
+import com.zhuoyue.crawler.domain.book.DailyBookCatalogRepository;
 import com.zhuoyue.crawler.utils.CrawlerSource;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -25,7 +27,7 @@ public class JdBookCatalogPipeline implements PageModelPipeline<JdBookCatalog>, 
     private static final Integer PAGE_SIZE = 60;
 
     @Autowired
-    private BookCatalogRepository bookCatalogRepository;
+    private DailyBookCatalogRepository dailyBookCatalogRepository;
 
     @Override
     public void process(JdBookCatalog jdBookCatalog, Task task) {
@@ -33,23 +35,23 @@ public class JdBookCatalogPipeline implements PageModelPipeline<JdBookCatalog>, 
 
         log.info("resultItem = {}", jdBookCatalog);
 
-        BookCatalog bookCatalog = new BookCatalog();
+        DailyBookCatalog dailyBookCatalog = new DailyBookCatalog();
 
-        bookCatalog.setTaskId(task.getUUID());
-        bookCatalog.setCover(jdBookCatalog.getCover());
-        bookCatalog.setItemId(jdBookCatalog.getItemId());
-        bookCatalog.setName(jdBookCatalog.getName());
+        dailyBookCatalog.setTaskId(task.getUUID());
+        dailyBookCatalog.setCover(jdBookCatalog.getCover());
+        dailyBookCatalog.setItemId(jdBookCatalog.getItemId());
+        dailyBookCatalog.setName(jdBookCatalog.getName());
 
         Integer pageNo = StringUtils.isEmpty(jdBookCatalog.getPageNo())?
             1 : Integer.parseInt(jdBookCatalog.getPageNo());
         Integer pageRank = StringUtils.isEmpty(jdBookCatalog.getDataId())?
             0 : Integer.parseInt(jdBookCatalog.getDataId());
-        bookCatalog.setRank(PAGE_SIZE*(pageNo-1) + pageRank);
-        bookCatalog.setCrawledDate(new Date());
-        bookCatalog.setSite(CrawlerSource.jd.getType());
-        bookCatalog.setShopName(jdBookCatalog.getShopName());
+        dailyBookCatalog.setRank(PAGE_SIZE*(pageNo-1) + pageRank);
+        dailyBookCatalog.setCrawledDate(new Date());
+        dailyBookCatalog.setSite(CrawlerSource.jd.getType());
+        dailyBookCatalog.setShopName(jdBookCatalog.getShopName());
 
-        bookCatalogRepository.save(bookCatalog);
+        dailyBookCatalogRepository.save(dailyBookCatalog);
     }
 
 	@Override

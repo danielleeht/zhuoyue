@@ -106,3 +106,50 @@
 [INFO  - 2016-10-23T14:57:48.642Z] Session [103eb0d0-9931-11e6-9ed5-7f787568c399] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.1.1","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"windows-10-32bit","javascriptEnabled":true,"takesScreenshot":false,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
 [INFO  - 2016-10-23T14:57:48.642Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: 103eb0d0-9931-11e6-9ed5-7f787568c399
 [INFO  - 2016-10-23T14:57:58.355Z] ShutdownReqHand - _handle - About to shutdown
+[INFO  - 2016-10-24T13:48:47.874Z] GhostDriver - Main - running on port 56064
+[INFO  - 2016-10-24T13:48:47.969Z] Session [969fbab0-99f0-11e6-9dfd-5f388e40df79] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1","webSecurityEnabled":false}
+[INFO  - 2016-10-24T13:48:47.969Z] Session [969fbab0-99f0-11e6-9dfd-5f388e40df79] - page.customHeaders:  - {}
+[INFO  - 2016-10-24T13:48:47.969Z] Session [969fbab0-99f0-11e6-9dfd-5f388e40df79] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.1.1","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"windows-10-32bit","javascriptEnabled":true,"takesScreenshot":false,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2016-10-24T13:48:47.969Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: 969fbab0-99f0-11e6-9dfd-5f388e40df79
+[INFO  - 2016-10-24T13:48:59.932Z] ShutdownReqHand - _handle - About to shutdown
+[INFO  - 2016-10-24T14:42:59.572Z] GhostDriver - Main - running on port 26440
+[INFO  - 2016-10-24T14:43:00.048Z] Session [29039aa0-99f8-11e6-9db1-232547328ee7] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1","webSecurityEnabled":false}
+[INFO  - 2016-10-24T14:43:00.048Z] Session [29039aa0-99f8-11e6-9db1-232547328ee7] - page.customHeaders:  - {}
+[INFO  - 2016-10-24T14:43:00.048Z] Session [29039aa0-99f8-11e6-9db1-232547328ee7] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.1.1","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"windows-10-32bit","javascriptEnabled":true,"takesScreenshot":false,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2016-10-24T14:43:00.048Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: 29039aa0-99f8-11e6-9db1-232547328ee7
+[INFO  - 2016-10-24T14:47:59.577Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2016-10-24T14:52:38.230Z] GhostDriver - Main - running on port 45803
+[INFO  - 2016-10-24T14:52:38.767Z] Session [81f544a0-99f9-11e6-8aa6-b58eee65e778] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1","webSecurityEnabled":false}
+[INFO  - 2016-10-24T14:52:38.767Z] Session [81f544a0-99f9-11e6-8aa6-b58eee65e778] - page.customHeaders:  - {}
+[INFO  - 2016-10-24T14:52:38.768Z] Session [81f544a0-99f9-11e6-8aa6-b58eee65e778] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.1.1","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"windows-10-32bit","javascriptEnabled":true,"takesScreenshot":false,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2016-10-24T14:52:38.768Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: 81f544a0-99f9-11e6-8aa6-b58eee65e778
+[ERROR - 2016-10-24T14:52:51.031Z] Session [81f544a0-99f9-11e6-8aa6-b58eee65e778] - page.onError - msg: ReferenceError: Can't find variable: seajs
+[ERROR - 2016-10-24T14:52:51.031Z] Session [81f544a0-99f9-11e6-8aa6-b58eee65e778] - page.onError - stack:
+  global code (http://list.jd.com/list.html?cat=1713,3263,3394&page=1&stock=0&sort=sort_publishtime_desc:36)
+[ERROR - 2016-10-24T14:52:51.068Z] Session [81f544a0-99f9-11e6-8aa6-b58eee65e778] - page.onError - msg: ReferenceError: Can't find variable: seajs
+[ERROR - 2016-10-24T14:52:51.068Z] Session [81f544a0-99f9-11e6-8aa6-b58eee65e778] - page.onError - stack:
+  global code (http://list.jd.com/list.html?cat=1713,3263,3394&page=1&stock=0&sort=sort_publishtime_desc:206)
+[ERROR - 2016-10-24T14:52:51.145Z] Session [81f544a0-99f9-11e6-8aa6-b58eee65e778] - page.onError - msg: ReferenceError: Can't find variable: $
+[ERROR - 2016-10-24T14:52:51.145Z] Session [81f544a0-99f9-11e6-8aa6-b58eee65e778] - page.onError - stack:
+  showAuthor (http://list.jd.com/list.html?cat=1713,3263,3394&page=1&stock=0&sort=sort_publishtime_desc:3766)
+[ERROR - 2016-10-24T14:52:51.162Z] Session [81f544a0-99f9-11e6-8aa6-b58eee65e778] - page.onError - msg: TypeError: undefined is not a constructor (evaluating 'pageConfig.FN_getDomain()')
+[ERROR - 2016-10-24T14:52:51.162Z] Session [81f544a0-99f9-11e6-8aa6-b58eee65e778] - page.onError - stack:
+  global code (http://static.360buyimg.com/webstatic/list/1.0.0/??filter.js,jdList.js,expands.js:2)
+[ERROR - 2016-10-24T14:52:51.162Z] Session [81f544a0-99f9-11e6-8aa6-b58eee65e778] - page.onError - msg: ReferenceError: Can't find variable: seajs
+[ERROR - 2016-10-24T14:52:51.162Z] Session [81f544a0-99f9-11e6-8aa6-b58eee65e778] - page.onError - stack:
+  global code (http://list.jd.com/list.html?cat=1713,3263,3394&page=1&stock=0&sort=sort_publishtime_desc:3865)
+[ERROR - 2016-10-24T14:52:51.163Z] Session [81f544a0-99f9-11e6-8aa6-b58eee65e778] - page.onError - msg: TypeError: undefined is not a constructor (evaluating 'pageConfig.FN_GetRandomData(B)')
+[ERROR - 2016-10-24T14:52:51.163Z] Session [81f544a0-99f9-11e6-8aa6-b58eee65e778] - page.onError - stack:
+  (anonymous function) (http://d.jd.com/hotwords/get?position=mvd-05:4)
+[INFO  - 2016-10-24T14:52:53.026Z] ShutdownReqHand - _handle - About to shutdown
+[INFO  - 2016-10-24T14:58:01.037Z] GhostDriver - Main - running on port 33753
+[INFO  - 2016-10-24T14:58:01.547Z] Session [42599660-99fa-11e6-a990-afd87ea02eae] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1","webSecurityEnabled":false}
+[INFO  - 2016-10-24T14:58:01.547Z] Session [42599660-99fa-11e6-a990-afd87ea02eae] - page.customHeaders:  - {}
+[INFO  - 2016-10-24T14:58:01.548Z] Session [42599660-99fa-11e6-a990-afd87ea02eae] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.1.1","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"windows-10-32bit","javascriptEnabled":true,"takesScreenshot":false,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2016-10-24T14:58:01.548Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: 42599660-99fa-11e6-a990-afd87ea02eae
+[INFO  - 2016-10-24T14:59:53.218Z] GhostDriver - Main - running on port 64603
+[INFO  - 2016-10-24T14:59:53.745Z] Session [85397db0-99fa-11e6-bb5d-753db2a97f6c] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1","webSecurityEnabled":false}
+[INFO  - 2016-10-24T14:59:53.745Z] Session [85397db0-99fa-11e6-bb5d-753db2a97f6c] - page.customHeaders:  - {}
+[INFO  - 2016-10-24T14:59:53.745Z] Session [85397db0-99fa-11e6-bb5d-753db2a97f6c] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.1.1","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"windows-10-32bit","javascriptEnabled":true,"takesScreenshot":false,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2016-10-24T14:59:53.745Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: 85397db0-99fa-11e6-bb5d-753db2a97f6c
+[INFO  - 2016-10-24T15:00:01.147Z] ShutdownReqHand - _handle - About to shutdown
