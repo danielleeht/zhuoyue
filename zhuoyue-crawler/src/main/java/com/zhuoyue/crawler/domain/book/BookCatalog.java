@@ -1,10 +1,12 @@
 package com.zhuoyue.crawler.domain.book;
 
 import com.zhuoyue.commons.BaseEntity;
-import com.zhuoyue.crawler.domain.RecordStatus;
+import com.zhuoyue.crawler.domain.CatalogStatus;
 import io.swagger.annotations.ApiModel;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import java.util.Date;
 
 /**
@@ -14,13 +16,9 @@ import java.util.Date;
 @ApiModel(description = "图书爬虫目录信息")
 public class BookCatalog extends BaseEntity {
 
-    private String taskId;
-
     private String bookId;
 
     private String itemId;
-
-    private String cover;
 
     private String name;
 
@@ -30,17 +28,8 @@ public class BookCatalog extends BaseEntity {
 
     private Date crawledDate;
 
-    private RecordStatus recordStatus;
-
-    private Integer rank;
-
-    public String getTaskId() {
-        return taskId;
-    }
-
-    public void setTaskId(String taskId) {
-        this.taskId = taskId;
-    }
+    @Enumerated(EnumType.STRING)
+    private CatalogStatus catalogStatus;
 
     public String getBookId() {
         return bookId;
@@ -56,14 +45,6 @@ public class BookCatalog extends BaseEntity {
 
     public void setItemId(String itemId) {
         this.itemId = itemId;
-    }
-
-    public String getCover() {
-        return cover;
-    }
-
-    public void setCover(String cover) {
-        this.cover = cover;
     }
 
     public String getName() {
@@ -98,19 +79,11 @@ public class BookCatalog extends BaseEntity {
         this.crawledDate = crawledDate;
     }
 
-    public RecordStatus getRecordStatus() {
-        return recordStatus;
+    public CatalogStatus getCatalogStatus() {
+        return catalogStatus;
     }
 
-    public void setRecordStatus(RecordStatus recordStatus) {
-        this.recordStatus = recordStatus;
-    }
-
-    public Integer getRank() {
-        return rank;
-    }
-
-    public void setRank(Integer rank) {
-        this.rank = rank;
+    public void setCatalogStatus(CatalogStatus catalogStatus) {
+        this.catalogStatus = catalogStatus;
     }
 }

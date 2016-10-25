@@ -49,7 +49,7 @@ public class JdBookItemCrawler implements InitializingBean {
 	/**
 	 *
 	 */
-    @EventListener(condition="#crawlEndEvent.crawlerType.equals(com.zhuoyue.crawler.task.CrawlerType.JDCATALOG)")
+//    @EventListener(condition="#crawlEndEvent.crawlerType.equals(T(com.zhuoyue.crawler.task.CrawlerType).JDCATALOG)")
 	public void doCrawl(CrawlEndEvent crawlEndEvent) {
         log.info("JdBookItemCrawler start");
 		if(ooSpider.getStatus().equals(Spider.Status.Running)){

@@ -1,4 +1,4 @@
-package com.zhuoyue.crawler.task;
+package com.zhuoyue.crawler.domain.task;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
 

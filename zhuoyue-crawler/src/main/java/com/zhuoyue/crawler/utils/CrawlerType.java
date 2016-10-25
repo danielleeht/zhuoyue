@@ -1,4 +1,4 @@
-package com.zhuoyue.crawler.task;
+package com.zhuoyue.crawler.utils;
 
 /**
  * Created by lihaitao on 2016/10/19.

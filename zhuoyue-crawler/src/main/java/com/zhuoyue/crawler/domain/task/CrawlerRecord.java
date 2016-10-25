@@ -1,6 +1,7 @@
-package com.zhuoyue.crawler.task;
+package com.zhuoyue.crawler.domain.task;
 
 import com.zhuoyue.commons.BaseEntity;
+import com.zhuoyue.crawler.utils.CrawlerType;
 import io.swagger.annotations.ApiModel;
 
 import javax.persistence.Entity;
@@ -22,6 +23,7 @@ public class CrawlerRecord extends BaseEntity {
     private Date endTime;
 
     public CrawlerRecord() {
+
     }
 
     public CrawlerRecord(CrawlerType crawlerType, Date crawlDate) {

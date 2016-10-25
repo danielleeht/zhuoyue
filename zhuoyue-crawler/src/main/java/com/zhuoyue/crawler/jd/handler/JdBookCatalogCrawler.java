@@ -8,8 +8,10 @@ import java.util.Date;
 import java.util.List;
 
 import com.zhuoyue.crawler.pipeline.CrawlerRecordPipelineFactory;
-import com.zhuoyue.crawler.task.CrawlerRecord;
-import com.zhuoyue.crawler.task.CrawlerType;
+import com.zhuoyue.crawler.domain.task.CrawlerRecord;
+import com.zhuoyue.crawler.service.CrawlBookCatalogService;
+import com.zhuoyue.crawler.utils.CrawlerSource;
+import com.zhuoyue.crawler.utils.CrawlerType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -51,11 +53,16 @@ public class JdBookCatalogCrawler {
     @Autowired
     private SpiderListener spiderListener;
 
+    @Autowired
+    private CrawlBookCatalogService crawlBookCatalogService;
+
 	/**
 	 * @param
 	 */
 	@Scheduled(initialDelay=20*1000, fixedDelay=24*3600*1000)
 	public void doCrawl() {
+        crawlBookCatalogService.deleteDailyCatalog(CrawlerSource.jd.getType());
+
 		Downloader downloader = new HttpClientDownloader();
 		Page indexPage = downloader.download(new Request(URL_INDEX), site.toTask());
 

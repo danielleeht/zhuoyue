@@ -1,14 +1,13 @@
 package com.zhuoyue.crawler.pipeline;
 
-import com.zhuoyue.crawler.task.CrawlerRecord;
-import com.zhuoyue.crawler.task.CrawlerRecordRepository;
+import com.zhuoyue.crawler.domain.task.CrawlerRecord;
+import com.zhuoyue.crawler.domain.task.CrawlerRecordRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 import us.codecraft.webmagic.ResultItems;
-import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.Task;
 import us.codecraft.webmagic.pipeline.Pipeline;
 

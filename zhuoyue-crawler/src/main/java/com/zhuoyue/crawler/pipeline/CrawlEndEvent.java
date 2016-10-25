@@ -1,7 +1,7 @@
 package com.zhuoyue.crawler.pipeline;
 
-import com.zhuoyue.crawler.task.CrawlerRecord;
-import com.zhuoyue.crawler.task.CrawlerType;
+import com.zhuoyue.crawler.domain.task.CrawlerRecord;
+import com.zhuoyue.crawler.utils.CrawlerType;
 
 import java.util.Date;
 import java.util.EventObject;

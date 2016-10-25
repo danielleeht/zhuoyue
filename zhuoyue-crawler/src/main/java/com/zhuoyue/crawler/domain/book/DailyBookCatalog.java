@@ -1,7 +1,6 @@
 package com.zhuoyue.crawler.domain.book;
 
 import com.zhuoyue.commons.BaseEntity;
-import com.zhuoyue.crawler.domain.RecordStatus;
 import io.swagger.annotations.ApiModel;
 
 import javax.persistence.Entity;
@@ -11,7 +10,7 @@ import java.util.Date;
  * Created by lihaitao on 2016/10/19.
  */
 @Entity
-@ApiModel(description = "图书爬虫目录信息")
+@ApiModel(description = "每日图书爬虫目录信息")
 public class DailyBookCatalog extends BaseEntity {
 
     private String taskId;
