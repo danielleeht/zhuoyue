@@ -17,9 +17,9 @@ public class JdBookItemPipeline implements PageModelPipeline {
 
     @Override
     public void process(Object o, Task task) {
-        log.debug("UUID={}, Site={}", task.getUUID(), task.getSite());
+        log.info("UUID={}, Site={}", task.getUUID(), task.getSite());
 
-        log.debug("resultItem = {}", o);
+        log.info("resultItem = {}", o);
 
 
     }

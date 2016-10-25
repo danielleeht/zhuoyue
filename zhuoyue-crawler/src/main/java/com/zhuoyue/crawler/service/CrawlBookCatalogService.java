@@ -23,12 +23,8 @@ public class CrawlBookCatalogService {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-
-    @EventListener(condition="#crawlEndEvent.crawlerType.equals(T(com.zhuoyue.crawler.utils.CrawlerType).JDCATALOG)")
-    public void addBookCatalog(CrawlEndEvent crawlEndEvent){
+    public void addBookCatalog(String taskId){
         log.info("Begin transfer new book catalog to fact table");
-        CrawlerRecord record = (CrawlerRecord)crawlEndEvent.getSource();
-        String taskId = record.getId()+"";
 
         jdbcTemplate.update("INSERT INTO book_catalog (item_id, name, shop_name, site, crawled_date, catalog_status)" +
             " SELECT item_id, name, shop_name, site, crawled_date, ? FROM daily_book_catalog D" +
