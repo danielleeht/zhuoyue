@@ -52,7 +52,7 @@ public class SeleniumDownloader implements Downloader, Closeable {
 
 	/**
 	 * Constructor without any filed. Construct PhantomJS browser
-	 * 
+	 *
 	 * @author bob.li.0718@gmail.com
 	 */
 	public SeleniumDownloader() {
@@ -101,9 +101,10 @@ public class SeleniumDownloader implements Downloader, Closeable {
 
 		/*
 		 * TODO You can add mouse event or other processes
-		 * 
+		 *
 		 * @author: bob.li.0718@gmail.com
 		 */
+		beforeDownload(webDriver);
 
 		WebElement webElement = webDriver.findElement(By.xpath("/html"));
 		String content = webElement.getAttribute("outerHTML");
@@ -117,7 +118,10 @@ public class SeleniumDownloader implements Downloader, Closeable {
 		return page;
 	}
 
-	private void checkInit() {
+    protected void beforeDownload(WebDriver webDriver) {
+    }
+
+    private void checkInit() {
 		if (webDriverPool == null) {
 			synchronized (this) {
 				webDriverPool = new WebDriverPool(poolSize);

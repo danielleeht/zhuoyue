@@ -21,7 +21,7 @@ import us.codecraft.webmagic.Task;
 import us.codecraft.webmagic.pipeline.PageModelPipeline;
 
 @Component
-public class JdBookCatalogPipeline implements PageModelPipeline<JdBookCatalog>, Closeable {
+public class JdBookCatalogPipeline implements PageModelPipeline<JdBookCatalog> {
 
     private static final Logger log = LoggerFactory.getLogger(JdBookCatalogPipeline.class);
     private static final Integer PAGE_SIZE = 60;
@@ -41,6 +41,7 @@ public class JdBookCatalogPipeline implements PageModelPipeline<JdBookCatalog>, 
         dailyBookCatalog.setCover(jdBookCatalog.getCover());
         dailyBookCatalog.setItemId(jdBookCatalog.getItemId());
         dailyBookCatalog.setName(jdBookCatalog.getName());
+        dailyBookCatalog.setCatalog(jdBookCatalog.getCategory());
 
         Integer pageNo = StringUtils.isEmpty(jdBookCatalog.getPageNo())?
             1 : Integer.parseInt(jdBookCatalog.getPageNo());
@@ -54,8 +55,4 @@ public class JdBookCatalogPipeline implements PageModelPipeline<JdBookCatalog>, 
         dailyBookCatalogRepository.save(dailyBookCatalog);
     }
 
-	@Override
-	public void close() throws IOException {
-		log.info("JD book list crawl finished, start crawl details");
-	}
 }

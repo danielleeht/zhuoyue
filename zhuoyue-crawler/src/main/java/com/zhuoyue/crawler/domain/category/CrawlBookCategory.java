@@ -13,17 +13,29 @@ import javax.persistence.Enumerated;
  */
 @Entity
 @ApiModel(description = "图书类型")
-public class BookCategory extends BaseEntity {
+public class CrawlBookCategory extends BaseEntity {
+
+    private String categoryString;
 
     @ApiModelProperty(value="分类名称")
     private String categoryName;
 
-    @ApiModelProperty(value="分类名称")
+    @ApiModelProperty(value="上级分类")
     private Integer pid;     //上级分类ID
 
     @Enumerated(EnumType.STRING)
     @ApiModelProperty(value="分类类型")
     private CategoryType categoryType;
+
+    private String site;
+
+    public String getCategoryString() {
+        return categoryString;
+    }
+
+    public void setCategoryString(String categoryString) {
+        this.categoryString = categoryString;
+    }
 
     public String getCategoryName() {
         return categoryName;
@@ -47,5 +59,13 @@ public class BookCategory extends BaseEntity {
 
     public void setCategoryType(CategoryType categoryType) {
         this.categoryType = categoryType;
+    }
+
+    public String getSite() {
+        return site;
+    }
+
+    public void setSite(String site) {
+        this.site = site;
     }
 }

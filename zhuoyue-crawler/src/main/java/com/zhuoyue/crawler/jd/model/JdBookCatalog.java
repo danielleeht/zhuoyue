@@ -20,7 +20,7 @@ public class JdBookCatalog {
     @ExtractByUrl("http://list.jd.com/list.html\\?cat=1713,3263,(\\d{4})&page=\\d+&stock=0*")
     private String category;
 
-	@ExtractBy("div/div[@class=\"p-img\"]/a/img/@src")
+	@ExtractBy("div/div[@class=\"p-img\"]/a/img/@src | div/div[@class=\"p-img\"]/a/img/@data-lazy-img")
 	private String cover;
 
 	@ExtractBy("div/div[@class=\"p-name\"]/a/em/text()")

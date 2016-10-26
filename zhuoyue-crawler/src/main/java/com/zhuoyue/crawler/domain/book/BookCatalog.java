@@ -22,6 +22,10 @@ public class BookCatalog extends BaseEntity {
 
     private String name;
 
+    private String cover;
+
+    private String catalog;
+
     private String site;
 
     private String shopName;
@@ -53,6 +57,22 @@ public class BookCatalog extends BaseEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getCover() {
+        return cover;
+    }
+
+    public void setCover(String cover) {
+        this.cover = cover;
+    }
+
+    public String getCatalog() {
+        return catalog;
+    }
+
+    public void setCatalog(String catalog) {
+        this.catalog = catalog;
     }
 
     public String getSite() {

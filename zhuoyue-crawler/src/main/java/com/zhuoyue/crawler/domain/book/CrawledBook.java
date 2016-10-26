@@ -1,7 +1,7 @@
 package com.zhuoyue.crawler.domain.book;
 
 import com.zhuoyue.crawler.domain.author.BookAuthor;
-import com.zhuoyue.crawler.domain.category.BookCategory;
+import com.zhuoyue.crawler.domain.category.CrawlBookCategory;
 import com.zhuoyue.crawler.domain.publisher.Publisher;
 import com.zhuoyue.commons.AuditedEntity;
 import io.swagger.annotations.ApiModel;
@@ -42,7 +42,7 @@ public class CrawledBook extends AuditedEntity {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @ApiModelProperty(value="书名")
-    private BookCategory category;
+    private CrawlBookCategory category;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name="BOOK_ID")
@@ -274,11 +274,11 @@ public class CrawledBook extends AuditedEntity {
         this.status = status;
     }
 
-    public BookCategory getCategory() {
+    public CrawlBookCategory getCategory() {
         return category;
     }
 
-    public void setCategory(BookCategory category) {
+    public void setCategory(CrawlBookCategory category) {
         this.category = category;
     }
 
