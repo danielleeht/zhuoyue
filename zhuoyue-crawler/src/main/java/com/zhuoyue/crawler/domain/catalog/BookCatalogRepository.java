@@ -1,6 +1,5 @@
-package com.zhuoyue.crawler.domain.book;
+package com.zhuoyue.crawler.domain.catalog;
 
-import com.zhuoyue.crawler.domain.CatalogStatus;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.List;

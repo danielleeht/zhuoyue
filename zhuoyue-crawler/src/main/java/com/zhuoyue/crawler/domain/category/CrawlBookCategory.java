@@ -15,6 +15,7 @@ import javax.persistence.Enumerated;
 @ApiModel(description = "图书类型")
 public class CrawlBookCategory extends BaseEntity {
 
+    @ApiModelProperty(value="分类编号")
     private String categoryString;
 
     @ApiModelProperty(value="分类名称")
@@ -67,5 +68,16 @@ public class CrawlBookCategory extends BaseEntity {
 
     public void setSite(String site) {
         this.site = site;
+    }
+
+    @Override
+    public String toString() {
+        return "CrawlBookCategory{" +
+            "categoryString='" + categoryString + '\'' +
+            ", categoryName='" + categoryName + '\'' +
+            ", pid=" + pid +
+            ", categoryType=" + categoryType +
+            ", site='" + site + '\'' +
+            '}';
     }
 }

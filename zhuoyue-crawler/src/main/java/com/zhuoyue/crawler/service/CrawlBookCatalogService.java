@@ -1,15 +1,17 @@
 package com.zhuoyue.crawler.service;
 
-import com.zhuoyue.crawler.domain.CatalogStatus;
+import com.zhuoyue.crawler.domain.catalog.CatalogStatus;
 import com.zhuoyue.crawler.domain.task.CrawlerRecord;
+import com.zhuoyue.crawler.jd.handler.JdBookCatalogCrawler;
 import com.zhuoyue.crawler.jd.handler.JdBookItemCrawler;
 import com.zhuoyue.crawler.pipeline.CrawlEndEvent;
-import com.zhuoyue.crawler.utils.CrawlerType;
+import com.zhuoyue.crawler.utils.CrawlerSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 /**
@@ -23,7 +25,13 @@ public class CrawlBookCatalogService {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    public void addBookCatalog(String taskId){
+    @Autowired
+    private JdBookItemCrawler jdBookItemCrawler;
+
+    @Autowired
+    private JdBookCatalogCrawler jdBookCatalogCrawler;
+
+    private void addBookCatalog(String taskId){
         log.info("Begin transfer new book catalog to fact table");
 
         jdbcTemplate.update("INSERT INTO book_catalog (item_id, name, shop_name, site, crawled_date, catalog_status)" +
@@ -35,5 +43,23 @@ public class CrawlBookCatalogService {
 
     public void deleteDailyCatalog(String site){
         jdbcTemplate.update("delete from daily_book_catalog where site = ?", site);
+    }
+
+    @Scheduled(initialDelay=20*1000, fixedDelay=24*3600*1000)
+    public void scheduleCatalogCrawl(){
+        this.deleteDailyCatalog(CrawlerSource.jd.getType());
+        jdBookCatalogCrawler.doCrawl();
+    }
+
+    @EventListener(condition="#crawlEndEvent.crawlerType.equals(T(com.zhuoyue.crawler.utils.CrawlerType).JDCATALOG)")
+    public void afterCatalogCrawl(CrawlEndEvent crawlEndEvent){
+
+        CrawlerRecord record = (CrawlerRecord)crawlEndEvent.getSource();
+        String taskId = record.getId()+"";
+
+        this.addBookCatalog(taskId);
+
+        jdBookItemCrawler.doCrawl();
+
     }
 }

@@ -18,6 +18,8 @@ import com.zhuoyue.crawler.utils.CrawlerSource;
 import com.zhuoyue.crawler.utils.CrawlerType;
 import org.apache.commons.collections.CollectionUtils;
 import org.jsoup.nodes.Element;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -41,6 +43,7 @@ import us.codecraft.webmagic.selector.XpathSelector;
  */
 @Component
 public class JdBookCatalogCrawler {
+    private static final Logger log = LoggerFactory.getLogger(JdBookCatalogCrawler.class);
 	//少儿图书首页
 	private static final String URL_INDEX = "http://list.jd.com/list.html?cat=1713,3263";
 
@@ -69,12 +72,8 @@ public class JdBookCatalogCrawler {
 	/**
 	 * @param
 	 */
-	@Scheduled(initialDelay=20*1000, fixedDelay=24*3600*1000)
 	public void doCrawl() {
-        crawlBookCatalogService.deleteDailyCatalog(CrawlerSource.jd.getType());
-
-		Downloader downloader = new HttpClientDownloader();
-		Page indexPage = downloader.download(new Request(URL_INDEX), site.toTask());
+        log.info("开始执行图书目录爬虫程序");
 
         List<CrawlBookCategory> bookCategories = this.findCrawlBookCategories();
 
@@ -100,7 +99,10 @@ public class JdBookCatalogCrawler {
 
         List<CrawlBookCategory> bookCategories = crawlBookCategoryRepository
             .findBySiteAndCategoryType(CrawlerSource.jd.getType(), CategoryType.INDEX);
+
+        log.info("找到{}条二级童书分类", bookCategories.size());
         if(CollectionUtils.isEmpty(bookCategories)){
+            log.info("开始爬取二级童书分类");
             bookCategories = new ArrayList<CrawlBookCategory>();
 
             Downloader downloader = new HttpClientDownloader();
@@ -110,7 +112,7 @@ public class JdBookCatalogCrawler {
             List<Element> elements = selector.selectElements(indexPage.getHtml().getDocument());
 
             for(Element element:elements){
-                XpathSelector categorySelector = new XpathSelector("li/a/regex(@href,'/1713,3263,(\\d+).html', 1)");
+                XpathSelector categorySelector = new XpathSelector("li/a/regex(@href,'http://list.jd.com/1713-3263-(\\d+).html', 1)");
                 String categoryString = categorySelector.select(element);
 
                 XpathSelector categoryNameSelector = new XpathSelector("li/a/@title");
@@ -124,6 +126,8 @@ public class JdBookCatalogCrawler {
 
                 bookCategories.add(crawlBookCategory);
                 crawlBookCategoryRepository.save(crawlBookCategory);
+
+                log.info("已添加二级童书分类{}", crawlBookCategory);
             }
         }
         return bookCategories;

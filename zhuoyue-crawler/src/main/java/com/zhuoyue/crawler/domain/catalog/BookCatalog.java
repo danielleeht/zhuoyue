@@ -1,7 +1,6 @@
-package com.zhuoyue.crawler.domain.book;
+package com.zhuoyue.crawler.domain.catalog;
 
 import com.zhuoyue.commons.BaseEntity;
-import com.zhuoyue.crawler.domain.CatalogStatus;
 import io.swagger.annotations.ApiModel;
 
 import javax.persistence.Entity;

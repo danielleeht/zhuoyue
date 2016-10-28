@@ -102,10 +102,6 @@ public class CrawledBook extends AuditedEntity {
     @ApiModelProperty(value="附加信息")
     private Set<BookExtra> bookExtras;
 
-    @Enumerated(EnumType.STRING)
-    @ApiModelProperty(value="状态", hidden=true)
-    private BookStatus status;
-
     public String getCoverPicture() {
         return coverPicture;
     }
@@ -264,14 +260,6 @@ public class CrawledBook extends AuditedEntity {
 
     public void setInset(List<String> inset) {
         this.inset = inset;
-    }
-
-    public BookStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(BookStatus status) {
-        this.status = status;
     }
 
     public CrawlBookCategory getCategory() {

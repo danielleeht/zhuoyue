@@ -1,4 +1,4 @@
-package com.zhuoyue.crawler.domain;
+package com.zhuoyue.crawler.domain.catalog;
 
 /**
  * 图书爬虫信息收录状态

@@ -7,17 +7,18 @@ import com.zhuoyue.crawler.utils.CrawlerSource;
 import com.zhuoyue.crawler.jd.formatter.JdBookPropertyFormatter;
 
 import us.codecraft.webmagic.model.annotation.ExtractBy;
+import us.codecraft.webmagic.model.annotation.ExtractByUrl;
 import us.codecraft.webmagic.model.annotation.Formatter;
 import us.codecraft.webmagic.model.annotation.TargetUrl;
 
 @TargetUrl(value = "http://item.jd.com/\\d+.html*", sourceRegion="no")
 public class JdBookItem {
 
-	@ExtractBy(value="//*[@id=\"short-share\"]/div/span[2]/text()", notNull=true)
-	private String itemId;	//商品编号
+    @ExtractByUrl("http://item.jd.com/(\\d+).html*")
+    private String itemId;	//商品编号
 
-	@ExtractBy(value="//div[@class=\"breadcrumb\"]//span[1]/a[2]/regex(@href,'//list.jd.com/list.html\\?cat=(1713,3263,\\d+)', 1)")
-	private String category;	//商品分类
+//	@ExtractBy(value="//div[@class=\"breadcrumb\"]//span[1]/a[2]/regex(@href,'//list.jd.com/list.html\\?cat=(1713,3263,\\d+)', 1)")
+//	private String category;	//商品分类
 
 	@ExtractBy(value="//*[@id=\"spec-list\"]/div/ul/li/img/@src")
 	private List<String> coverPictures;	//封面图片
@@ -62,22 +63,17 @@ public class JdBookItem {
 	@ExtractBy(value="//*[@id=\"jd-price\"]/allText()")
 	private String price;	//价格
 
-	@ExtractBy(value="//div[@id=\"summary-order\"]/div[2]/font/text()")
-	private String saleRank;	//销售排行
-
-	@ExtractBy(value="//div[@id=\"comments-list\"]/div[1]/div/ul/li[contains(@clstag,'haoping')]/a/em/text()")
-	private String good;	//好评数
-
-	@ExtractBy(value="//div[@id=\"comments-list\"]/div[1]/div/ul/li[contains(@clstag,'zhongping')]/a/em/text()")
-	private String middle;	//中评数
-
-	@ExtractBy(value="//div[@id=\"comments-list\"]/div[1]/div/ul/li[contains(@clstag,'chaping')]/a/em/text()")
-	private String bad;	//差评数
-
-
-	private String site = CrawlerSource.jd.getType();
-
-	private Date updateTime = new Date();
+//	@ExtractBy(value="//div[@id=\"summary-order\"]/div[2]/font/text()")
+//	private String saleRank;	//销售排行
+//
+//	@ExtractBy(value="//div[@id=\"comments-list\"]/div[1]/div/ul/li[contains(@clstag,'haoping')]/a/em/text()")
+//	private String good;	//好评数
+//
+//	@ExtractBy(value="//div[@id=\"comments-list\"]/div[1]/div/ul/li[contains(@clstag,'zhongping')]/a/em/text()")
+//	private String middle;	//中评数
+//
+//	@ExtractBy(value="//div[@id=\"comments-list\"]/div[1]/div/ul/li[contains(@clstag,'chaping')]/a/em/text()")
+//	private String bad;	//差评数
 
 	public String getItemId() {
 		return itemId;
@@ -95,13 +91,6 @@ public class JdBookItem {
 		this.authorText = authorText;
 	}
 
-	public String getSite() {
-		return site;
-	}
-
-	public void setSite(String site) {
-		this.site = site;
-	}
 
 	public String getName() {
 		return name;
@@ -111,24 +100,120 @@ public class JdBookItem {
 		this.name = name;
 	}
 
-	public Date getUpdateTime() {
-		return updateTime;
-	}
+    public List<String> getCoverPictures() {
+        return coverPictures;
+    }
 
-	public void setUpdateTime(Date updateTime) {
-		this.updateTime = updateTime;
-	}
+    public void setCoverPictures(List<String> coverPictures) {
+        this.coverPictures = coverPictures;
+    }
 
-	@Override
-	public String toString() {
-		return "JDBookItem [itemId=" + itemId + ", category=" + category + ", coverPictures="
-				+ coverPictures + ", name=" + name + ", properties=" + properties + ", authorText=" + authorText
-				+ ", characteristic=" + characteristic + ", recommend=" + recommend + ", introduction=" + introduction
-				+ ", authorIntro=" + authorIntro + ", bookReview=" + bookReview + ", toc=" + toc + ", excerpt="
-				+ excerpt + ", preface=" + preface + ", inset=" + inset + ", price=" + price + ", saleRank=" + saleRank
-				+ ", good=" + good + ", middle=" + middle + ", bad=" + bad + ", site=" + site + ", updateTime="
-				+ updateTime + "]";
-	}
+    public List<JdBookProperty> getProperties() {
+        return properties;
+    }
 
+    public void setProperties(List<JdBookProperty> properties) {
+        this.properties = properties;
+    }
 
+    public String getCharacteristic() {
+        return characteristic;
+    }
+
+    public void setCharacteristic(String characteristic) {
+        this.characteristic = characteristic;
+    }
+
+    public String getRecommend() {
+        return recommend;
+    }
+
+    public void setRecommend(String recommend) {
+        this.recommend = recommend;
+    }
+
+    public String getIntroduction() {
+        return introduction;
+    }
+
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
+    }
+
+    public String getAuthorIntro() {
+        return authorIntro;
+    }
+
+    public void setAuthorIntro(String authorIntro) {
+        this.authorIntro = authorIntro;
+    }
+
+    public String getBookReview() {
+        return bookReview;
+    }
+
+    public void setBookReview(String bookReview) {
+        this.bookReview = bookReview;
+    }
+
+    public String getToc() {
+        return toc;
+    }
+
+    public void setToc(String toc) {
+        this.toc = toc;
+    }
+
+    public String getExcerpt() {
+        return excerpt;
+    }
+
+    public void setExcerpt(String excerpt) {
+        this.excerpt = excerpt;
+    }
+
+    public String getPreface() {
+        return preface;
+    }
+
+    public void setPreface(String preface) {
+        this.preface = preface;
+    }
+
+    public List<String> getInset() {
+        return inset;
+    }
+
+    public void setInset(List<String> inset) {
+        this.inset = inset;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "JdBookItem{" +
+            "itemId='" + itemId + '\'' +
+            ", coverPictures=" + coverPictures +
+            ", name='" + name + '\'' +
+            ", properties=" + properties +
+            ", authorText='" + authorText + '\'' +
+            ", characteristic='" + characteristic + '\'' +
+            ", recommend='" + recommend + '\'' +
+            ", introduction='" + introduction + '\'' +
+            ", authorIntro='" + authorIntro + '\'' +
+            ", bookReview='" + bookReview + '\'' +
+            ", toc='" + toc + '\'' +
+            ", excerpt='" + excerpt + '\'' +
+            ", preface='" + preface + '\'' +
+            ", inset=" + inset +
+            ", price='" + price + '\'' +
+            '}';
+    }
 }

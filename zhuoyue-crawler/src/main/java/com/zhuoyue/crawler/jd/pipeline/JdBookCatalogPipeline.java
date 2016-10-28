@@ -1,13 +1,9 @@
 package com.zhuoyue.crawler.jd.pipeline;
 
-import java.io.Closeable;
-import java.io.IOException;
 import java.util.Date;
 
-import com.zhuoyue.crawler.domain.book.BookCatalog;
-import com.zhuoyue.crawler.domain.book.BookCatalogRepository;
-import com.zhuoyue.crawler.domain.book.DailyBookCatalog;
-import com.zhuoyue.crawler.domain.book.DailyBookCatalogRepository;
+import com.zhuoyue.crawler.domain.catalog.DailyBookCatalog;
+import com.zhuoyue.crawler.domain.catalog.DailyBookCatalogRepository;
 import com.zhuoyue.crawler.utils.CrawlerSource;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;

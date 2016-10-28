@@ -1,17 +1,24 @@
 package com.zhuoyue.crawler;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.zhuoyue.crawler.domain.category.CategoryType;
+import com.zhuoyue.crawler.domain.category.CrawlBookCategory;
+import com.zhuoyue.crawler.utils.CrawlerSource;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+import org.apache.commons.collections.CollectionUtils;
+import org.jsoup.nodes.Element;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Request;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.downloader.Downloader;
+import us.codecraft.webmagic.downloader.HttpClientDownloader;
 import us.codecraft.webmagic.downloader.selenium.SeleniumDownloader;
 import us.codecraft.webmagic.selector.Html;
 import us.codecraft.webmagic.selector.Selector;
@@ -206,5 +213,31 @@ public class AppTest
 		Selector selector = new XpathSelector("//*[@id=\"jd-price\"]/allText()");
 		String res = html.selectDocument(selector);
 		System.out.println(res);
+    }
+
+    public void testCrawlBookCategories() {
+
+
+        Downloader downloader = new HttpClientDownloader();
+        Page indexPage = downloader.download(new Request("http://list.jd.com/list.html?cat=1713,3263"), site.toTask());
+
+        XpathSelector selector = new XpathSelector("//div[@id=\"J_selectorCategory\"]//li");
+        List<Element> elements = selector.selectElements(indexPage.getHtml().getDocument());
+
+        for(Element element:elements){
+            XpathSelector categorySelector = new XpathSelector("li/a/regex(@href,'http://list.jd.com/1713-3263-(\\d+).html', 1)");
+            XpathSelector categorySelector1 = new XpathSelector("li/a/@href");
+            String categoryString = categorySelector.select(element);
+            String categoryString1 = categorySelector1.select(element);
+
+            XpathSelector categoryNameSelector = new XpathSelector("li/a/@title");
+            String categoryName = categoryNameSelector.select(element);
+
+            System.out.println("categoryString=" + categoryString);
+            System.out.println("categoryString1=" + categoryString1);
+            System.out.println("categoryName=" + categoryName);
+
+
+        }
     }
 }

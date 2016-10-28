@@ -1,4 +1,4 @@
-package com.zhuoyue.crawler.domain.book;
+package com.zhuoyue.crawler.domain.catalog;
 
 import com.zhuoyue.commons.BaseEntity;
 import io.swagger.annotations.ApiModel;
