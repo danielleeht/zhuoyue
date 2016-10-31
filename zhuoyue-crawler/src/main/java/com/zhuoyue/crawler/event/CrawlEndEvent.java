@@ -1,4 +1,4 @@
-package com.zhuoyue.crawler.pipeline;
+package com.zhuoyue.crawler.event;
 
 import com.zhuoyue.crawler.domain.task.CrawlerRecord;
 import com.zhuoyue.crawler.utils.CrawlerType;

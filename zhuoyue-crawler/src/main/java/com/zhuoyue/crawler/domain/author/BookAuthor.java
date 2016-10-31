@@ -19,9 +19,6 @@ public class BookAuthor extends BaseEntity {
     @ApiModelProperty("作者姓名")
     private String name;
 
-    @ApiModelProperty("简介")
-    private String introduction;
-
     @ManyToOne(fetch = FetchType.EAGER)
     @NotFound(action= NotFoundAction.IGNORE)
     @ApiModelProperty("作者档案")
@@ -31,20 +28,15 @@ public class BookAuthor extends BaseEntity {
     @ApiModelProperty("作者类型，作、绘、编、译、校等")
     private BookAuthorType bookAuthorType;
 
+    @ApiModelProperty("顺序号")
+    private Integer number;
+
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getIntroduction() {
-        return introduction;
-    }
-
-    public void setIntroduction(String introduction) {
-        this.introduction = introduction;
     }
 
     public Author getAuthor() {
@@ -61,5 +53,13 @@ public class BookAuthor extends BaseEntity {
 
     public void setBookAuthorType(BookAuthorType bookAuthorType) {
         this.bookAuthorType = bookAuthorType;
+    }
+
+    public Integer getNumber() {
+        return number;
+    }
+
+    public void setNumber(Integer number) {
+        this.number = number;
     }
 }

@@ -1,5 +1,6 @@
 package com.zhuoyue.crawler.domain.book;
 
+import com.zhuoyue.commons.BaseEntity;
 import com.zhuoyue.crawler.domain.author.BookAuthor;
 import com.zhuoyue.crawler.domain.category.CrawlBookCategory;
 import com.zhuoyue.crawler.domain.publisher.Publisher;
@@ -9,7 +10,7 @@ import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -20,14 +21,28 @@ import java.util.Set;
  */
 @Entity
 @ApiModel(description = "图书主实体类")
-public class CrawledBook extends AuditedEntity {
+public class CrawledBook extends BaseEntity {
 
-    @ApiModelProperty("封面图片")
-    private String coverPicture;
-
-    @Column(unique = true)
+    @ApiModelProperty("商品编号")
     @NotNull
-    @Size(max=20)
+    private String itemId;
+
+    @ApiModelProperty("爬虫网站")
+    @NotNull
+    private String site;
+
+    @ElementCollection
+    @ApiModelProperty("封面图片")
+    private List<String> coverPictures;
+
+    @ApiModelProperty("作者（文本）")
+    private String authorText;
+
+    @ApiModelProperty("价格")
+    @Column(precision = 8, scale = 2)
+    private BigDecimal price;
+
+    @NotNull
 	private String isbn;
 
     @NotNull
@@ -41,13 +56,16 @@ public class CrawledBook extends AuditedEntity {
 	private String language;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @ApiModelProperty(value="书名")
+    @ApiModelProperty(value="图书分类")
     private CrawlBookCategory category;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name="BOOK_ID")
+    @JoinColumn(name="CRAWLED_BOOK_ID")
     @ApiModelProperty(value="作者")
 	private Set<BookAuthor> authors;
+
+    @ApiModelProperty("出版社（文本）")
+    private String publisherText;
 
     @ManyToMany
     @ApiModelProperty(value="出版社")
@@ -68,9 +86,6 @@ public class CrawledBook extends AuditedEntity {
     @ApiModelProperty(value="开本")
     private String format;
 
-    @ApiModelProperty(value="尺寸")
-    private String size;
-
     @ApiModelProperty(value="包装")
     private String packaging;
 
@@ -90,25 +105,17 @@ public class CrawledBook extends AuditedEntity {
     @ApiModelProperty(value="适读人群")
     private AgeScope ageScope;
 
-    @ApiModelProperty(value="推荐信息")
-    private String recommend;
-
     @ElementCollection
     @ApiModelProperty(value="书摘与插画")
     private List<String> inset;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="BOOK_ID")
+    @JoinColumn(name="CRAWLED_BOOK_ID")
     @ApiModelProperty(value="附加信息")
-    private Set<BookExtra> bookExtras;
+    private Set<CrawledBookExtra> crawledBookExtras;
 
-    public String getCoverPicture() {
-        return coverPicture;
-    }
-
-    public void setCoverPicture(String coverPicture) {
-        this.coverPicture = coverPicture;
-    }
+    @Enumerated(EnumType.STRING)
+    private CrawledBookStatus crawledBookStatus;
 
     public String getIsbn() {
         return isbn;
@@ -148,6 +155,14 @@ public class CrawledBook extends AuditedEntity {
 
     public void setAuthors(Set<BookAuthor> authors) {
         this.authors = authors;
+    }
+
+    public String getPublisherText() {
+        return publisherText;
+    }
+
+    public void setPublisherText(String publisherText) {
+        this.publisherText = publisherText;
     }
 
     public Set<Publisher> getPublishers() {
@@ -196,14 +211,6 @@ public class CrawledBook extends AuditedEntity {
 
     public void setFormat(String format) {
         this.format = format;
-    }
-
-    public String getSize() {
-        return size;
-    }
-
-    public void setSize(String size) {
-        this.size = size;
     }
 
     public String getPackaging() {
@@ -270,19 +277,92 @@ public class CrawledBook extends AuditedEntity {
         this.category = category;
     }
 
-    public String getRecommend() {
-        return recommend;
+    public Set<CrawledBookExtra> getCrawledBookExtras() {
+        return crawledBookExtras;
     }
 
-    public void setRecommend(String recommend) {
-        this.recommend = recommend;
+    public void setCrawledBookExtras(Set<CrawledBookExtra> crawledBookExtras) {
+        this.crawledBookExtras = crawledBookExtras;
     }
 
-    public Set<BookExtra> getBookExtras() {
-        return bookExtras;
+    public String getItemId() {
+        return itemId;
     }
 
-    public void setBookExtras(Set<BookExtra> bookExtras) {
-        this.bookExtras = bookExtras;
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
+    }
+
+    public String getSite() {
+        return site;
+    }
+
+    public void setSite(String site) {
+        this.site = site;
+    }
+
+    public List<String> getCoverPictures() {
+        return coverPictures;
+    }
+
+    public void setCoverPictures(List<String> coverPictures) {
+        this.coverPictures = coverPictures;
+    }
+
+    public String getAuthorText() {
+        return authorText;
+    }
+
+    public void setAuthorText(String authorText) {
+        this.authorText = authorText;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public CrawledBookStatus getCrawledBookStatus() {
+        return crawledBookStatus;
+    }
+
+    public void setCrawledBookStatus(CrawledBookStatus crawledBookStatus) {
+        this.crawledBookStatus = crawledBookStatus;
+    }
+
+    @Override
+    public String toString() {
+        return "CrawledBook{" +
+            "itemId='" + itemId + '\'' +
+            ", site='" + site + '\'' +
+            ", coverPictures=" + coverPictures +
+            ", authorText='" + authorText + '\'' +
+            ", price=" + price +
+            ", isbn='" + isbn + '\'' +
+            ", name='" + name + '\'' +
+            ", foreignName='" + foreignName + '\'' +
+            ", language='" + language + '\'' +
+            ", category=" + category +
+            ", authors=" + authors +
+            ", publisherText='" + publisherText + '\'' +
+            ", publishers=" + publishers +
+            ", publishNo=" + publishNo +
+            ", series='" + series + '\'' +
+            ", isSuit=" + isSuit +
+            ", suitCount=" + suitCount +
+            ", format='" + format + '\'' +
+            ", packaging='" + packaging + '\'' +
+            ", pages=" + pages +
+            ", pager='" + pager + '\'' +
+            ", wordCount=" + wordCount +
+            ", publishTime=" + publishTime +
+            ", ageScope=" + ageScope +
+            ", inset=" + inset +
+            ", crawledBookExtras=" + crawledBookExtras +
+            ", crawledBookStatus=" + crawledBookStatus +
+            '}';
     }
 }

@@ -4,9 +4,7 @@ import com.zhuoyue.commons.BaseEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 
 /**
  * 作者信息
@@ -14,7 +12,7 @@ import javax.persistence.Enumerated;
  */
 @Entity
 @ApiModel(description = "作家档案信息")
-public class Author extends BaseEntity {
+public class AuthorMapping extends BaseEntity {
 
     @ApiModelProperty("姓名")
     private String name;
@@ -28,8 +26,12 @@ public class Author extends BaseEntity {
     @ApiModelProperty("简介")
     private String introduction;
 
+    @ApiModelProperty("映射到作者")
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Author mappingAuthor;
+
     @Enumerated(EnumType.STRING)
-    private BookAuthorType BookAuthorType;
+    private BookAuthorType bookAuthorType;
 
     public String getName() {
         return name;
@@ -55,6 +57,14 @@ public class Author extends BaseEntity {
         this.foreignName = foreignName;
     }
 
+    public Author getMappingAuthor() {
+        return mappingAuthor;
+    }
+
+    public void setMappingAuthor(Author mappingAuthor) {
+        this.mappingAuthor = mappingAuthor;
+    }
+
     public String getIntroduction() {
         return introduction;
     }
@@ -64,10 +74,10 @@ public class Author extends BaseEntity {
     }
 
     public BookAuthorType getBookAuthorType() {
-        return BookAuthorType;
+        return bookAuthorType;
     }
 
     public void setBookAuthorType(BookAuthorType bookAuthorType) {
-        BookAuthorType = bookAuthorType;
+        bookAuthorType = bookAuthorType;
     }
 }

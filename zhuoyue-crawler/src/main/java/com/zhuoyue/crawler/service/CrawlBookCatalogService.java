@@ -4,7 +4,7 @@ import com.zhuoyue.crawler.domain.catalog.CatalogStatus;
 import com.zhuoyue.crawler.domain.task.CrawlerRecord;
 import com.zhuoyue.crawler.jd.handler.JdBookCatalogCrawler;
 import com.zhuoyue.crawler.jd.handler.JdBookItemCrawler;
-import com.zhuoyue.crawler.pipeline.CrawlEndEvent;
+import com.zhuoyue.crawler.event.CrawlEndEvent;
 import com.zhuoyue.crawler.utils.CrawlerSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,8 +34,8 @@ public class CrawlBookCatalogService {
     private void addBookCatalog(String taskId){
         log.info("Begin transfer new book catalog to fact table");
 
-        jdbcTemplate.update("INSERT INTO book_catalog (item_id, name, shop_name, site, crawled_date, catalog_status)" +
-            " SELECT item_id, name, shop_name, site, crawled_date, ? FROM daily_book_catalog D" +
+        jdbcTemplate.update("INSERT INTO book_catalog (item_id, name, cover, shop_name, site, category, crawled_date, catalog_status)" +
+            " SELECT item_id, name, cover, shop_name, site, category, crawled_date, ? FROM daily_book_catalog D" +
             " WHERE NOT EXISTS(SELECT 1 FROM book_catalog B WHERE B.item_id=D.item_id AND B.site=D.site)" +
             " AND D.task_id=?", CatalogStatus.CATALOGED.name(), taskId);
 

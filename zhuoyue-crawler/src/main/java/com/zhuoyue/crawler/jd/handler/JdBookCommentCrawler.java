@@ -7,7 +7,7 @@ import com.zhuoyue.crawler.jd.model.JdBookCatalog;
 import com.zhuoyue.crawler.jd.model.JdBookComment;
 import com.zhuoyue.crawler.jd.model.JdBookItem;
 import com.zhuoyue.crawler.jd.pipeline.JdBookItemPipeline;
-import com.zhuoyue.crawler.pipeline.CrawlEndEvent;
+import com.zhuoyue.crawler.event.CrawlEndEvent;
 import com.zhuoyue.crawler.service.CrawlBookCatalogService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

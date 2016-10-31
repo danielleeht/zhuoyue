@@ -31,13 +31,19 @@ public class JdBookCatalogPipeline implements PageModelPipeline<JdBookCatalog> {
 
         log.info("resultItem = {}", jdBookCatalog);
 
+        DailyBookCatalog dailyBookCatalog = convertDailyBookCatalog(jdBookCatalog);
+        dailyBookCatalog.setTaskId(task.getUUID());
+
+        dailyBookCatalogRepository.save(dailyBookCatalog);
+    }
+
+    private DailyBookCatalog convertDailyBookCatalog(JdBookCatalog jdBookCatalog) {
         DailyBookCatalog dailyBookCatalog = new DailyBookCatalog();
 
-        dailyBookCatalog.setTaskId(task.getUUID());
         dailyBookCatalog.setCover(jdBookCatalog.getCover());
         dailyBookCatalog.setItemId(jdBookCatalog.getItemId());
         dailyBookCatalog.setName(jdBookCatalog.getName());
-        dailyBookCatalog.setCatalog(jdBookCatalog.getCategory());
+        dailyBookCatalog.setCategory(jdBookCatalog.getCategory());
 
         Integer pageNo = StringUtils.isEmpty(jdBookCatalog.getPageNo())?
             1 : Integer.parseInt(jdBookCatalog.getPageNo());
@@ -47,8 +53,7 @@ public class JdBookCatalogPipeline implements PageModelPipeline<JdBookCatalog> {
         dailyBookCatalog.setCrawledDate(new Date());
         dailyBookCatalog.setSite(CrawlerSource.jd.getType());
         dailyBookCatalog.setShopName(jdBookCatalog.getShopName());
-
-        dailyBookCatalogRepository.save(dailyBookCatalog);
+        return dailyBookCatalog;
     }
 
 }

@@ -17,9 +17,6 @@ public class JdBookItem {
     @ExtractByUrl("http://item.jd.com/(\\d+).html*")
     private String itemId;	//商品编号
 
-//	@ExtractBy(value="//div[@class=\"breadcrumb\"]//span[1]/a[2]/regex(@href,'//list.jd.com/list.html\\?cat=(1713,3263,\\d+)', 1)")
-//	private String category;	//商品分类
-
 	@ExtractBy(value="//*[@id=\"spec-list\"]/div/ul/li/img/@src")
 	private List<String> coverPictures;	//封面图片
 
@@ -62,18 +59,6 @@ public class JdBookItem {
 
 	@ExtractBy(value="//*[@id=\"jd-price\"]/allText()")
 	private String price;	//价格
-
-//	@ExtractBy(value="//div[@id=\"summary-order\"]/div[2]/font/text()")
-//	private String saleRank;	//销售排行
-//
-//	@ExtractBy(value="//div[@id=\"comments-list\"]/div[1]/div/ul/li[contains(@clstag,'haoping')]/a/em/text()")
-//	private String good;	//好评数
-//
-//	@ExtractBy(value="//div[@id=\"comments-list\"]/div[1]/div/ul/li[contains(@clstag,'zhongping')]/a/em/text()")
-//	private String middle;	//中评数
-//
-//	@ExtractBy(value="//div[@id=\"comments-list\"]/div[1]/div/ul/li[contains(@clstag,'chaping')]/a/em/text()")
-//	private String bad;	//差评数
 
 	public String getItemId() {
 		return itemId;
@@ -200,19 +185,8 @@ public class JdBookItem {
     public String toString() {
         return "JdBookItem{" +
             "itemId='" + itemId + '\'' +
-            ", coverPictures=" + coverPictures +
             ", name='" + name + '\'' +
-            ", properties=" + properties +
             ", authorText='" + authorText + '\'' +
-            ", characteristic='" + characteristic + '\'' +
-            ", recommend='" + recommend + '\'' +
-            ", introduction='" + introduction + '\'' +
-            ", authorIntro='" + authorIntro + '\'' +
-            ", bookReview='" + bookReview + '\'' +
-            ", toc='" + toc + '\'' +
-            ", excerpt='" + excerpt + '\'' +
-            ", preface='" + preface + '\'' +
-            ", inset=" + inset +
             ", price='" + price + '\'' +
             '}';
     }

@@ -21,7 +21,7 @@ public class DailyBookCatalog extends BaseEntity {
 
     private String name;
 
-    private String catalog;
+    private String category;
 
     private String site;
 
@@ -63,12 +63,12 @@ public class DailyBookCatalog extends BaseEntity {
         this.name = name;
     }
 
-    public String getCatalog() {
-        return catalog;
+    public String getCategory() {
+        return category;
     }
 
-    public void setCatalog(String catalog) {
-        this.catalog = catalog;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getSite() {

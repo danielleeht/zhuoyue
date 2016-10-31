@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.zhuoyue.crawler.domain.author.BookAuthorType;
 import com.zhuoyue.crawler.domain.category.CategoryType;
 import com.zhuoyue.crawler.domain.category.CrawlBookCategory;
 import com.zhuoyue.crawler.utils.CrawlerSource;
@@ -240,4 +241,52 @@ public class AppTest
 
         }
     }
+
+    public void testSelectAgeScope() {
+        String html = "<font color=\"red\">适读人群 ：7-10岁</font>\n" +
+            "<br> \n" +
+            "<p>　　★窗边的小豆豆 精选集1-6</p>\n" +
+            "<p>　　★含《窗边的小豆豆》《小时候就在想的事》《小豆豆与我》《丢三落四的小豆豆》《小豆豆频道》《小豆豆动物剧场》6种<br>　　★世纪有价值图书！<br>　　★为了孩子，你一定要读的书，每一位家长和老师！<br><strong>海报：</strong></p>\n" +
+            "<p><strong><img data-lazyload=\"//img30.360buyimg.com/vc/jfs/t2806/35/1628878623/95937/52540eb3/57456a86N64f8df85.jpg\" title=\"窗边的小豆豆合集海报.jpg\" alt=\"\" style=\"\"></strong></p>";
+        Selector selector = new XpathSelector("font/text()");
+        String res = selector.select(html);
+
+        System.out.println(res);
+        Pattern p = Pattern.compile("适读人群 ：(\\d+)-(\\d+)岁");
+        Matcher m = p.matcher(res);
+        ArrayList<String> strs = new ArrayList<String>();
+        while (m.find()) {
+            System.out.println("pattern found: "+m.group(1));
+            System.out.println("pattern found: "+m.group(2));
+        }
+
+    }
+
+    public void testFindRegex(){
+        Pattern pattern = Pattern.compile("href=\"(.+)\"");
+        Matcher matcher = pattern.matcher("<a href=\"index.html\">主页</a>");
+        if(matcher.find())
+            System.out.println(matcher.group(1));
+    }
+
+    public void testRegexSplit(){
+        String target = "adfsad;dfas;fdsfds水电费；dsf；发生大女;十大sdf;dsf";
+        System.out.println(target.substring(target.length()-2));
+
+        for(String res:target.split("[;；]"))
+        System.out.println(res);
+
+        System.out.println("aaa".split("b").length);
+    }
+
+    public void testConvertAuthorType(){
+        Pattern authorTypePattern = Pattern.compile("(.+) ([著作编校评译绘])");
+        Matcher authorTypeMatcher = authorTypePattern.matcher("[丹] 安徒生，[法] 夏尔·佩罗，[德] 威廉·豪夫 著");
+        if(authorTypeMatcher.find()){
+            System.out.println(authorTypeMatcher.group(1));
+            System.out.println(authorTypeMatcher.group(2));
+            System.out.println(BookAuthorType.transform(authorTypeMatcher.group(2)));
+        }
+    }
+
 }

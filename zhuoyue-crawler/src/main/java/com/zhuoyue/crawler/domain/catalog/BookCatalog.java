@@ -23,7 +23,7 @@ public class BookCatalog extends BaseEntity {
 
     private String cover;
 
-    private String catalog;
+    private String category;
 
     private String site;
 
@@ -66,12 +66,12 @@ public class BookCatalog extends BaseEntity {
         this.cover = cover;
     }
 
-    public String getCatalog() {
-        return catalog;
+    public String getCategory() {
+        return category;
     }
 
-    public void setCatalog(String catalog) {
-        this.catalog = catalog;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getSite() {

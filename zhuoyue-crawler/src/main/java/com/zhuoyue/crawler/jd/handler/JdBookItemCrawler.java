@@ -11,7 +11,6 @@ import com.zhuoyue.crawler.domain.catalog.BookCatalog;
 import com.zhuoyue.crawler.domain.catalog.BookCatalogRepository;
 import com.zhuoyue.crawler.domain.task.CrawlerRecord;
 import com.zhuoyue.crawler.jd.model.JdBookItem;
-import com.zhuoyue.crawler.pipeline.CrawlEndEvent;
 import com.zhuoyue.crawler.pipeline.CrawlerRecordPipelineFactory;
 import com.zhuoyue.crawler.service.CrawlBookCatalogService;
 import com.zhuoyue.crawler.utils.CrawlerSource;
@@ -19,8 +18,6 @@ import com.zhuoyue.crawler.utils.CrawlerType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.event.EventListener;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import com.zhuoyue.crawler.jd.pipeline.JdBookItemPipeline;
@@ -57,7 +54,6 @@ public class JdBookItemCrawler {
 	/**
 	 *
 	 */
-    @Scheduled(initialDelay=5*1000, fixedDelay=24*3600*1000)
 	public void doCrawl() {
         log.info("JdBookItemCrawler start");
 
@@ -74,7 +70,6 @@ public class JdBookItemCrawler {
 
         for(BookCatalog book: bookCatalogs){
     		ooSpider.addUrl(String.format(ITEM_URL, book.getItemId()));
-            break;
     	}
 
     	ooSpider.thread(8).run();

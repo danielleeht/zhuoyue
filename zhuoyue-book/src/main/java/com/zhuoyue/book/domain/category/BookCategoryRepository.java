@@ -1,9 +1,9 @@
 package com.zhuoyue.book.domain.category;
 
-import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  * Created by lihaitao on 2016/10/15.
  */
-public interface BookCategoryRepository extends PagingAndSortingRepository<BookCategory, Long> {
+public interface BookCategoryRepository extends JpaRepository<BookCategory, Long> {
 }
