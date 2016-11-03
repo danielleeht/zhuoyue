@@ -4,6 +4,7 @@ import com.zhuoyue.commons.BaseEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 /**
@@ -14,6 +15,7 @@ import javax.persistence.Entity;
 @ApiModel(description = "出版社")
 public class Publisher extends BaseEntity {
 
+    @Column(unique = true)
     @ApiModelProperty(value="出版社名称")
     private String name;    //出版社名称
 

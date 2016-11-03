@@ -12,9 +12,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
+import org.springframework.integration.support.locks.LockRegistry;
+import org.springframework.integration.util.WhileLockedProcessor;
 import org.springframework.stereotype.Service;
+import org.springframework.util.FileCopyUtils;
 
+import java.io.IOException;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -39,6 +44,9 @@ public class CrawlBookItemService {
     @Autowired
     private CrawledBookRepository crawledBookRepository;
 
+    @Autowired
+    private LockRegistry lockRegistry;
+
     @EventListener
     public void processBookItem(BookItemSavedEvent bookItemSavedEvent){
         CrawledBook crawledBook = (CrawledBook)bookItemSavedEvent.getSource();
@@ -58,11 +66,22 @@ public class CrawlBookItemService {
         if(StringUtils.isNotEmpty(publisherText)){
             String[] names = publisherText.split("[,，]");
             for(String name : names){
+
                 Publisher publisher = publishRepository.findByName(name);
                 if(publisher == null){
                     publisher = new Publisher();
                     publisher.setName(name);
-                    publisher = publishRepository.save(publisher);
+                    try{
+                        publisher = publishRepository.save(publisher);
+                    }catch (Exception e){
+                        log.error("保存出版社信息失败", e);
+                        //保存失败可能是存在名称冲突，尝试重新获取出版社信息
+                        publisher = publishRepository.findByName(name);
+                        if(publisher == null){
+                            log.error("重新获取出版社信息失败");
+                        }
+                    }
+
                 }
                 publishers.add(publisher);
             }
@@ -139,35 +158,50 @@ public class CrawlBookItemService {
                     }
                 }
 
-                AuthorMapping authorMapping = authorMappingRepository.findByNameAndCountryAndBookAuthorType(name, country, bookAuthorType);
+                final Author[] author = {};
 
-                Author author = null;
-                if(authorMapping == null){
-                    author = new Author();
-                    author.setBookAuthorType(bookAuthorType);
-                    author.setName(name);
-                    author.setCountry(country);
-                    author.setForeignName(foreignName);
+                BookAuthorType finalBookAuthorType = bookAuthorType;
+                String finalName = name;
+                String finalCountry = country;
+                String finalForeignName = foreignName;
+                WhileLockedProcessor whileLockedProcessor = new WhileLockedProcessor(this.lockRegistry, "author"+"_"+ finalName +"_"+ finalCountry +"_"+ finalBookAuthorType){
+                    @Override
+                    protected void whileLocked() throws IOException {
+                        AuthorMapping authorMapping = authorMappingRepository.findByNameAndCountryAndBookAuthorType(finalName, finalCountry, finalBookAuthorType);
+                        if(authorMapping == null){
+                            author[0] = new Author();
+                            author[0].setBookAuthorType(finalBookAuthorType);
+                            author[0].setName(finalName);
+                            author[0].setCountry(finalCountry);
+                            author[0].setForeignName(finalForeignName);
 
-                    author = authorRepository.save(author);
+                            author[0] = authorRepository.save(author[0]);
 
-                    authorMapping = new AuthorMapping();
-                    authorMapping.setBookAuthorType(bookAuthorType);
-                    authorMapping.setName(name);
-                    authorMapping.setCountry(country);
-                    authorMapping.setForeignName(foreignName);
-                    authorMapping.setMappingAuthor(author);
+                            authorMapping = new AuthorMapping();
+                            authorMapping.setBookAuthorType(finalBookAuthorType);
+                            authorMapping.setName(finalName);
+                            authorMapping.setCountry(finalCountry);
+                            authorMapping.setForeignName(finalForeignName);
+                            authorMapping.setMappingAuthor(author[0]);
 
-                    authorMappingRepository.save(authorMapping);
-                }else{
-                    author = authorMapping.getMappingAuthor();
+                            authorMappingRepository.save(authorMapping);
+                        }else{
+                            author[0] = authorMapping.getMappingAuthor();
+                        }
+                    }
+                };
+                try {
+                    whileLockedProcessor.doWhileLocked();
+                } catch (IOException e) {
+                    log.error("处理作者信息出错", e);
                 }
+
 
                 BookAuthor bookAuthor = new BookAuthor();
                 bookAuthor.setName(name);
                 bookAuthor.setBookAuthorType(bookAuthorType);
                 bookAuthor.setNumber(number);
-                bookAuthor.setAuthor(author);
+                bookAuthor.setAuthor(author[0]);
                 authors.add(bookAuthor);
             }
         }

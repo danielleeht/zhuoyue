@@ -16,11 +16,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
 @EnableResourceServer
 @EnableDiscoveryClient
-@EnableCaching
-@EnableSwagger2
-@EnableScheduling
-@EnableAsync
-@Import({ SpringDataRestConfiguration.class, BeanValidatorPluginsConfiguration.class})
 public class CrawlerApplication {
 
 
