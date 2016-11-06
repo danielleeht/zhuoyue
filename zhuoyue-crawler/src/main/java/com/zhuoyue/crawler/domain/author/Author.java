@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiModelProperty;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.validation.constraints.NotNull;
 
 /**
  * 作者信息
@@ -17,6 +18,7 @@ import javax.persistence.Enumerated;
 public class Author extends BaseEntity {
 
     @ApiModelProperty("姓名")
+    @NotNull
     private String name;
 
     @ApiModelProperty("国籍")
@@ -28,7 +30,9 @@ public class Author extends BaseEntity {
     @ApiModelProperty("简介")
     private String introduction;
 
+    @ApiModelProperty("作者类型")
     @Enumerated(EnumType.STRING)
+    @NotNull
     private BookAuthorType BookAuthorType;
 
     public String getName() {

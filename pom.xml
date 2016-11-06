@@ -28,7 +28,8 @@
         <module>zhuoyue-rank</module>
         <module>zhuoyue-tag</module>
         <module>zhuoyue-user</module>
-	</modules>
+        <module>zhuoyue-manage</module>
+    </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

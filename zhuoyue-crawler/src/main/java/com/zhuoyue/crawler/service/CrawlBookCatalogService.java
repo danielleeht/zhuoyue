@@ -45,7 +45,7 @@ public class CrawlBookCatalogService {
         jdbcTemplate.update("delete from daily_book_catalog where site = ?", site);
     }
 
-    @Scheduled(initialDelay=20*1000, fixedDelay=24*3600*1000)
+    @Scheduled(cron="0 0 0 * * ?")
     public void scheduleCatalogCrawl(){
         this.deleteDailyCatalog(CrawlerSource.jd.getType());
         jdBookCatalogCrawler.doCrawl();

@@ -4,7 +4,7 @@ import us.codecraft.webmagic.model.annotation.ExtractBy;
 import us.codecraft.webmagic.model.annotation.ExtractByUrl;
 import us.codecraft.webmagic.model.annotation.TargetUrl;
 
-@TargetUrl(value = "http://list.jd.com/list.html\\?cat=1713,3263,\\d{4}&page=\\d+&stock=0*", sourceRegion="//div[@id=\"J_bottomPage11\"]")
+@TargetUrl(value = "http://list.jd.com/list.html\\?cat=1713,3263,\\d{4}&page=\\d+&stock=0*", sourceRegion="//div[@id=\"J_bottomPage\"]")
 @ExtractBy(value = "//div[@id=\"plist\"]//div[contains(@class,\"j-sku-item\")]", multi=true)
 public class JdBookCatalog {
 
@@ -20,7 +20,7 @@ public class JdBookCatalog {
     @ExtractByUrl("http://list.jd.com/list.html\\?cat=1713,3263,(\\d{4})&page=\\d+&stock=0*")
     private String category;
 
-	@ExtractBy("div/div[@class=\"p-img\"]/a/img/@src | div/div[@class=\"p-img\"]/a/img/@data-lazy-img")
+	@ExtractBy("div/div[@class=\"p-img\"]/a/img/regex(@src,'(//.*)', 1) | div/div[@class=\"p-img\"]/a/img/@data-lazy-img")
 	private String cover;
 
 	@ExtractBy("div/div[@class=\"p-name\"]/a/em/text()")

@@ -1,10 +1,10 @@
-package com.zhuoyue.crawler.domain.catalog;
+package com.zhuoyue.crawler.domain.category;
 
 /**
  * 图书爬虫信息收录状态
  * Created by lihaitao on 2016/10/19.
  */
-public enum CatalogStatus {
+public enum CrawlStatus {
     /**
      * 已收录
      */
@@ -16,9 +16,5 @@ public enum CatalogStatus {
     /**
      * 爬虫完成
      */
-    CATALOGED,
-    /**
-     * 已抓取条目详细信息
-     */
-    DETAILED
+    CRAWLED
 }

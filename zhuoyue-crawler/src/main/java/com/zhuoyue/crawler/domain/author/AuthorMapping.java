@@ -5,16 +5,18 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 /**
  * 作者信息
  * Created by lihaitao on 2016/9/24.
  */
 @Entity
-@ApiModel(description = "作家档案信息")
+@ApiModel(description = "作者爬取粗信息与作者映射")
 public class AuthorMapping extends BaseEntity {
 
     @ApiModelProperty("姓名")
+    @NotNull
     private String name;
 
     @ApiModelProperty("国籍")
@@ -28,9 +30,12 @@ public class AuthorMapping extends BaseEntity {
 
     @ApiModelProperty("映射到作者")
     @ManyToOne(fetch = FetchType.EAGER)
+    @NotNull
     private Author mappingAuthor;
 
+    @ApiModelProperty("作者类型")
     @Enumerated(EnumType.STRING)
+    @NotNull
     private BookAuthorType bookAuthorType;
 
     public String getName() {
@@ -78,6 +83,6 @@ public class AuthorMapping extends BaseEntity {
     }
 
     public void setBookAuthorType(BookAuthorType bookAuthorType) {
-        bookAuthorType = bookAuthorType;
+        this.bookAuthorType = bookAuthorType;
     }
 }

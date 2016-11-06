@@ -2,10 +2,12 @@ package com.zhuoyue.crawler.domain.catalog;
 
 import com.zhuoyue.commons.BaseEntity;
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 /**
@@ -15,31 +17,43 @@ import java.util.Date;
 @ApiModel(description = "图书爬虫目录信息")
 public class BookCatalog extends BaseEntity {
 
-    private String bookId;
+    @ApiModelProperty(value="爬虫图书明细")
+    private Long crawledBookId;
 
+    @ApiModelProperty(value="商品编号")
+    @NotNull
     private String itemId;
 
+    @ApiModelProperty(value="图书名称")
     private String name;
 
+    @ApiModelProperty(value="封面图片URL")
     private String cover;
 
+    @ApiModelProperty(value="图书分类")
     private String category;
 
+    @ApiModelProperty(value="爬虫网站")
+    @NotNull
     private String site;
 
+    @ApiModelProperty(value="商户名称")
     private String shopName;
 
+    @ApiModelProperty(value="爬虫日期")
     private Date crawledDate;
 
+    @ApiModelProperty(value="状态")
     @Enumerated(EnumType.STRING)
+    @NotNull
     private CatalogStatus catalogStatus;
 
-    public String getBookId() {
-        return bookId;
+    public Long getCrawledBookId() {
+        return crawledBookId;
     }
 
-    public void setBookId(String bookId) {
-        this.bookId = bookId;
+    public void setCrawledBookId(Long crawledBookId) {
+        this.crawledBookId = crawledBookId;
     }
 
     public String getItemId() {

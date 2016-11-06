@@ -33,6 +33,6 @@ public enum BookAuthorType {
         if("绘".equals(authorTypeStr)){
             return DRAWER;
         }
-        return null;
+        return AUTHOR;
     }
 }

@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiModelProperty;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.validation.constraints.NotNull;
 
 /**
  * Created by lihaitao on 2016/10/9.
@@ -16,18 +17,23 @@ import javax.persistence.Enumerated;
 public class CrawlBookCategory extends BaseEntity {
 
     @ApiModelProperty(value="分类编号")
+    @NotNull
     private String categoryString;
 
     @ApiModelProperty(value="分类名称")
+    @NotNull
     private String categoryName;
 
     @ApiModelProperty(value="上级分类")
-    private Integer pid;     //上级分类ID
+    private String parentCategory;     //上级分类ID
 
     @Enumerated(EnumType.STRING)
     @ApiModelProperty(value="分类类型")
+    @NotNull
     private CategoryType categoryType;
 
+    @ApiModelProperty(value="网站")
+    @NotNull
     private String site;
 
     public String getCategoryString() {
@@ -46,12 +52,12 @@ public class CrawlBookCategory extends BaseEntity {
         this.categoryName = categoryName;
     }
 
-    public Integer getPid() {
-        return pid;
+    public String getParentCategory() {
+        return parentCategory;
     }
 
-    public void setPid(Integer pid) {
-        this.pid = pid;
+    public void setParentCategory(String parentCategory) {
+        this.parentCategory = parentCategory;
     }
 
     public CategoryType getCategoryType() {
@@ -75,7 +81,7 @@ public class CrawlBookCategory extends BaseEntity {
         return "CrawlBookCategory{" +
             "categoryString='" + categoryString + '\'' +
             ", categoryName='" + categoryName + '\'' +
-            ", pid=" + pid +
+            ", parentCategory=" + parentCategory +
             ", categoryType=" + categoryType +
             ", site='" + site + '\'' +
             '}';

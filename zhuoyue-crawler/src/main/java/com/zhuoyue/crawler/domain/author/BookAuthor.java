@@ -7,6 +7,7 @@ import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 /**
  * 图书作者信息，与作者实体关联
@@ -17,6 +18,7 @@ import javax.persistence.*;
 public class BookAuthor extends BaseEntity {
 
     @ApiModelProperty("作者姓名")
+    @NotNull
     private String name;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -26,9 +28,11 @@ public class BookAuthor extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     @ApiModelProperty("作者类型，作、绘、编、译、校等")
+    @NotNull
     private BookAuthorType bookAuthorType;
 
     @ApiModelProperty("顺序号")
+    @NotNull
     private Integer number;
 
     public String getName() {

@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import java.io.Serializable;
 
 /**
  * 出版社信息
@@ -25,5 +26,13 @@ public class Publisher extends BaseEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Publisher{" +
+            "id='" + this.getId() + '\'' +
+            "name='" + name + '\'' +
+            "} ";
     }
 }

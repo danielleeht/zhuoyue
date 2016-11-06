@@ -11,4 +11,6 @@ public interface BookCatalogRepository extends JpaRepository<BookCatalog, Long> 
 
     List<BookCatalog> findByCatalogStatusAndSite(CatalogStatus catalogStatus, String site);
 
+    BookCatalog findByItemIdAndSite(String itemId, String site);
+
 }

@@ -4,15 +4,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
-import java.util.Objects;
-import java.util.UUID;
+import java.io.Serializable;
 
 /**
  * Created by Tomasz Kucharzyk
  */
 
 @MappedSuperclass
-public class BaseEntity {
+public class BaseEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,5 +20,7 @@ public class BaseEntity {
     public Long getId() {
         return id;
     }
+
+
 
 }

@@ -5,6 +5,7 @@ package com.zhuoyue.crawler.utils;
  */
 public enum CrawlerType {
     JDCATALOG,
+    JDCATEGORY,
     JDITEM,
     JDCOMMENT
 }

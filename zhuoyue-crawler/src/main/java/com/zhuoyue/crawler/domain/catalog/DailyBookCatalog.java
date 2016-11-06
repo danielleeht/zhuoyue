@@ -2,8 +2,10 @@ package com.zhuoyue.crawler.domain.catalog;
 
 import com.zhuoyue.commons.BaseEntity;
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.Entity;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 /**
@@ -13,22 +15,33 @@ import java.util.Date;
 @ApiModel(description = "每日图书爬虫目录信息")
 public class DailyBookCatalog extends BaseEntity {
 
+    @ApiModelProperty(value="爬虫任务Id")
     private String taskId;
 
+    @ApiModelProperty(value="商品编号")
+    @NotNull
     private String itemId;
 
-    private String cover;
-
+    @ApiModelProperty(value="图书名称")
     private String name;
 
+    @ApiModelProperty(value="封面图片URL")
+    private String cover;
+
+    @ApiModelProperty(value="图书分类")
     private String category;
 
+    @ApiModelProperty(value="爬虫网站")
+    @NotNull
     private String site;
 
+    @ApiModelProperty(value="商户名称")
     private String shopName;
 
+    @ApiModelProperty(value="爬虫日期")
     private Date crawledDate;
 
+    @ApiModelProperty(value="销量排行")
     private Integer rank;
 
     public String getTaskId() {

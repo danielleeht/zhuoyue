@@ -7,6 +7,8 @@ import com.zhuoyue.crawler.domain.publisher.Publisher;
 import com.zhuoyue.commons.AuditedEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.hibernate.annotations.NotFound;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -42,6 +44,7 @@ public class CrawledBook extends BaseEntity {
     @Column(precision = 8, scale = 2)
     private BigDecimal price;
 
+    @ApiModelProperty("ISBN")
     @NotNull
 	private String isbn;
 
@@ -55,9 +58,8 @@ public class CrawledBook extends BaseEntity {
     @ApiModelProperty(value="语言")
 	private String language;
 
-    @ManyToOne(fetch = FetchType.EAGER)
     @ApiModelProperty(value="图书分类")
-    private CrawlBookCategory category;
+    private String category;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name="CRAWLED_BOOK_ID")
@@ -114,7 +116,9 @@ public class CrawledBook extends BaseEntity {
     @ApiModelProperty(value="附加信息")
     private Set<CrawledBookExtra> crawledBookExtras;
 
+    @ApiModelProperty(value="状态")
     @Enumerated(EnumType.STRING)
+    @NotNull
     private CrawledBookStatus crawledBookStatus;
 
     public String getIsbn() {
@@ -269,11 +273,11 @@ public class CrawledBook extends BaseEntity {
         this.inset = inset;
     }
 
-    public CrawlBookCategory getCategory() {
+    public String getCategory() {
         return category;
     }
 
-    public void setCategory(CrawlBookCategory category) {
+    public void setCategory(String category) {
         this.category = category;
     }
 

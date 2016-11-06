@@ -3,6 +3,10 @@ package com.zhuoyue.crawler.service;
 import com.zhuoyue.crawler.domain.author.*;
 import com.zhuoyue.crawler.domain.book.CrawledBook;
 import com.zhuoyue.crawler.domain.book.CrawledBookRepository;
+import com.zhuoyue.crawler.domain.book.CrawledBookStatus;
+import com.zhuoyue.crawler.domain.catalog.BookCatalog;
+import com.zhuoyue.crawler.domain.catalog.BookCatalogRepository;
+import com.zhuoyue.crawler.domain.catalog.CatalogStatus;
 import com.zhuoyue.crawler.domain.publisher.Publisher;
 import com.zhuoyue.crawler.domain.publisher.PublisherRepository;
 import com.zhuoyue.crawler.event.BookItemSavedEvent;
@@ -12,14 +16,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
+import org.springframework.data.domain.Example;
 import org.springframework.integration.support.locks.LockRegistry;
 import org.springframework.integration.util.WhileLockedProcessor;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.security.crypto.codec.Base64;
 import org.springframework.stereotype.Service;
-import org.springframework.util.FileCopyUtils;
 
 import java.io.IOException;
 import java.util.HashSet;
-import java.util.Optional;
+import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -45,11 +51,28 @@ public class CrawlBookItemService {
     private CrawledBookRepository crawledBookRepository;
 
     @Autowired
+    private BookCatalogRepository bookCatalogRepository;
+
+    @Autowired
     private LockRegistry lockRegistry;
 
     @EventListener
-    public void processBookItem(BookItemSavedEvent bookItemSavedEvent){
+    public void processAfterCrawled(BookItemSavedEvent bookItemSavedEvent){
         CrawledBook crawledBook = (CrawledBook)bookItemSavedEvent.getSource();
+        this.processBookItem(crawledBook);
+    }
+
+    @Scheduled(cron="0 0 0 * * ?")
+    public void processAllCrawled(){
+        List<CrawledBook> crawledBookList = crawledBookRepository.findByCrawledBookStatus(CrawledBookStatus.CRAWLED);
+
+        for(CrawledBook crawledBook : crawledBookList){
+            this.processBookItem(crawledBook);
+        }
+    }
+
+    public void processBookItem(CrawledBook crawledBook){
+
         log.info("Begin process book item {}-{}-{}-{}", crawledBook.getId(), crawledBook.getName(), crawledBook.getSite(), crawledBook.getItemId());
 
         Set<BookAuthor> authors = new HashSet<BookAuthor>();
@@ -66,29 +89,45 @@ public class CrawlBookItemService {
         if(StringUtils.isNotEmpty(publisherText)){
             String[] names = publisherText.split("[,，]");
             for(String name : names){
+                name = name.trim();
 
-                Publisher publisher = publishRepository.findByName(name);
-                if(publisher == null){
-                    publisher = new Publisher();
-                    publisher.setName(name);
-                    try{
-                        publisher = publishRepository.save(publisher);
-                    }catch (Exception e){
-                        log.error("保存出版社信息失败", e);
-                        //保存失败可能是存在名称冲突，尝试重新获取出版社信息
-                        publisher = publishRepository.findByName(name);
+                String lockKey = new String(Base64.encode(("publisher_"+name).getBytes()));
+
+                String finalName = name;
+                WhileLockedProcessor whileLockedProcessor = new WhileLockedProcessor(this.lockRegistry, lockKey){
+                    @Override
+                    protected void whileLocked() throws IOException {
+                        Publisher publisher = publishRepository.findByName(finalName);
                         if(publisher == null){
-                            log.error("重新获取出版社信息失败");
+                            publisher = new Publisher();
+                            publisher.setName(finalName);
+                            publisher = publishRepository.saveAndFlush(publisher);
+                            log.info("Saved publisher : " + publisher );
                         }
+                        log.info("Add publisher : " + publisher );
+                        publishers.add(publisher);
                     }
-
+                };
+                try {
+                    whileLockedProcessor.doWhileLocked();
+                } catch (IOException e) {
+                    log.error("处理出版社信息出错", e);
                 }
-                publishers.add(publisher);
             }
         }
         crawledBook.setPublishers(publishers);
 
-        crawledBookRepository.save(crawledBook);
+        BookCatalog bookCatalog = bookCatalogRepository.findByItemIdAndSite(crawledBook.getItemId(), crawledBook.getSite());
+        crawledBook.setCategory(bookCatalog.getCategory());
+        crawledBook.setCrawledBookStatus(CrawledBookStatus.PROCESSED);
+
+        crawledBook = crawledBookRepository.save(crawledBook);
+
+        bookCatalog.setCrawledBookId(crawledBook.getId());
+        bookCatalog.setCatalogStatus(CatalogStatus.DETAILED);
+
+        bookCatalogRepository.save(bookCatalog);
+
     }
 
     /**
@@ -158,17 +197,23 @@ public class CrawlBookItemService {
                     }
                 }
 
-                final Author[] author = {};
+                final Author[] author = {null};
 
                 BookAuthorType finalBookAuthorType = bookAuthorType;
                 String finalName = name;
                 String finalCountry = country;
                 String finalForeignName = foreignName;
-                WhileLockedProcessor whileLockedProcessor = new WhileLockedProcessor(this.lockRegistry, "author"+"_"+ finalName +"_"+ finalCountry +"_"+ finalBookAuthorType){
+                String lockKey = new String(Base64.encode(("author"+"_"+ finalName +"_"+ finalCountry +"_"+ finalBookAuthorType).getBytes()));
+
+                WhileLockedProcessor whileLockedProcessor = new WhileLockedProcessor(this.lockRegistry, lockKey){
                     @Override
                     protected void whileLocked() throws IOException {
-                        AuthorMapping authorMapping = authorMappingRepository.findByNameAndCountryAndBookAuthorType(finalName, finalCountry, finalBookAuthorType);
-                        if(authorMapping == null){
+                        AuthorMapping authorMapping = new AuthorMapping();
+                        authorMapping.setBookAuthorType(finalBookAuthorType);
+                        authorMapping.setName(finalName);
+                        authorMapping.setCountry(finalCountry);
+                        AuthorMapping dbAuthorMapping = authorMappingRepository.findOne(Example.of(authorMapping));
+                        if(dbAuthorMapping == null){
                             author[0] = new Author();
                             author[0].setBookAuthorType(finalBookAuthorType);
                             author[0].setName(finalName);
@@ -177,16 +222,13 @@ public class CrawlBookItemService {
 
                             author[0] = authorRepository.save(author[0]);
 
-                            authorMapping = new AuthorMapping();
-                            authorMapping.setBookAuthorType(finalBookAuthorType);
-                            authorMapping.setName(finalName);
-                            authorMapping.setCountry(finalCountry);
+
                             authorMapping.setForeignName(finalForeignName);
                             authorMapping.setMappingAuthor(author[0]);
 
                             authorMappingRepository.save(authorMapping);
                         }else{
-                            author[0] = authorMapping.getMappingAuthor();
+                            author[0] = dbAuthorMapping.getMappingAuthor();
                         }
                     }
                 };

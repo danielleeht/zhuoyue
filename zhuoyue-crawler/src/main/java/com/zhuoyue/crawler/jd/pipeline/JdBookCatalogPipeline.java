@@ -47,8 +47,14 @@ public class JdBookCatalogPipeline implements PageModelPipeline<JdBookCatalog> {
 
         Integer pageNo = StringUtils.isEmpty(jdBookCatalog.getPageNo())?
             1 : Integer.parseInt(jdBookCatalog.getPageNo());
+        if(pageNo < 1){
+            pageNo = 1;
+        }
         Integer pageRank = StringUtils.isEmpty(jdBookCatalog.getDataId())?
-            0 : Integer.parseInt(jdBookCatalog.getDataId());
+            1 : Integer.parseInt(jdBookCatalog.getDataId());
+        if(pageRank < 1){
+            pageNo = 1;
+        }
         dailyBookCatalog.setRank(PAGE_SIZE*(pageNo-1) + pageRank);
         dailyBookCatalog.setCrawledDate(new Date());
         dailyBookCatalog.setSite(CrawlerSource.jd.getType());

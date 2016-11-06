@@ -1,5 +1,8 @@
 package com.zhuoyue.crawler;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -80,7 +83,7 @@ public class AppTest
         String html = "<div class=\"gl-i-wrap j-sku-item\" data-sku=\"11946232\" venderid=\"1000004558\" jdzy_shop_id=\"1000004558\" ts_venderid=\"\" data-sku_temp=\"11946232\" data-i=\"45\">\n" +
             "  <div class=\"p-img\">\n" +
             "    <a target=\"_blank\" href=\"//item.jd.com/11946232.html\">\n" +
-            "                          <img width=\"200\" height=\"200\" data-img=\"1\" data-lazy-img=\"done\" src=\"//img12.360buyimg.com/n7/jfs/t2767/95/1822638030/135265/1daadad8/574bd1eaNa706d72f.jpg\">\n" +
+            "                          <img width=\"200\" height=\"200\" data-img=\"1\" data-lazy-img=\"//img12.360buyimg.com/n7/jfs/t2767/95/1822638030/135265/1daadad8/574bd1eaNa706d72f.jpg\">\n" +
             "          </a>\n" +
             "          </div>\n" +
             "  <div class=\"p-price\">\n" +
@@ -130,6 +133,12 @@ public class AppTest
         Selector selector = new XpathSelector("div/@data-i");
         String dataId = selector.select(html);
         System.out.println(dataId);
+
+        //因为@src在没有的情况下返回空字符串，无法执行后半段，需要通过正则控制非空
+        Selector coverSelector = new XpathSelector("div/div[@class=\"p-img\"]/a/img/regex(@src,'(//.*)', 1) | div/div[@class=\"p-img\"]/a/img/@data-lazy-img");
+        String cover = coverSelector.select(html);
+        System.out.println(cover);
+
 
     }
 
@@ -238,6 +247,39 @@ public class AppTest
             System.out.println("categoryString1=" + categoryString1);
             System.out.println("categoryName=" + categoryName);
 
+
+        }
+    }
+
+    public void testCrawlSubCategories(){
+        Downloader downloader = new SeleniumDownloader("D:\\develop\\tools\\chromedriver.exe");
+        Page indexCategoryPage = downloader.download(new Request("http://list.jd.com/list.html?cat=1713,3263,3394"), site.toTask());
+
+        XpathSelector lineSelector = new XpathSelector("//div[@class=\"sl-wrap\"]");
+        List<Element> lineElements = lineSelector.selectElements(indexCategoryPage.getHtml().getDocument());
+
+        for(Element lineElement:lineElements){
+            XpathSelector subTypeSelector = new XpathSelector("div/div[@class=\"sl-key\"]/span/text()");
+            String subTypeName = subTypeSelector.select(lineElement).replaceAll("：", "");
+
+            XpathSelector normalSelector = new XpathSelector("//ul[@class=\"J_valueList\"]/li");
+            List<Element> normalElements = normalSelector.selectElements(lineElement);
+
+            for(Element normalElement : normalElements){
+                XpathSelector normalCategorySelector = new XpathSelector("li/a/regex(@href,'.*&ev=([^&]+)&*', 1)");
+                String normalCategory = normalCategorySelector.select(normalElement);
+
+                XpathSelector normalNameSelector = new XpathSelector("li/a/text()");
+                String normalCategoryName = normalNameSelector.select(normalElement);
+
+                try {
+                    System.out.println("normalCategory=" + URLDecoder.decode(normalCategory, Charset.defaultCharset().name()));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    System.out.println("normalCategory=" + normalCategory);
+                }
+                System.out.println("normalCategoryName=" + normalCategoryName);
+            }
 
         }
     }

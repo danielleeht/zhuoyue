@@ -8,6 +8,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface AuthorMappingRepository extends JpaRepository<AuthorMapping, Long> {
 
-    @Cacheable(value="author_logic")
-    public AuthorMapping findByNameAndCountryAndBookAuthorType(String name, String country, BookAuthorType bookAuthorType);
 }

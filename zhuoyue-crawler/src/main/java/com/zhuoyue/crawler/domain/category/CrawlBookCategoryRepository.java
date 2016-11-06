@@ -10,4 +10,5 @@ import java.util.List;
 public interface CrawlBookCategoryRepository extends JpaRepository<CrawlBookCategory, Long> {
 
     public List<CrawlBookCategory> findBySiteAndCategoryType(String site, CategoryType categoryType );
+    public List<CrawlBookCategory> findBySiteAndCategoryTypeAndParentCategory(String site, CategoryType categoryType, String parentCategory );
 }
