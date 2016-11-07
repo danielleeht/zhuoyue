@@ -4,8 +4,8 @@ info:
 
 # PROFILES
 spring:
-    application.name: auth-service
-    profiles.active: @default.spring.profiles@
+    application.name: zhuoyue-auth
+    profiles.active: dev,standalone
     cloud:
         config:
             failFast: true
