@@ -16,6 +16,7 @@ zhuoyue-discovery/target/
 zhuoyue-auth/target/
 zhuoyue-api/target/
 zhuoyue-ui/target/
+zhuoyue-manage/target/
 zhuoyue-admin/target/
 zhuoyue-gateway/target/
 zhuoyue-config/target/
@@ -31,10 +32,10 @@ zhuoyue-user/target/
 
 ### node
 npm-debug.log
-zhuoyue-ui/etc/
-zhuoyue-ui/node/
-zhuoyue-ui/node_modules/
+zhuoyue-*/etc/
+zhuoyue-*/node/
+zhuoyue-*/node_modules/
 ### coverage
-zhuoyue-ui/coverage/
+zhuoyue-*/coverage/
 ### dist
-zhuoyue-ui/src/main/resources/static/
+zhuoyue-*/src/main/resources/static/
