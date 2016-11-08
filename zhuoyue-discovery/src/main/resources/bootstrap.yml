@@ -4,7 +4,7 @@ info:
 
 # PROFILES
 spring:
-    application.name: discovery-service
+    application.name: zhuoyue-discovery
     profiles.active: dev,standalone
     cloud:
         config:
