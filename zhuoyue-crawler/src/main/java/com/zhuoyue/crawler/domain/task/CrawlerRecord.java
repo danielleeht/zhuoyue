@@ -1,6 +1,6 @@
 package com.zhuoyue.crawler.domain.task;
 
-import com.zhuoyue.commons.BaseEntity;
+import com.zhuoyue.base.entity.BaseEntity;
 import com.zhuoyue.crawler.utils.CrawlerType;
 import io.swagger.annotations.ApiModel;
 

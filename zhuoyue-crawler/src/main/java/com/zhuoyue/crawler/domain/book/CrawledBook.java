@@ -1,14 +1,10 @@
 package com.zhuoyue.crawler.domain.book;
 
-import com.zhuoyue.commons.BaseEntity;
+import com.zhuoyue.base.entity.BaseEntity;
 import com.zhuoyue.crawler.domain.author.BookAuthor;
-import com.zhuoyue.crawler.domain.category.CrawlBookCategory;
 import com.zhuoyue.crawler.domain.publisher.Publisher;
-import com.zhuoyue.commons.AuditedEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.hibernate.annotations.NotFound;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

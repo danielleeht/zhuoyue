@@ -1,31 +1,30 @@
 import {Component, OnInit} from '@angular/core';
+import {AuthService} from './shared/auth/auth.service';
 import {Router} from '@angular/router';
-import {AuthService} from './shared';
 import {APP_MENU, AppMenuItem} from './app.menu';
 
 @Component({
-  selector: 'app',
-  styles: [require('./app.component.scss')],
-  template: require('./app.component.html')
+  selector: 'shardis-app',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
 })
-export class App implements OnInit {
-  name = 'Spring Boot Angular 2 Webpack Starter';
-  url = 'https://github.com/kucharzyk';
-  loading:boolean = false;
+export class AppComponent implements OnInit {
+  public name: String = 'Spring Boot Angular 2 Webpack Starter';
+  public url: String = 'https://github.com/shardis';
+  public loading: boolean = false;
 
-  views:AppMenuItem[] = APP_MENU;
+  views: AppMenuItem[] = APP_MENU;
 
-  constructor(public authService:AuthService, public router:Router) {
+  constructor(public authService: AuthService, public router: Router) {
   }
 
-  logMeOut():void {
+  logMeOut(): void {
     this.authService.logout();
     this.router.navigate(['']);
   }
 
-  ngOnInit():any {
+  ngOnInit(): any {
     console.log('app on init');
   }
 
 }
-

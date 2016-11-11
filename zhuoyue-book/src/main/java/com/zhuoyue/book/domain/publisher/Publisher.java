@@ -1,6 +1,6 @@
 package com.zhuoyue.book.domain.publisher;
 
-import com.zhuoyue.commons.BaseEntity;
+import com.zhuoyue.base.entity.BaseEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 

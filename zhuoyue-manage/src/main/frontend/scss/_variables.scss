@@ -1,6 +1,6 @@
-@import "~@angular2-material/core/style/default-theme";
+@import '~@angular/material/core/theming/prebuilt/deeppurple-amber';
 
 $fa-font-path: '~font-awesome/fonts/';
 
 $background-color: #dedede;
-$primary-color: map_get($md-primary,default);
+$primary-color: map_get($primary,default);

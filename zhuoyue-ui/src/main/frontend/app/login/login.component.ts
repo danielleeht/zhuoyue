@@ -1,21 +1,20 @@
 import {Component, OnInit} from '@angular/core';
+import {AuthService} from '../shared/auth/auth.service';
 import {Router} from '@angular/router';
-import {AuthService} from '../shared';
-
-console.log('`Login` component loaded asynchronously');
 
 @Component({
-  selector: 'login',
-  styles: [require('./login.component.scss')],
-  template: require('./login.component.html')
+  selector: 'shardis-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
-export class Login implements OnInit {
+export class LoginComponent implements OnInit {
+
 
   username = 'admin';
   password = 'xxxxxx';
   message = '';
 
-  constructor(public authService:AuthService, public router:Router) {
+  constructor(public authService: AuthService, public router: Router) {
   }
 
   logMeIn() {
@@ -31,8 +30,7 @@ export class Login implements OnInit {
 
   }
 
-  ngOnInit():any {
+  ngOnInit(): any {
     console.log('hello `Login` component');
   }
-
 }

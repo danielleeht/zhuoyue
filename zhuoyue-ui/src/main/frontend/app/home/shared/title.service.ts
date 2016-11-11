@@ -1,13 +1,13 @@
 import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
-import {AuthService} from '../../shared';
-import 'rxjs/Rx';
+import {AuthService} from '../../shared/auth/auth.service';
+
 
 @Injectable()
-export class Title {
+export class TitleService {
   value = 'Angular 2';
 
-  constructor(public http:Http, public authService:AuthService) {
+  constructor(public http: Http, public authService: AuthService) {
   }
 
   getData() {
@@ -18,5 +18,4 @@ export class Title {
       .get('/api/title', {headers: this.authService.getAuthorizationHeaders()})
       .map(res => res.json());
   }
-
 }

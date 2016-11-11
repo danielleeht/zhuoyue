@@ -3,7 +3,7 @@ package com.zhuoyue.book.domain.book;
 import com.zhuoyue.book.domain.author.BookAuthor;
 import com.zhuoyue.book.domain.category.BookCategory;
 import com.zhuoyue.book.domain.publisher.Publisher;
-import com.zhuoyue.commons.AuditedEntity;
+import com.zhuoyue.base.entity.AuditedEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 

@@ -1,18 +1,18 @@
 import {Component, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'access-denied',
-  styles: [require('./access-denied.component.scss')],
-  template: require('./access-denied.component.html')
+  selector: 'shardis-access-denied',
+  templateUrl: './access-denied.component.html',
+  styleUrls: ['./access-denied.component.scss']
 })
-export class AccessDenied implements OnInit {
+export class AccessDeniedComponent implements OnInit {
 
   constructor() {
   }
 
-
-  ngOnInit():any {
+  ngOnInit(): any {
     console.log('access denied');
   }
+
 
 }

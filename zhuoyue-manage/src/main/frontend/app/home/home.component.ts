@@ -1,28 +1,24 @@
-import {Component} from '@angular/core';
-import {Title} from './shared';
-import {XLarge, AuthService} from '../shared';
+import {Component, OnInit} from '@angular/core';
+import {AuthService} from '../shared/auth/auth.service';
+import {TitleService} from './shared/title.service';
 
 @Component({
-  selector: 'home',
-  providers: [
-    Title
-  ],
-  directives: [XLarge as any],
-  pipes: [],
-  styles: [require('./home.component.scss')],
-  template: require('./home.component.html')
+  selector: 'shardis-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss']
 })
-export class Home {
+export class HomeComponent implements OnInit {
+
   angularLogo = 'assets/img/angular-logo.png';
 
   data = {value: ''};
 
-  constructor(public title:Title, public authService:AuthService) {
+  constructor(public authService: AuthService, public titleService: TitleService) {
+
   }
 
   ngOnInit() {
     console.log('hello `Home` component');
-    this.title.getData().subscribe(data => this.data = data);
+    this.titleService.getData().subscribe(data => this.data = data);
   }
-
 }

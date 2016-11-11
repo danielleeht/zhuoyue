@@ -1,6 +1,6 @@
 package com.zhuoyue.book.domain.comment;
 
-import com.zhuoyue.commons.AuditedEntity;
+import com.zhuoyue.base.entity.AuditedEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 

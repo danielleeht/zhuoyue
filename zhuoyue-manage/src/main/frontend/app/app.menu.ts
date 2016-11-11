@@ -1,4 +1,4 @@
-export const APP_MENU:AppMenuItem[] = [
+export const APP_MENU: AppMenuItem[] = [
 
   {
     name: 'Home',
@@ -28,9 +28,9 @@ export const APP_MENU:AppMenuItem[] = [
 ];
 
 export interface AppMenuItem {
-  name:string;
-  description:string;
-  icon:string;
-  link:string[];
-  roles?:string[];
+  name: string;
+  description: string;
+  icon: string;
+  link: string[];
+  roles?: string[];
 }

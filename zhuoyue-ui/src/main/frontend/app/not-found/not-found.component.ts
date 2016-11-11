@@ -1,19 +1,16 @@
 import {Component, OnInit} from '@angular/core';
 
-console.log('`About` component loaded asynchronously');
-
 @Component({
-  selector: 'not-found',
-  styles: [require('./not-found.component.scss')],
-  template: require('./not-found.component.html')
+  selector: 'shardis-not-found',
+  templateUrl: './not-found.component.html',
+  styleUrls: ['./not-found.component.scss']
 })
-export class NotFound implements OnInit {
+export class NotFoundComponent implements OnInit {
 
   constructor() {
   }
 
-
-  ngOnInit():any {
+  ngOnInit() {
     console.log('route not found');
   }
 

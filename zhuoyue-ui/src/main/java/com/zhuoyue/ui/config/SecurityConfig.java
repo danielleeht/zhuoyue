@@ -35,7 +35,6 @@ public class SecurityConfig implements ResourceServerConfigurer {
             .anonymous()
             .and()
             .authorizeRequests()
-            .antMatchers("/auth/**").permitAll()
             .antMatchers("/api/**").permitAll()
             .antMatchers("/test").authenticated()
 

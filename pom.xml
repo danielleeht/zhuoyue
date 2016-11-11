@@ -14,21 +14,23 @@
 
 	<modules>
 		<module>zhuoyue-common</module>
+        <module>zhuoyue-config</module>
 		<module>zhuoyue-discovery</module>
 		<module>zhuoyue-auth</module>
 		<module>zhuoyue-gateway</module>
 		<module>zhuoyue-ui</module>
-		<module>zhuoyue-api</module>
-		<module>zhuoyue-config</module>
-		<module>zhuoyue-admin</module>
-        <module>zhuoyue-article</module>
         <module>zhuoyue-book</module>
         <module>zhuoyue-crawler</module>
+        <module>zhuoyue-base</module>
+
+        <!--<module>zhuoyue-api</module>
+        <module>zhuoyue-admin</module>
+        <module>zhuoyue-article</module>
         <module>zhuoyue-radio</module>
         <module>zhuoyue-rank</module>
         <module>zhuoyue-tag</module>
         <module>zhuoyue-user</module>
-        <module>zhuoyue-manage</module>
+        <module>zhuoyue-manage</module>-->
     </modules>
 
     <properties>
@@ -154,6 +156,11 @@
 				<artifactId>zhuoyue-common</artifactId>
 				<version>${project.version}</version>
 			</dependency>
+            <dependency>
+                <groupId>com.zhuoyue</groupId>
+                <artifactId>zhuoyue-base</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 		</dependencies>
 	</dependencyManagement>
 

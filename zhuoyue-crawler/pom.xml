@@ -23,6 +23,10 @@
             <artifactId>zhuoyue-common</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.zhuoyue</groupId>
+            <artifactId>zhuoyue-base</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
         </dependency>
