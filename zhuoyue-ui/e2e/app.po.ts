@@ -6,14 +6,14 @@ export class ShardisUiPage {
   }
 
   getMainContent() {
-    return element(by.css('shardis-app .main-content'));
+    return element(by.css('zhuoyue-app .main-content'));
   }
 
   getNavigation() {
-    return element(by.css('shardis-app .navigation'));
+    return element(by.css('zhuoyue-app .navigation'));
   }
 
   getFooter() {
-    return element(by.css('shardis-app .footer md-card-title'));
+    return element(by.css('zhuoyue-app .footer md-card-title'));
   }
 }

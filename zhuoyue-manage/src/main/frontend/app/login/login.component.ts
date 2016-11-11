@@ -3,7 +3,7 @@ import {AuthService} from '../shared/auth/auth.service';
 import {Router} from '@angular/router';
 
 @Component({
-  selector: 'shardis-login',
+  selector: 'zhuoyue-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })

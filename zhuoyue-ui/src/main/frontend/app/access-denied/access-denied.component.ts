@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'shardis-access-denied',
+  selector: 'zhuoyue-access-denied',
   templateUrl: './access-denied.component.html',
   styleUrls: ['./access-denied.component.scss']
 })

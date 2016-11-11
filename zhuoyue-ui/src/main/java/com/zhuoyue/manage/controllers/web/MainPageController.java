@@ -1,4 +1,4 @@
-package com.zhuoyue.ui.controllers.web;
+package com.zhuoyue.manage.controllers.web;
 
 import com.zhuoyue.utils.EnvironmentProvider;
 import org.springframework.beans.factory.annotation.Autowired;

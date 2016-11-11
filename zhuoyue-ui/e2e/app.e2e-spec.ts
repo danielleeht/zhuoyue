@@ -1,7 +1,7 @@
 import { browser, element, by } from 'protractor';
 import { ShardisUiPage } from './app.po';
 
-describe('shardis-ui App', function() {
+describe('zhuoyue-ui App', function() {
   let page: ShardisUiPage;
 
   beforeEach(() => {

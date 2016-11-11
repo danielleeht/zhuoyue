@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'shardis-about',
+  selector: 'zhuoyue-about',
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.scss']
 })

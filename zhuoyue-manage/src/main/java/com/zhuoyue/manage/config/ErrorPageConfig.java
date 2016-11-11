@@ -1,4 +1,4 @@
-package com.zhuoyue.ui.config;
+package com.zhuoyue.manage.config;
 
 import org.springframework.boot.web.servlet.ErrorPage;
 import org.springframework.boot.web.servlet.ErrorPageRegistrar;

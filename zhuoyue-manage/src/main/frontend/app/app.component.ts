@@ -4,13 +4,13 @@ import {Router} from '@angular/router';
 import {APP_MENU, AppMenuItem} from './app.menu';
 
 @Component({
-  selector: 'shardis-app',
+  selector: 'zhuoyue-app',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
   public name: String = 'Spring Boot Angular 2 Webpack Starter';
-  public url: String = 'https://github.com/shardis';
+  public url: String = 'https://github.com/zhuoyue';
   public loading: boolean = false;
 
   views: AppMenuItem[] = APP_MENU;

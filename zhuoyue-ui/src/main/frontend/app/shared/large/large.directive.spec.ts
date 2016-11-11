@@ -7,7 +7,7 @@ import {By} from '@angular/platform-browser';
 
 @Component({
   template: `
-  <h2 id="t1" shardisLarge>Something Yellow</h2>
+  <h2 id="t1" zhuoyueLarge>Something Yellow</h2>
   <h2 id="t2">Something Yellow</h2>
 `
 })
@@ -15,7 +15,7 @@ class TestComponent {
 }
 
 
-describe('Directive: shardisLarge', () => {
+describe('Directive: zhuoyueLarge', () => {
 
   let fixture: ComponentFixture<TestComponent> = null;
 

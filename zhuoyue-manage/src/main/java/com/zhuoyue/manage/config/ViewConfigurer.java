@@ -1,4 +1,4 @@
-package com.zhuoyue.ui.config;
+package com.zhuoyue.manage.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;

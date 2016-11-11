@@ -12,7 +12,7 @@
       "main": "main.ts",
       "test": "test.ts",
       "tsconfig": "tsconfig.json",
-      "prefix": "shardis",
+      "prefix": "zhuoyue",
       "mobile": false,
       "styles": [
         "styles.scss"

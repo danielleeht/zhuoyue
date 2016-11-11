@@ -3,7 +3,7 @@ import {HeroService} from '../hero.service';
 import {Hero} from '../hero';
 
 @Component({
-  selector: 'shardis-hero-app',
+  selector: 'zhuoyue-hero-app',
   templateUrl: './hero-app.component.html',
   styleUrls: ['./hero-app.component.scss']
 })

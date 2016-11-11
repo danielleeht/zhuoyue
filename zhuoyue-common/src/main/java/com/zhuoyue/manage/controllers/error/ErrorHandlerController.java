@@ -1,4 +1,4 @@
-package com.zhuoyue.ui.controllers.error;
+package com.zhuoyue.manage.controllers.error;
 
 import com.google.common.collect.Lists;
 import com.zhuoyue.error.ServerErrorDTO;

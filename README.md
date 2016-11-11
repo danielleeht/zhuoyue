@@ -58,45 +58,45 @@ mvn clean package -P prod-standalone
 
 Then run config server:
 ```
-cd shardis-config/
-java -jar ./target/shardis-config-2.1.0.jar
+cd zhuoyue-config/
+java -jar ./target/zhuoyue-config-2.1.0.jar
 ```
 
 Then run discovery server:
 ```
-cd shardis-discovery/
-java -jar ./target/shardis-discovery-2.1.0.jar
+cd zhuoyue-discovery/
+java -jar ./target/zhuoyue-discovery-2.1.0.jar
 ```
 
 Then run gateway server:
 ```
-cd shardis-gateway/
-java -jar ./target/shardis-gateway-2.1.0.jar
+cd zhuoyue-gateway/
+java -jar ./target/zhuoyue-gateway-2.1.0.jar
 ```
 
 Then run api server:
 ```
-cd shardis-api/
-java -jar ./target/shardis-api-2.1.0.jar
+cd zhuoyue-api/
+java -jar ./target/zhuoyue-api-2.1.0.jar
 ```
 
 Then run auth server:
 ```
-cd shardis-auth/
-java -jar ./target/shardis-auth-2.1.0.jar
+cd zhuoyue-auth/
+java -jar ./target/zhuoyue-auth-2.1.0.jar
 ```
 
 Then run ui server:
 ```
-cd shardis-api/
-java -jar ./target/shardis-ui-2.1.0.jar
+cd zhuoyue-api/
+java -jar ./target/zhuoyue-ui-2.1.0.jar
 ```
 
 
 Then run admin server (optional):
 ```
-cd shardis-admin/
-java -jar ./target/shardis-admin-2.1.0.jar
+cd zhuoyue-admin/
+java -jar ./target/zhuoyue-admin-2.1.0.jar
 ```
 
 
@@ -112,13 +112,13 @@ mvn clean install -P dev-standalone
 
 Run config server in development mode:
 ```
-cd shardis-config
+cd zhuoyue-config
 mvn spring-boot:run -P dev-standalone
 ```
 
 Run discovery server in development mode:
 ```
-cd shardis-discovery
+cd zhuoyue-discovery
 mvn spring-boot:run -P dev-standalone
 ```
 

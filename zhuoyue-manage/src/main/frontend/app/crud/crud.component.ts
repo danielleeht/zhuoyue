@@ -4,7 +4,7 @@ import {Http} from '@angular/http';
 import {AuthService} from '../shared/auth/auth.service';
 
 @Component({
-  selector: 'shardis-crud',
+  selector: 'zhuoyue-crud',
   templateUrl: './crud.component.html',
   styleUrls: ['./crud.component.scss']
 })

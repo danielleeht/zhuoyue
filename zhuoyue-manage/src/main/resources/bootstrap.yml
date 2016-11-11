@@ -4,7 +4,7 @@ info:
 
 # PROFILES
 spring:
-    application.name: zhuoyue-ui
+    application.name: zhuoyue-manage
     profiles.active: dev,standalone
     cloud:
         config:

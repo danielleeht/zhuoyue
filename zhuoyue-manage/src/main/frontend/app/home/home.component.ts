@@ -3,7 +3,7 @@ import {AuthService} from '../shared/auth/auth.service';
 import {TitleService} from './shared/title.service';
 
 @Component({
-  selector: 'shardis-home',
+  selector: 'zhuoyue-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })

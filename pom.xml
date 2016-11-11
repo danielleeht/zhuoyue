@@ -22,6 +22,7 @@
         <module>zhuoyue-book</module>
         <module>zhuoyue-crawler</module>
         <module>zhuoyue-base</module>
+        <module>zhuoyue-manage</module>
 
         <!--<module>zhuoyue-api</module>
         <module>zhuoyue-admin</module>
@@ -30,7 +31,7 @@
         <module>zhuoyue-rank</module>
         <module>zhuoyue-tag</module>
         <module>zhuoyue-user</module>
-        <module>zhuoyue-manage</module>-->
+        -->
     </modules>
 
     <properties>

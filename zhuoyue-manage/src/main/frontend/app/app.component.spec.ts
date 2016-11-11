@@ -34,10 +34,10 @@ describe('App: ShardisUi', () => {
   });
 
 
-  it(`should have as url ''https://github.com/shardis''`, () => {
+  it(`should have as url ''https://github.com/zhuoyue''`, () => {
     let fixture = TestBed.createComponent(AppComponent);
     let app = fixture.debugElement.componentInstance;
-    expect(app.url).toEqual('https://github.com/shardis');
+    expect(app.url).toEqual('https://github.com/zhuoyue');
   });
 
   it('should render github link', () => {
