@@ -58,7 +58,7 @@ export class AuthService {
         + encodeURIComponent(password) + '&grant_type=password';
 
       this.http
-        .post('/oauth/token', payload, {headers: headers})
+        .post('/auth/oauth/token', payload, {headers: headers})
         .subscribe(
           data => {
             this.tokenData = data.json();
@@ -90,7 +90,7 @@ export class AuthService {
       let data = 'grant_type=refresh_token&refresh_token=' + encodeURIComponent(this.tokenData.refresh_token);
 
       this.http
-        .post('/oauth/token', data, {headers: headers})
+        .post('/auth/oauth/token', data, {headers: headers})
         .subscribe(
           data => {
             this.tokenData = data.json();

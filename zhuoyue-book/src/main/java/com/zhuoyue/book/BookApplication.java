@@ -14,11 +14,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * Created by Tomasz Kucharzyk
  */
 @SpringBootApplication
-@EnableResourceServer
 @EnableDiscoveryClient
 @EnableCaching
-@EnableSwagger2
-@Import({ SpringDataRestConfiguration.class, BeanValidatorPluginsConfiguration.class})
 public class BookApplication {
 
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package com.zhuoyue.book.config;
+package com.zhuoyue.crawler.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
@@ -22,7 +22,7 @@ public class SecurityConfig implements ResourceServerConfigurer {
 
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
-        resources.resourceId("zhuoyue-book");
+        resources.resourceId("zhuoyue-crawler");
     }
 
     @Override

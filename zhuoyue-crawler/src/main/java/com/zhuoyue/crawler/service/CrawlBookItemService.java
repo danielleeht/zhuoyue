@@ -62,7 +62,7 @@ public class CrawlBookItemService {
         this.processBookItem(crawledBook);
     }
 
-    @Scheduled(cron="0 0 0 * * ?")
+    @Scheduled(cron="0 0 22 * * ?")
     public void processAllCrawled(){
         List<CrawledBook> crawledBookList = crawledBookRepository.findByCrawledBookStatus(CrawledBookStatus.CRAWLED);
 

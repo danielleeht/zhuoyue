@@ -11,7 +11,7 @@ export class LoginComponent implements OnInit {
 
 
   username = 'admin';
-  password = 'xxxxxx';
+  password = 'admin';
   message = '';
 
   constructor(public authService: AuthService, public router: Router) {

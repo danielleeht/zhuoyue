@@ -5,7 +5,7 @@ info:
 # PROFILES
 spring:
     application.name: zhuoyue-manage
-    profiles.active: dev,standalone
+    profiles.active: @default.spring.profiles@
     cloud:
         config:
             failFast: true
