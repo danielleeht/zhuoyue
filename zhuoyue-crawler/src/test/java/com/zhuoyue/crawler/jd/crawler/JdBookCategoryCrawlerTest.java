@@ -1,4 +1,4 @@
-package com.zhuoyue.crawler.jd.handler;
+package com.zhuoyue.crawler.jd.crawler;
 
 import com.zhuoyue.crawler.domain.category.CrawlBookCategory;
 import org.junit.Test;
@@ -9,8 +9,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by lihaitao on 2016/11/5.

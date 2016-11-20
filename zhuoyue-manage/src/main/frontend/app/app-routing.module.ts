@@ -24,6 +24,12 @@ export const routes: Routes = [
     loadChildren: 'app/about/about.module#AboutModule'
   },
   {
+    path: 'book',
+    pathMatch: 'prefix',
+    loadChildren: 'app/book/book.module#BookModule',
+    canActivate: [AuthenticatedGuard, AdminGuard]
+  },
+  {
     path: 'crud',
     pathMatch: 'prefix',
     loadChildren: 'app/crud/crud.module#CrudModule',

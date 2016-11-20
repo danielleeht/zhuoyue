@@ -20,6 +20,13 @@ export const APP_MENU: AppMenuItem[] = [
     roles: ['ROLE_ADMIN']
   },
   {
+    name: '图书管理',
+    description: '爬虫图书及网站图书管理',
+    icon: 'book',
+    link: ['book'],
+    roles: ['ROLE_ADMIN']
+  },
+  {
     name: 'About',
     description: 'About page',
     icon: 'person',

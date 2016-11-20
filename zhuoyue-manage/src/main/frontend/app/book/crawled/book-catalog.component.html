@@ -1,0 +1,37 @@
+<md-toolbar align="end">
+  <button md-raised-button color="primary" (click)="newPost()">new post</button>
+  <button md-raised-button color="secondary" (click)="refresh()">refresh</button>
+</md-toolbar>
+<md-card>
+  <md-card-title>图书爬虫目录</md-card-title>
+  <md-card-content>
+    <table>
+      <thead>
+      <tr>
+        <th>来源网站</th>
+        <th>编号</th>
+        <th>书名</th>
+        <th>封面</th>
+        <th>分类</th>
+        <th>店铺</th>
+        <th>爬取日期</th>
+        <th>状态</th>
+        <th>图书ID</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let bookCatalog of bookCatalogs">
+        <td>{{ bookCatalog.site }}</td>
+        <td>{{ bookCatalog.itemId }}</td>
+        <td>{{ bookCatalog.name }}</td>
+        <td>{{ bookCatalog.cover }}</td>
+        <td>{{ bookCatalog.category }}</td>
+        <td>{{ bookCatalog.shopName }}</td>
+        <td>{{ bookCatalog.crawledDate }}</td>
+        <td>{{ bookCatalog.catalogStatus }}</td>
+        <td>{{ bookCatalog.crawledBookId }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </md-card-content>
+</md-card>

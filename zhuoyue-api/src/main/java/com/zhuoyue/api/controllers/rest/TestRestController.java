@@ -1,7 +1,6 @@
 package com.zhuoyue.api.controllers.rest;
 
 
-import com.zhuoyue.commons.ValueObject;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,10 +14,10 @@ import java.security.Principal;
 @RequestMapping("/")
 public class TestRestController {
 
-    @RequestMapping("/title")
-    public ValueObject getTitle(Principal user) {
-        return new ValueObject("API SERVER IS ALIVE" + (user == null ? "" : " " + user.getName()));
-    }
+//    @RequestMapping("/title")
+//    public ValueObject getTitle(Principal user) {
+//        return new ValueObject("API SERVER IS ALIVE" + (user == null ? "" : " " + user.getName()));
+//    }
 
     @RequestMapping("/user")
     public Principal user(Principal user) {

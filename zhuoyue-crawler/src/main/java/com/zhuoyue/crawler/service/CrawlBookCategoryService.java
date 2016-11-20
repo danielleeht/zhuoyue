@@ -1,6 +1,6 @@
 package com.zhuoyue.crawler.service;
 
-import com.zhuoyue.crawler.jd.handler.JdBookCategoryCrawler;
+import com.zhuoyue.crawler.jd.crawler.JdBookCategoryCrawler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

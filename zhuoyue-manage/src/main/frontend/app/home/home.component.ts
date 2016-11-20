@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../shared/auth/auth.service';
-import {TitleService} from './shared/title.service';
 
 @Component({
   selector: 'zhuoyue-home',
@@ -13,12 +12,11 @@ export class HomeComponent implements OnInit {
 
   data = {value: ''};
 
-  constructor(public authService: AuthService, public titleService: TitleService) {
+  constructor(public authService: AuthService) {
 
   }
 
   ngOnInit() {
     console.log('hello `Home` component');
-    this.titleService.getData().subscribe(data => this.data = data);
   }
 }

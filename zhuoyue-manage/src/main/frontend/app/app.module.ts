@@ -7,7 +7,6 @@ import {AuthService} from './shared/auth/auth.service';
 import {AdminGuard} from './shared/guards/admin.guard';
 import {AuthenticatedGuard} from './shared/guards/authenticated.guard';
 import {UnauthenticatedGuard} from './shared/guards/unauthenticated.guard';
-import {TitleService} from './home/shared/title.service';
 import {AppRoutingModule} from './app-routing.module';
 import {COMMON_ROOT_MODULES} from './shared';
 
@@ -26,8 +25,7 @@ import {COMMON_ROOT_MODULES} from './shared';
     AuthService,
     AdminGuard,
     AuthenticatedGuard,
-    UnauthenticatedGuard,
-    TitleService
+    UnauthenticatedGuard
   ],
   bootstrap: [AppComponent]
 })

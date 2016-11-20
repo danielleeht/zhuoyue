@@ -1,7 +1,7 @@
 /**
  *
  */
-package com.zhuoyue.crawler.jd.handler;
+package com.zhuoyue.crawler.jd.crawler;
 
 import com.zhuoyue.crawler.jd.model.JdBookCatalog;
 import com.zhuoyue.crawler.jd.model.JdBookComment;

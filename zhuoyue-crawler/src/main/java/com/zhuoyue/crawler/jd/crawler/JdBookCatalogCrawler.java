@@ -1,7 +1,7 @@
 /**
  *
  */
-package com.zhuoyue.crawler.jd.handler;
+package com.zhuoyue.crawler.jd.crawler;
 
 import com.zhuoyue.crawler.domain.category.CrawlBookCategory;
 import com.zhuoyue.crawler.domain.task.CrawlerRecord;
@@ -9,6 +9,7 @@ import com.zhuoyue.crawler.jd.model.JdBookCatalog;
 import com.zhuoyue.crawler.jd.pipeline.JdBookCatalogPipeline;
 import com.zhuoyue.crawler.pipeline.CrawlerRecordPipelineFactory;
 import com.zhuoyue.crawler.utils.CrawlerType;
+import com.zhuoyue.utils.EnvironmentProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +48,9 @@ public class JdBookCatalogCrawler {
     @Autowired
     private JdBookCategoryCrawler jdBookCategoryCrawler;
 
+    @Autowired
+    private EnvironmentProvider environmentProvider;
+
 	/**
 	 * @param
 	 */
@@ -67,6 +71,11 @@ public class JdBookCatalogCrawler {
     	ooSpider.setSpiderListeners(Arrays.asList(spiderListener));
     	for(CrawlBookCategory bookCategory: bookCategories){
     		ooSpider.addUrl(String.format(URL_LIST, bookCategory.getCategoryString()));
+            if(environmentProvider.isDevelopment()){
+                log.info("开发环境只爬取一页数据");
+                break;
+            }
+
     	}
 
     	ooSpider.thread(4).run();

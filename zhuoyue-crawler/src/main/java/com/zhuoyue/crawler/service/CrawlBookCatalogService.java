@@ -2,8 +2,8 @@ package com.zhuoyue.crawler.service;
 
 import com.zhuoyue.crawler.domain.catalog.CatalogStatus;
 import com.zhuoyue.crawler.domain.task.CrawlerRecord;
-import com.zhuoyue.crawler.jd.handler.JdBookCatalogCrawler;
-import com.zhuoyue.crawler.jd.handler.JdBookItemCrawler;
+import com.zhuoyue.crawler.jd.crawler.JdBookCatalogCrawler;
+import com.zhuoyue.crawler.jd.crawler.JdBookItemCrawler;
 import com.zhuoyue.crawler.event.CrawlEndEvent;
 import com.zhuoyue.crawler.utils.CrawlerSource;
 import org.slf4j.Logger;

@@ -1,7 +1,7 @@
 /**
  *
  */
-package com.zhuoyue.crawler.jd.handler;
+package com.zhuoyue.crawler.jd.crawler;
 
 import java.util.Date;
 import java.util.List;

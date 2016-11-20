@@ -4,7 +4,6 @@ import {TestBed} from '@angular/core/testing';
 import {AuthService} from '../shared/auth/auth.service';
 import {RouterTestingModule} from '@angular/router/testing';
 import {HomeComponent} from './home.component';
-import {TitleService} from './shared/title.service';
 import {COMMON_TESTING_MODULES, COMMON_TESING_PROVIDERS} from '../testing/testing.modules';
 
 describe('Component: Home', () => {
@@ -13,8 +12,7 @@ describe('Component: Home', () => {
     TestBed.configureTestingModule({
       providers: [
         ...COMMON_TESING_PROVIDERS,
-        AuthService,
-        TitleService
+        AuthService
       ],
       imports: [
         ...COMMON_TESTING_MODULES,
