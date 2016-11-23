@@ -9,7 +9,8 @@ spring:
         config:
             server:
                 git:
-                    uri: ${CONFIGURATION_REPOSITORY:https://code.aliyun.com/danielleeht/zhuoyue-configuration.git}
+                    uri: file://D:/develop/zhuoyue/zhuoyue-configuration
+                    #uri: ${CONFIGURATION_REPOSITORY:https://code.aliyun.com/danielleeht/zhuoyue-configuration.git}
 
 # SERVICE VERSION
 info:

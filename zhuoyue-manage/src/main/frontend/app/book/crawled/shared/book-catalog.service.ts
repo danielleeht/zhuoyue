@@ -29,7 +29,7 @@ export class BookCatalogService {
   public fetchBookCatalogs(pageable: Pageable): Promise<BookCatalog[]> {
     return this.http.get('/crawler/bookCatalogs?'+pageable.toUrlParam(), {headers: this.authService.getAuthorizationHeaders()})
       .toPromise()
-      .then(data => data.json())
+      .then(data => data.json()._embedded.bookCatalogs)
       .catch(this.handleError);
   }
 

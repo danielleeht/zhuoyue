@@ -21,7 +21,7 @@ public class EnvironmentProvider implements EnvironmentAware {
 
     @Cacheable("EnvironmentProvider.isDevelopment")
     public Boolean isDevelopment() {
-        return environment.acceptsProfiles(Profiles.DEV.getProfileName());
+        return !environment.acceptsProfiles(Profiles.PROD.getProfileName());
     }
 
     @Override
