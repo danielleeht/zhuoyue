@@ -124,6 +124,7 @@ public class CrawlBookItemService {
         crawledBook = crawledBookRepository.save(crawledBook);
 
         bookCatalog.setCrawledBookId(crawledBook.getId());
+        bookCatalog.setIsbn(crawledBook.getIsbn());
         bookCatalog.setCatalogStatus(CatalogStatus.DETAILED);
 
         bookCatalogRepository.save(bookCatalog);
@@ -136,6 +137,7 @@ public class CrawlBookItemService {
      * @param authors
      */
     private void convertAuthor(String authorText, Set<BookAuthor> authors) {
+        //作者类型分为著作编校评译绘等，通过分号分隔
         String[] authorStrs = authorText.split("[；;]");
 
         for(String authorStr : authorStrs){
@@ -167,7 +169,7 @@ public class CrawlBookItemService {
             if(defaultCountryMatcher.find()){
                 defaultCountry = defaultCountryMatcher.group(1);
             }
-            //某一类作者有多个
+            //某一类作者有多个，一般用逗号分隔
             String[] singleAuthorStrs = authorMain.split("[，,]");
             int number = 0;
             for(String singleAuthorStr: singleAuthorStrs){
@@ -184,10 +186,12 @@ public class CrawlBookItemService {
                 String name = namePart;
                 String foreignName = null;
 
+                //姓名后面的小括号中一般为中文名后英文名
                 Pattern foreignNamePattern = Pattern.compile("(.+)[\\(（](.+)[\\)）] (.*)");
                 Matcher foreignNameMatcher = foreignNamePattern.matcher(namePart);
                 if(foreignNameMatcher.find()){
                     String temp = foreignNameMatcher.group(1);
+                    //检查第一位是否为中文，是则为中文名，否则为外文名
                     if(temp.substring(0, 1).matches("[\\u4E00-\\u9FA5]")){
                         name = temp;
                         foreignName = foreignNameMatcher.group(2);
@@ -205,6 +209,7 @@ public class CrawlBookItemService {
                 String finalForeignName = foreignName;
                 String lockKey = new String(Base64.encode(("author"+"_"+ finalName +"_"+ finalCountry +"_"+ finalBookAuthorType).getBytes()));
 
+                //作者保存通过并发锁实现
                 WhileLockedProcessor whileLockedProcessor = new WhileLockedProcessor(this.lockRegistry, lockKey){
                     @Override
                     protected void whileLocked() throws IOException {
@@ -221,7 +226,6 @@ public class CrawlBookItemService {
                             author[0].setForeignName(finalForeignName);
 
                             author[0] = authorRepository.save(author[0]);
-
 
                             authorMapping.setForeignName(finalForeignName);
                             authorMapping.setMappingAuthor(author[0]);

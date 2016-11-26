@@ -1,6 +1,9 @@
 <md-toolbar align="end">
-  <button md-raised-button color="primary" (click)="newPost()">new post</button>
-  <button md-raised-button color="secondary" (click)="refresh()">refresh</button>
+  <button md-raised-button color="secondary" (click)="toPage(links?.first.href)" *ngIf="links?.first">第一页</button>
+  <button md-raised-button color="secondary" (click)="toPage(links?.last.href)" *ngIf="links?.last">最后一页</button>
+  <button md-raised-button color="secondary" (click)="toPage(links?.prev.href)" *ngIf="links?.prev">上一页</button>
+  <button md-raised-button color="secondary" (click)="toPage(links?.next.href)" *ngIf="links?.next">下一页</button>
+  <span style="align-self: flex-end">共{{ page?.totalElements }}条，共{{ page?.totalPages }}页，每页{{ page?.size }}条，当前页{{ page?.number+1 }}</span>
 </md-toolbar>
 <md-card>
   <md-card-title>图书爬虫目录</md-card-title>
@@ -8,28 +11,39 @@
     <table>
       <thead>
       <tr>
-        <th>来源网站</th>
-        <th>编号</th>
-        <th>书名</th>
         <th>封面</th>
-        <th>分类</th>
-        <th>店铺</th>
-        <th>爬取日期</th>
-        <th>状态</th>
-        <th>图书ID</th>
+        <th>图书信息</th>
+        <th>爬虫信息</th>
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let bookCatalog of bookCatalogs">
-        <td>{{ bookCatalog.site }}</td>
-        <td>{{ bookCatalog.itemId }}</td>
-        <td>{{ bookCatalog.name }}</td>
-        <td>{{ bookCatalog.cover }}</td>
-        <td>{{ bookCatalog.category }}</td>
-        <td>{{ bookCatalog.shopName }}</td>
-        <td>{{ bookCatalog.crawledDate }}</td>
-        <td>{{ bookCatalog.catalogStatus }}</td>
-        <td>{{ bookCatalog.crawledBookId }}</td>
+        <td>
+          <img src="{{ bookCatalog.cover }}"/>
+        </td>
+        <td>
+          <md-list>
+            <md-list-item>
+              <p md-line>ID: {{ bookCatalog.id }}</p>
+              <p md-line>编号: {{ bookCatalog.itemId }}</p>
+              <p md-line>书名: {{ bookCatalog.name }}</p>
+              <p md-line>ISBN: <a (click)="searchByIsbn(bookCatalog.isbn)" )>{{ bookCatalog.isbn }}</a></p>
+              <p md-line>分类: {{ bookCatalog.category }}</p>
+            </md-list-item>
+          </md-list>
+        </td>
+        <td>
+          <md-list>
+            <md-list-item>
+              <p md-line>来源网站: {{ bookCatalog.site }}</p>
+              <p md-line>店铺: {{ bookCatalog.shopName }}</p>
+              <p md-line>爬取日期: {{ bookCatalog.crawledDate }}</p>
+              <p md-line>状态: {{ bookCatalog.catalogStatus }}</p>
+              <p md-line>同类排名: {{ bookCatalog.rank }}</p>
+              <p md-line>图书明细: {{ bookCatalog.crawledBookId }}</p>
+            </md-list-item>
+          </md-list>
+        </td>
       </tr>
       </tbody>
     </table>

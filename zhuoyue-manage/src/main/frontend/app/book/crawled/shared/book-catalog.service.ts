@@ -8,6 +8,7 @@ import {BookCatalog} from "./book-catalog.model";
 import {Observable} from "rxjs";
 import 'rxjs/add/operator/toPromise';
 import {Pageable} from "../../../shared/utils/pageable.model";
+import * as URI from "urijs";
 
 /**
  * 图书目录模块前端数据服务
@@ -26,10 +27,17 @@ export class BookCatalogService {
         .catch(this.handleError);
   }
 
-  public fetchBookCatalogs(pageable: Pageable): Promise<BookCatalog[]> {
-    return this.http.get('/crawler/bookCatalogs?'+pageable.toUrlParam(), {headers: this.authService.getAuthorizationHeaders()})
+  public fetchBookCatalogs(url: string, pageable?: Pageable): Promise<BookCatalog[]> {
+    if(!url){
+      url = '/crawler/bookCatalogs';
+    }
+    let uri = new URI(url);
+    if(pageable){
+      uri.setSearch(pageable);
+    }
+    return this.http.get(uri.toString(), {headers: this.authService.getAuthorizationHeaders()})
       .toPromise()
-      .then(data => data.json()._embedded.bookCatalogs)
+      .then(data => data.json())
       .catch(this.handleError);
   }
 

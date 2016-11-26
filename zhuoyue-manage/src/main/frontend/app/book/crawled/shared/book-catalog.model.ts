@@ -13,6 +13,10 @@ export class BookCatalog {
 
     public name: string,
 
+    public isbn: string,
+
+    public rank: number,
+
     public cover: string,
 
     public category: string,

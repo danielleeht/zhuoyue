@@ -11,11 +11,11 @@ export class Pageable {
     public sort?: string
   ){}
 
-  public toUrlParam(){
-    let urlParam = "page="+this.page;
-    if(this.size) urlParam += "&size="+this.size;
-    if(this.sort) urlParam += "&sort="+this.sort;
-
-    return urlParam;
-  }
+  // public toUrlParam(){
+  //   let urlParam = "page="+this.page;
+  //   if(this.size) urlParam += "&size="+this.size;
+  //   if(this.sort) urlParam += "&sort="+this.sort;
+  //
+  //   return urlParam;
+  // }
 }

@@ -27,6 +27,9 @@ public class BookCatalog extends BaseEntity {
     @ApiModelProperty(value="图书名称")
     private String name;
 
+    @ApiModelProperty("ISBN")
+    private String isbn;
+
     @ApiModelProperty(value="封面图片URL")
     private String cover;
 
@@ -36,6 +39,9 @@ public class BookCatalog extends BaseEntity {
     @ApiModelProperty(value="爬虫网站")
     @NotNull
     private String site;
+
+    @ApiModelProperty(value="销量排行")
+    private Integer rank;
 
     @ApiModelProperty(value="商户名称")
     private String shopName;
@@ -70,6 +76,14 @@ public class BookCatalog extends BaseEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
     }
 
     public String getCover() {
@@ -110,6 +124,14 @@ public class BookCatalog extends BaseEntity {
 
     public void setCrawledDate(Date crawledDate) {
         this.crawledDate = crawledDate;
+    }
+
+    public Integer getRank() {
+        return rank;
+    }
+
+    public void setRank(Integer rank) {
+        this.rank = rank;
     }
 
     public CatalogStatus getCatalogStatus() {

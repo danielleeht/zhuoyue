@@ -5,7 +5,7 @@ info:
 # PROFILES
 spring:
     application.name: zhuoyue-crawler
-    profiles.active: init,standalone
+    profiles.active: dev,standalone
     cloud:
         config:
             failFast: true

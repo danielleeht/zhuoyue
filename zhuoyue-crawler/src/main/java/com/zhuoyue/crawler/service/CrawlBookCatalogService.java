@@ -41,6 +41,16 @@ public class CrawlBookCatalogService {
 
     }
 
+    private void updateBookCatalogRank(String taskId){
+        log.info("Begin update book catalog rank");
+
+        jdbcTemplate.update("UPDATE book_catalog B SET rank=" +
+            " (SELECT min(D.rank) FROM daily_book_catalog D" +
+            " WHERE B.item_id=D.item_id AND B.site=D.site" +
+            " AND D.task_id=?)", taskId);
+
+    }
+
     public void deleteDailyCatalog(String site){
         jdbcTemplate.update("delete from daily_book_catalog where site = ?", site);
     }
@@ -58,6 +68,8 @@ public class CrawlBookCatalogService {
         String taskId = record.getId()+"";
 
         this.addBookCatalog(taskId);
+
+        this.updateBookCatalogRank(taskId);
 
         jdBookItemCrawler.doCrawl();
 
